@@ -7,7 +7,8 @@ import { Calendar } from './components/Calendar';
 import { Todolist } from './components/Todolist';
 import { Wishlist } from './components/Wishlist';
 import { AddForm } from './components/Add-form';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Error } from './components/Error';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 
@@ -16,15 +17,20 @@ export class App extends Component {
     return (
       <Router>
         <div className="App">
-        <Header />
+          <Header />
           <hr />
-          <section className="c-section">
-            <Route path="/" exact component={Catalog} />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/Todolist" component={Todolist} />
-            <Route path="/Wishlist" component={Wishlist} />
-            <Route path="/add-form" component={AddForm} />
-          </section>
+          <div className="o-container">
+            <div className="c-site-content">
+              <Switch>
+                <Route path="/" exact component={Catalog} />
+                <Route path="/calendar" component={Calendar} />
+                <Route path="/Todolist" component={Todolist} />
+                <Route path="/Wishlist" component={Wishlist} />
+                <Route path="/add-form" component={AddForm} />
+                <Route component={Error} />
+              </Switch>
+            </div>
+          </div>
           <hr />
           <Footer />
         </div>

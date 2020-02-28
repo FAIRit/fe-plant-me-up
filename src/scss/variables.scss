@@ -1,0 +1,71 @@
+@import './responsive.scss';
+
+//settings fonts
+$font-family: "AvenirLTPro", "helvetica neue", 'Calibri', helvetica, arial, sans-serif;
+$heading-font-family: $font-family;
+$nav-font-family: "Poppins", "helvetica neue", 'Calibri', helvetica, arial, sans-serif;
+$btn-font-family: "Poppins", "helvetica neue", 'Calibri', helvetica, arial, sans-serif;
+$nav-font-family: $font-family;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap&subset=latin-ext');
+
+
+// settings colors
+$hr-color: #e5e5e5;
+
+$brand-color: #21824b;
+$text-color: #111;
+
+$btn-color: #1abc9c;
+$btn-text-color: #000;
+
+
+// objects containers
+$containerPaddings: (mobile: 15px, tablet: 15px, desktop: 15px) !default;
+
+$containerWidths: (mobile: 100%,
+	tablet: 768px,
+	tabletWide: 1024px,
+	desktop: 1110px + map-get($containerPaddings, desktop) * 2) !default;
+
+$containerNarrowWidths: (mobile: 100%,
+	tablet: 768px,
+	tabletWide: 1024px,
+	desktop: 800px + map-get($containerPaddings, desktop) * 2) !default;
+
+
+$containerWidePaddings: (mobile: 15px,
+	tablet: 15px,
+	desktop: 30px) !default;
+
+$containerWideWidths: (mobile: 100%,
+	tablet: 768px,
+	tabletWide: 1024px,
+	desktop: 1310px + map-get($containerWidePaddings, desktop) * 2) !default;
+
+
+.o-container-wide {
+	width: 100%;
+	margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.o-container {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include mobile {
+        width: 100%;
+    }
+    
+    @include tablet {
+        width: 100%;
+    }
+}
+    
+    
+
+
+

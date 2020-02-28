@@ -1,20 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom'; 
+import { BrowserRouter, NavLink } from 'react-router-dom';
 
 export const Header = () => {
     // console.log("render");
     return (
         <header className="c-site-header">
-            <h1>logo</h1>
-            <nav>
-                <ul>
-                    <li><Link to="/add-form">+</Link></li>
-                    <li><Link to="/">Cat</Link></li>
-                    <li><Link to="/calendar">Cal</Link></li>
-                    <li><Link to="/todolist">Todo</Link></li>
-                    <li><Link to="/wishlist">wish</Link></li>
-                </ul>
-            </nav>
+            <div className="o-container c-site-header-inner">
+                <div className="c-site-header-logo">
+                <img src="https://via.placeholder.com/40x40" />
+                </div>
+                <nav className="c-site-nav">
+                    <ul>
+                        <li><NavLink to="/add-form">+</NavLink></li>
+                        <li><NavLink to="/" exact>Cat</NavLink></li>
+                        <li><NavLink to="/calendar">Cal</NavLink></li>
+                        <li><NavLink to="/todolist">Todo</NavLink></li>
+                        <li><NavLink to="/wishlist">Wish</NavLink></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     );
 }
