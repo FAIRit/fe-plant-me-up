@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     // console.log("render");
@@ -7,7 +7,7 @@ export const Header = () => {
         <header className="c-site-header">
             <div className="o-container c-site-header-inner">
                 <div className="c-site-header-logo">
-                <img src="https://via.placeholder.com/40x40" />
+                <img src="https://via.placeholder.com/40x40" alt="placeholder" />
                 </div>
                 <nav className="c-site-nav">
                     <ul>

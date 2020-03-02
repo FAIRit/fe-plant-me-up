@@ -55,6 +55,11 @@ export class Wishlist extends Component {
         });
     }
 
+    removeItem(itemId) {
+        const itemRef = firebase.database().ref(`/items/${itemId}`);
+        itemRef.remove();
+    }
+
     render() {
         return (
             <div className="c-page">
@@ -75,6 +80,7 @@ export class Wishlist extends Component {
                                     return (
                                         <li key={item.id}>
                                             <p>{item.title}: <a href="{item.link}">{item.link}</a></p>
+                                        <button onClick={() => this.removeItem(item.id)}>już mam!</button>
                                         </li>
                                     )
                                 })}

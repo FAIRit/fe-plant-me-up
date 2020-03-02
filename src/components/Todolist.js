@@ -11,6 +11,7 @@ export class Todolist extends Component {
             todos: []
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleCheckbox = this.handleCheckbox.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -20,15 +21,23 @@ export class Todolist extends Component {
         });
     }
 
+    handleCheckbox(e) {
+        this.setState({
+            [e.target.checked]: e.target.checked
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const todosRef = firebase.database().ref('todos');
         const todo = {
             title: this.state.text,
+            important: this.state.checked
             }
         todosRef.push(todo);
         this.setState({
             text: '',
+            checked: false
                     });
     }
 
@@ -41,6 +50,7 @@ export class Todolist extends Component {
                 newState.push({
                     id: todo,
                     title: todos[todo].title,
+                    important: todos[todo].important
                 });
             }
             this.setState({
@@ -48,6 +58,15 @@ export class Todolist extends Component {
             });
         });
     }
+
+    removeItem(todoId) {
+        const todoRef = firebase.database().ref(`/todos/${todoId}`);
+        todoRef.remove();
+    }
+
+    
+        
+   
 
     render() {
         return (
@@ -57,6 +76,8 @@ export class Todolist extends Component {
                     <form onSubmit={this.handleSubmit} className="c-form" >
                         <h3>dodaj zadanie</h3>
                         <input type="text" name="text" placeholder="tu wpisz" onChange={this.handleChange} value={this.state.text} />
+                        <input type="checkbox" id="important" onChange={this.handleCheckbox} />
+                        <label htmlFor="important">WAŻNE</label>
                         <button className="c-btn">dodaj</button>
                         <hr />
                     </form>
@@ -68,6 +89,7 @@ export class Todolist extends Component {
                                     return (
                                         <li key={todo.id}>
                                             <p>{todo.title}</p>
+                                            <button onClick={() => this.removeItem(todo.id)}>zrobione!</button>
                                         </li>
                                     )
                                 })}
