@@ -16,6 +16,7 @@ export const Header = () => {
                         <li><NavLink to="/calendar">Cal</NavLink></li>
                         <li><NavLink to="/todolist">Todo</NavLink></li>
                         <li><NavLink to="/wishlist">Wish</NavLink></li>
+                        <li><NavLink to="/help">i</NavLink></li>
                     </ul>
                 </nav>
             </div>

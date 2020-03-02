@@ -19,6 +19,17 @@ $text-color: #111;
 $btn-color: #1abc9c;
 $btn-text-color: #000;
 
+@mixin flex($flexDirection, $justifyContent, $alignItems) {
+    display: flex;
+    flex-direction: $flexDirection;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+  }
+
+  $smallFontSize: 0.5rem;
+$mediumFontSize: 1.5rem;
+$largeFontSize: 2rem;
+
 
 // objects containers
 $containerPaddings: (mobile: 15px, tablet: 15px, desktop: 15px) !default;
