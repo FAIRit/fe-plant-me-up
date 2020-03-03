@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import { firebase } from '../firebase'
 
 
+const priority = {
+    color: 'red',
+}
+
 export class Todolist extends Component {
+
+
 
     constructor() {
         super();
         this.state = {
             text: '',
+            checked: false,
+
             todos: []
         }
         this.handleChange = this.handleChange.bind(this);
@@ -15,17 +23,20 @@ export class Todolist extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
+
     handleChange(e) {
         this.setState({
-            [e.target.name]: e.target.value
+            text: e.target.value
         });
     }
 
     handleCheckbox(e) {
         this.setState({
-            [e.target.checked]: e.target.checked
+            checked: e.target.checked
         });
     }
+
 
     handleSubmit(e) {
         e.preventDefault();
@@ -33,12 +44,12 @@ export class Todolist extends Component {
         const todo = {
             title: this.state.text,
             important: this.state.checked
-            }
+        }
         todosRef.push(todo);
         this.setState({
             text: '',
             checked: false
-                    });
+        });
     }
 
     componentDidMount() {
@@ -64,9 +75,6 @@ export class Todolist extends Component {
         todoRef.remove();
     }
 
-    
-        
-   
 
     render() {
         return (
@@ -76,7 +84,7 @@ export class Todolist extends Component {
                     <form onSubmit={this.handleSubmit} className="c-form" >
                         <h3>dodaj zadanie</h3>
                         <input type="text" name="text" placeholder="tu wpisz" onChange={this.handleChange} value={this.state.text} />
-                        <input type="checkbox" id="important" onChange={this.handleCheckbox} />
+                        <input type="checkbox" id="important" checked={this.state.checked} onChange={this.handleCheckbox} />
                         <label htmlFor="important">WAŻNE</label>
                         <button className="c-btn">dodaj</button>
                         <hr />
@@ -88,7 +96,8 @@ export class Todolist extends Component {
                                 {this.state.todos.map((todo) => {
                                     return (
                                         <li key={todo.id}>
-                                            <p>{todo.title}</p>
+                                            <p className={todo.important ? 'priority' : null}>{todo.title}
+                                            </p>
                                             <button onClick={() => this.removeItem(todo.id)}>zrobione!</button>
                                         </li>
                                     )
