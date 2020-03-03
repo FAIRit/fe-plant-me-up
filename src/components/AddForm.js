@@ -10,17 +10,17 @@ export class AddForm extends Component {
             textarea: '',
             plants: []
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            text: e.target.value
         });
     }
 
-    handleSubmit(e) {
+    handleSubmit= (e) => {
         e.preventDefault();
         const plantsRef = firebase.database().ref('plants');
         const plant = {

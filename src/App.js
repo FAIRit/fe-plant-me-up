@@ -15,17 +15,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export class App extends Component {
 
-  state = {
-    links: [
-      {
-        id: 0,
-        url: 'http://google.pl',
-        text: 'google',
-        section: 'ogólne'
-      },
-    ]
-  }
-
   render() {
     return (
       <Router>

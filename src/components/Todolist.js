@@ -15,30 +15,29 @@ export class Todolist extends Component {
         this.state = {
             text: '',
             checked: false,
-
             todos: []
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleCheckbox = this.handleCheckbox.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleCheckbox = this.handleCheckbox.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
             text: e.target.value
         });
     }
 
-    handleCheckbox(e) {
+    handleCheckbox = (e) => {
         this.setState({
             checked: e.target.checked
         });
     }
 
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         const todosRef = firebase.database().ref('todos');
         const todo = {

@@ -13,17 +13,17 @@ export class Wishlist extends Component {
             url: '',
             items: []
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            text: e.target.value
         });
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         const itemsRef = firebase.database().ref('items');
         const item = {
