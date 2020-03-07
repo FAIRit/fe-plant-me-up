@@ -3,8 +3,8 @@ import { firebase } from '../firebase'
 
 export class AddForm extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             text: '',
             textarea: '',

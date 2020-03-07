@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const Header = () => {
-    // console.log("render");
+    
     return (
         <header className="c-site-header">
             <div className="o-container c-site-header-inner">
@@ -17,6 +17,7 @@ export const Header = () => {
                         <li><NavLink to="/todolist">Todo</NavLink></li>
                         <li><NavLink to="/wishlist">Wish</NavLink></li>
                         <li><NavLink to="/help">i</NavLink></li>
+                        <li><Link to="/search">S</Link></li>
                     </ul>
                 </nav>
             </div>

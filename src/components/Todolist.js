@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { firebase } from '../firebase'
 
 
-const priority = {
-    color: 'red',
-}
 
 export class Todolist extends Component {
 
