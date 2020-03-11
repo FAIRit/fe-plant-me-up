@@ -8,7 +8,12 @@ export class AddForm extends Component {
     this.state = {
       text: "",
       textarea: "",
-      checked: false,
+      tagPoison: false,
+      tagSafe: false,
+      tagMoreSun: false,
+      tagMoreWater: false,
+      tagLittleSun: false,
+      tagLittleWater: false,
       plants: []
     };
     // this.handleChange = this.handleChange.bind(this);
@@ -21,9 +26,15 @@ export class AddForm extends Component {
     });
   };
 
+  handleAddDescription = e => {
+    this.setState({
+      textarea: e.target.value
+    });
+  };
+
   handleCheckbox = e => {
     this.setState({
-      checked: e.target.checked
+      [e.target.name]: e.target.checked
     });
   };
 
@@ -33,12 +44,11 @@ export class AddForm extends Component {
     const plant = {
       name: this.state.text,
       description: this.state.textarea,
-      tagLittleSun: this.state.checked,
-      tagMoreSun: this.state.checked,
-      tagLittleWater: this.state.checked,
-      tagMoreWater: this.state.checked,
-      tagSafe: this.state.checked,
-      tagPoison: this.state.checked
+      tagLittleSun: this.state.tagLittleSun,
+      tagMoreSun: this.state.tagLittleSun,
+      tagLittleWater: this.state.tagLittleWater,
+      tagMoreWater: this.state.tatagSafe,
+      tagPoison: this.state.tagPoison
     };
     plantsRef.push(plant);
     this.setState({
@@ -67,7 +77,7 @@ export class AddForm extends Component {
               type="textarea"
               name="textarea"
               placeholder="tu wpisz opis"
-              onChange={this.handleChange}
+              onChange={this.handleAddDescription}
               value={this.state.textarea}
             />
             <br />
