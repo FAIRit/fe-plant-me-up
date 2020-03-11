@@ -47,7 +47,7 @@ export class AddForm extends Component {
       description: this.state.textarea,
       tags: {
         tagLittleSun: this.state.tagLittleSun,
-        tagMoreSun: this.state.tagLittleSun,
+        tagMoreSun: this.state.tagMoreSun,
         tagLittleWater: this.state.tagLittleWater,
         tagMoreWater: this.state.tagMoreWater,
         tagSafe: this.state.tagSafe,

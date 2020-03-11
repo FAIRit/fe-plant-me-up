@@ -37,8 +37,17 @@ export class PlantView extends Component {
           <p>Plant data is loading...</p>
         ) : (
           <div>
-            <h3>{this.state.plant.name}</h3>
-            {this.state.plant.description}
+            <h1>{this.state.plant.name}</h1>
+            <p>{this.state.plant.description}</p>
+            <h4>tagi:</h4>
+            <ul>
+              {this.state.plant.tags.tagMoreSun ? <li>więcej słońca</li> : null}
+              {this.state.plant.tags.tagLittleSun ? <li>mało słońca</li> : null}
+              {this.state.plant.tags.tagMoreWater ? <li>dużo wody</li> : null}
+              {this.state.plant.tags.tagLittleWater ? <li>mało wody</li> : null}
+              {this.state.plant.tags.tagSafe ? <li>bezpieczna</li> : null}
+              {this.state.plant.tags.tagPoison ? <li>trująca</li> : null}
+            </ul>
             {/* <img src={this.state.url} alt="Uploaded images" /> */}
           </div>
         )}
