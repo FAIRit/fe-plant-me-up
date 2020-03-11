@@ -7,12 +7,12 @@ export class AddForm extends Component {
     this.state = {
       text: "",
       textarea: "",
-      // tagPoison: false,
-      // tagSafe: false,
-      // tagMoreSun: false,
-      // tagMoreWater: false,
-      // tagLittleSun: false,
-      // tagLittleWater: false,
+      tagPoison: false,
+      tagSafe: false,
+      tagMoreSun: false,
+      tagMoreWater: false,
+      tagLittleSun: false,
+      tagLittleWater: false,
       image: null,
       url: "",
       plants: []
@@ -33,29 +33,37 @@ export class AddForm extends Component {
     });
   };
 
-  // handleCheckbox = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.checked
-  //   });
-  // };
+  handleCheckbox = e => {
+    this.setState({
+      [e.target.name]: e.target.checked
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     const plantsRef = firebase.database().ref("plants");
     const plant = {
       name: this.state.text,
-      description: this.state.textarea
-      // tagLittleSun: this.state.tagLittleSun,
-      // tagMoreSun: this.state.tagLittleSun,
-      // tagLittleWater: this.state.tagLittleWater,
-      // tagMoreWater: this.state.tatagSafe,
-      // tagPoison: this.state.tagPoison
+      description: this.state.textarea,
+      tags: {
+        tagLittleSun: this.state.tagLittleSun,
+        tagMoreSun: this.state.tagLittleSun,
+        tagLittleWater: this.state.tagLittleWater,
+        tagMoreWater: this.state.tagMoreWater,
+        tagSafe: this.state.tagSafe,
+        tagPoison: this.state.tagPoison
+      }
     };
     plantsRef.push(plant);
     this.setState({
       text: "",
       textarea: "",
-      checked: false
+      tagPoison: false,
+      tagSafe: false,
+      tagMoreSun: false,
+      tagMoreWater: false,
+      tagLittleSun: false,
+      tagLittleWater: false
     });
   };
 
@@ -82,7 +90,7 @@ export class AddForm extends Component {
               value={this.state.textarea}
             />
             <br />
-            {/* <section className="c-form-tags">
+            <section className="c-form-tags">
               <input
                 type="checkbox"
                 name="tagMoreSun"
@@ -125,7 +133,7 @@ export class AddForm extends Component {
                 onChange={this.handleCheckbox}
               />
               <label htmlFor="tagPoison">trujące</label>
-            </section> */}
+            </section>
 
             <br />
             <button className="c-btn">dodaj</button>
