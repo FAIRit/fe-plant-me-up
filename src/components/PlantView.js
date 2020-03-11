@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebase } from "../firebase";
+import { firebase, storage } from "../firebase";
 
 export class PlantView extends Component {
   state = {
@@ -19,6 +19,14 @@ export class PlantView extends Component {
       this.setState({
         plant
       });
+      // const UploadRef = storage
+      //   .ref("${this.props.plantId}")
+      //   .child(image.name)
+      //   .getDownloadURL()
+      //   .then(url => {
+      //     console.log(url);
+      //     this.setState({ url });
+      //   });
     });
   }
 
@@ -31,6 +39,7 @@ export class PlantView extends Component {
           <div>
             <h3>{this.state.plant.name}</h3>
             {this.state.plant.description}
+            {/* <img src={this.state.url} alt="Uploaded images" /> */}
           </div>
         )}
       </div>
