@@ -2,77 +2,90 @@
 @import "./scss/variables.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
 }
 
 body {
-    font-size: 14px;
-    font-family: $font-family;
+  font-size: 14px;
+  font-family: $font-family;
 }
 
 .c-site-header {
-    padding: 15px;    
-background-color: $brand-color;
+  padding: 15px;
+  background-color: $brand-color;
 }
 
 .c-site-header-inner {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .c-site-header-logo {
-   
-    img {
-
-    }
+  img {
+  }
 }
 
 .c-site-nav {
+  ul {
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
 
+    list-style: none;
 
-ul {
-   display: flex;
--webkit-box-pack: start;
--ms-flex-pack: start;
-justify-content: flex-start;
-
-list-style: none;
-
-li {
-    padding: 5px 10px;
-} 
-
+    li {
+      padding: 5px 10px;
     }
+  }
 }
 
 a {
-    display: block;
-    
+  display: block;
 }
 
 .active {
-    transform: scale(1.5);
-
+  transform: scale(1.5);
 }
 
 .priority {
-    color: red
+  color: red;
 }
 
 .c-site-content {
-    margin: 20px;
+  margin: 20px;
 }
 
 .c-form {
-    input {
-        margin: 5px;
-    }
+  input {
+    margin: 5px;
+  }
 
-    button {
-        margin: 5px;
-    }
+  button {
+    margin: 5px;
+  }
+}
+
+.c-image-upload--preview {
+  width: 100px;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.c-image-upload--display {
+  width: 400px;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }

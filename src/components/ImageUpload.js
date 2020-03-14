@@ -9,15 +9,15 @@ export class ImageUpload extends Component {
       url: "",
       progress: 0
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleUpload = this.handleUpload.bind(this);
   }
+
   handleAddImage = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
     }
   };
+
   handleUpload = () => {
     const { image } = this.state;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -35,32 +35,43 @@ export class ImageUpload extends Component {
         console.log(error);
       },
       () => {
-        // complete function ....
         storage
           .ref("images")
           .child(image.name)
           .getDownloadURL()
           .then(url => {
+            const plantsRef = firebase.database().ref("plants");
+            const plant = {
+              images: {
+                url: this.state.url
+              }
+            };
+            plantsRef.push(plant);
             console.log(url);
             this.setState({ url });
           });
       }
     );
   };
+
   render() {
     return (
       <div className="c-page">
-        <progress value={this.state.progress} max="100" />
-        <br />
-        <input type="file" onChange={this.handleAddImage} />
-        <button onClick={this.handleUpload}>Upload</button>
-        <br />
-        <img
-          src={this.state.url || "http://via.placeholder.com/400x300"}
-          alt="Uploaded images"
-          height="300"
-          width="400"
-        />
+        <div className="c-page-image-upload">
+          <div className="c-mage-upload--form">
+            <input type="file" onChange={this.handleAddImage} />
+            <button onClick={this.handleUpload}>Upload</button>
+            <br />
+            <progress value={this.state.progress} max="100" />
+            <br />
+          </div>
+          <div className="c-image-upload--display">
+            <img
+              src={this.state.url || "http://via.placeholder.com/400x300"}
+              alt="Uploaded images"
+            />
+          </div>
+        </div>
       </div>
     );
   }
