@@ -43,7 +43,7 @@ export class ImageUpload extends Component {
             const plantsRef = firebase.database().ref("plants");
             const plant = {
               images: {
-                url: this.state.url
+                url: url
               }
             };
             plantsRef.push(plant);
