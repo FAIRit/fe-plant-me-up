@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebase, storage } from "../firebase";
+import { firebase } from "../firebase";
 
 export class PlantView extends Component {
   state = {
@@ -19,14 +19,6 @@ export class PlantView extends Component {
       this.setState({
         plant
       });
-      // const UploadRef = storage
-      //   .ref("${this.props.plantId}")
-      //   .child(image.name)
-      //   .getDownloadURL()
-      //   .then(url => {
-      //     console.log(url);
-      //     this.setState({ url });
-      //   });
     });
   }
 
@@ -48,7 +40,16 @@ export class PlantView extends Component {
               {this.state.plant.tags.tagSafe ? <li>bezpieczna</li> : null}
               {this.state.plant.tags.tagPoison ? <li>trująca</li> : null}
             </ul>
-            {/* <img src={this.state.url} alt="Uploaded images" /> */}
+            <h3>ZDJĘCIA</h3>
+            <div className="c-single-plant-gallery">
+              <div className="gallery-item">
+                <img
+                  src={this.state.plant.gallery.image.url}
+                  alt="Uploaded images"
+                />
+                <p>{this.state.plant.gallery.image.description}</p>
+              </div>
+            </div>
           </div>
         )}
       </div>
