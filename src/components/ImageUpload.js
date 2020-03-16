@@ -4,10 +4,12 @@ import { firebase, storage } from "../firebase";
 export class ImageUpload extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       image: null,
       url: "",
-      progress: 0
+      progress: 0,
+      textarea: ""
     };
   }
 
@@ -16,6 +18,15 @@ export class ImageUpload extends Component {
       const image = e.target.files[0];
       this.setState(() => ({ image }));
     }
+    const imageName = e.target.files[0].name;
+    this.setState({ imageName });
+    console.log(imageName);
+  };
+
+  handleImgDescription = e => {
+    this.setState({
+      textarea: e.target.value
+    });
   };
 
   handleUpload = () => {
@@ -42,13 +53,22 @@ export class ImageUpload extends Component {
           .then(url => {
             const plantsRef = firebase.database().ref("plants");
             const plant = {
-              images: {
-                url: url
+              gallery: {
+                image: {
+                  url: url,
+                  description: this.state.textarea
+                }
               }
             };
             plantsRef.push(plant);
             console.log(url);
-            this.setState({ url });
+            this.setState({
+              url,
+              textarea: "",
+              image: null,
+              progress: 0,
+              imageName: ""
+            });
           });
       }
     );
@@ -58,18 +78,45 @@ export class ImageUpload extends Component {
     return (
       <div className="c-page">
         <div className="c-page-image-upload">
-          <div className="c-mage-upload--form">
-            <input type="file" onChange={this.handleAddImage} />
-            <button onClick={this.handleUpload}>Upload</button>
+          <div className="c-image-upload--form">
+            <div className="c-image-upload--zone">
+              {this.state.imageName || (
+                <p>kliknij i wybierz lub przeciągnij plik</p>
+              )}
+              <input
+                ref={this.fileInput}
+                id="c-image-upload-input"
+                type="file"
+                onChange={this.handleAddImage}
+                onDrop={this.handleAddImage}
+              />
+            </div>
+
             <br />
-            <progress value={this.state.progress} max="100" />
+            <input
+              type="textarea"
+              name="textarea"
+              placeholder="tu wpisz opis"
+              onChange={this.handleImgDescription}
+              value={this.state.textarea}
+            />
+
+            <button onClick={this.handleUpload} className="btn">
+              dodaj
+            </button>
+            <br />
+
+            <progress
+              value={this.state.progress}
+              max="100"
+              className={
+                this.state.progress === 0 ? "progress-bar--hid" : "progress-bar"
+              }
+            />
             <br />
           </div>
           <div className="c-image-upload--display">
-            <img
-              src={this.state.url || "http://via.placeholder.com/400x300"}
-              alt="Uploaded images"
-            />
+            <img src={this.state.url} />
           </div>
         </div>
       </div>

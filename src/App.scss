@@ -1,5 +1,6 @@
 @import "./scss/responsive.scss";
 @import "./scss/variables.scss";
+@import "./scss/ut--buttons.scss";
 
 * {
   margin: 0;
@@ -70,7 +71,7 @@ a {
   }
 }
 
-.c-image-upload--preview {
+.c-image-upload--display {
   width: 100px;
   height: auto;
 
@@ -80,12 +81,33 @@ a {
   }
 }
 
-.c-image-upload--display {
-  width: 400px;
-  height: auto;
+.c-image-upload--zone {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  border-style: dashed;
+  margin-bottom: 20px;
+  text-align: center;
 
-  img {
+  #c-image-upload-input {
     width: 100%;
-    height: auto;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    color: transparent;
+    opacity: 0;
   }
+
+  p {
+    color: grey;
+  }
+}
+.progress-bar {
+  border: 1px solid #000;
+  background-color: white;
+}
+
+.progress-bar--hid {
+  display: none;
 }
