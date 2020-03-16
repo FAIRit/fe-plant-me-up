@@ -114,6 +114,7 @@ export class AddForm extends Component {
               progress: 0,
               imageName: ""
             });
+            alert("Dodano roślinkę!");
           });
       }
     );
