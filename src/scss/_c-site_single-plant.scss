@@ -1,0 +1,124 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
+.c-single-plant {
+  display: block;
+}
+
+.c-single-plant-title {
+  @include flex(row, nowrap, space-between, center);
+}
+
+.c-plant-view-tags {
+  @include flex(row, nowrap, flex-start, flex-start);
+  margin-bottom: 15px;
+
+  p {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+}
+
+.c-single-plant-description {
+  @include flex(row, nowrap, flex-start, center);
+
+  margin: 15px auto;
+  padding: 10px 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+
+  button {
+    margin: 10px 0;
+    // float: right;
+  }
+}
+
+.c-single-plant-gallery {
+  @include flex(row, wrap, flex-start, flex-start);
+
+  .gallery-item {
+    width: 100%;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.c-image-upload--display {
+  width: 100px;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.c-image-upload--form {
+  @include flex(row, nowrap, flex-start, center);
+}
+
+.c-image-upload--zone {
+  position: relative;
+  max-width: 50%;
+  height: auto;
+  border-style: dashed;
+  margin: 20px 0;
+  opacity: 0.3;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  #c-image-upload-input {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    color: transparent;
+    opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .upload-plus-circle {
+    opacity: 0.3;
+    font-size: 3rem;
+    margin: 30px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+}
+
+.upload-file-name {
+  width: 50%;
+  height: auto;
+  padding: 15px;
+  overflow-wrap: anywhere;
+  word-wrap: anywhere;
+
+  p {
+    opacity: 0.5;
+  }
+}
+
+.progress-bar {
+  border: 1px solid #000;
+  background-color: white;
+}
+
+.progress-bar--hid {
+  display: none;
+}

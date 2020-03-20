@@ -1,0 +1,47 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCalendarAlt,
+  faPlusCircle,
+  faListAlt,
+  faLeaf,
+  faHeart,
+  faInfoCircle,
+  faBars,
+  faEdit,
+  faGripHorizontal,
+  faTimesCircle,
+  faSortAlphaDown,
+  faSortNumericDown,
+  faCheck,
+  faSun,
+  faCloud,
+  faSkull,
+  faPaw
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  fab,
+  fas,
+  far,
+  faCalendarAlt,
+  faPlusCircle,
+  faListAlt,
+  faLeaf,
+  faHeart,
+  faSun,
+  faInfoCircle,
+  faBars,
+  faEdit,
+  faGripHorizontal,
+  faTimesCircle,
+  faSortAlphaDown,
+  faSortNumericDown,
+  faCheck,
+  faCloud,
+  faSkull,
+  faPaw
+);

@@ -1,0 +1,47 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
+.c-site-header {
+  padding: 15px;
+  background-color: $brand-color;
+}
+
+.c-site-header-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-site-header-logo {
+  img {
+  }
+}
+
+.c-site-nav {
+  ul {
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+
+    list-style: none;
+
+    li {
+      padding: 5px 10px;
+      color: #fff;
+      font-size: $mediumFontSize;
+      font-weight: lighter;
+
+      a {
+        @include links(#fff, #fff, #fff, #fff);
+        display: block;
+      }
+    }
+  }
+}
+
+.active {
+  transform: scale(1.5);
+}

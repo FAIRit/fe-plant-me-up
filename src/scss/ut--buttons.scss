@@ -1,8 +1,25 @@
 .btn {
-  margin: 3px;
-  padding: 5px;
+  margin: 5px auto;
+  padding: 10px;
   border: 1px solid $brand-color;
   background-color: $brand-color;
   color: white;
   text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.btn--edit {
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  opacity: 0.5;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
 }

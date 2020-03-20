@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { firebase, storage } from "../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class AddForm extends Component {
   constructor(props) {
@@ -153,42 +154,54 @@ export class AddForm extends Component {
                 checked={this.state.tagMoreSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreSun">jasno</label>
+              <label htmlFor="tagMoreSun">
+                <FontAwesomeIcon icon="sun" />
+              </label>
               <input
                 type="checkbox"
                 name="tagLittleSun"
                 checked={this.state.tagLittleSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleSun">w cieniu</label>
+              <label htmlFor="tagLittleSun">
+                <FontAwesomeIcon icon="cloud" />
+              </label>
               <input
                 type="checkbox"
                 name="tagMoreWater"
                 checked={this.state.tagMoreWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreWater">dużo wody</label>
+              <label htmlFor="tagMoreWater">
+                <FontAwesomeIcon icon="tint" />
+              </label>
               <input
                 type="checkbox"
                 name="tagLittleWater"
                 checked={this.state.tagLittleWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleWater">mało wody</label>
+              <label htmlFor="tagLittleWater">
+                <FontAwesomeIcon icon="tint-slash" />
+              </label>
               <input
                 type="checkbox"
                 name="tagSafe"
                 checked={this.state.tagSafe}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagSafe">bezpieczne</label>
+              <label htmlFor="tagSafe">
+                <FontAwesomeIcon icon="paw" />
+              </label>
               <input
                 type="checkbox"
                 name="tagPoison"
                 checked={this.state.tagPoison}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagPoison">trujące</label>
+              <label htmlFor="tagPoison">
+                <FontAwesomeIcon icon="skull" />
+              </label>
             </section>
             <div className="c-page-image-upload">
               <div className="c-image-upload--form">

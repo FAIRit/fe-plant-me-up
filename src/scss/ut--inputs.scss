@@ -1,0 +1,13 @@
+input,
+textarea {
+  margin: 5px auto;
+  padding: 5px;
+  resize: none;
+  border: 1px solid #56a478;
+  outline: none;
+
+  &:focus {
+    color: $text-color;
+    border-color: $brand-color;
+  }
+}

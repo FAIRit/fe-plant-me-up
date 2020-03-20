@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 
-
 export class Todolist extends Component {
   constructor() {
     super();

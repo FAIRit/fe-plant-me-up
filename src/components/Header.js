@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Header = () => {
   return (
@@ -11,31 +12,41 @@ export const Header = () => {
         <nav className="c-site-nav">
           <ul>
             <li>
-              <NavLink to="/add-form">+</NavLink>
-            </li>
-            <li>
-              <NavLink to="/" exact>
-                Cat
+              <NavLink to="/add-form">
+                <FontAwesomeIcon icon="plus-circle" />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/calendar">Cal</NavLink>
+              <NavLink to="/" exact>
+                <FontAwesomeIcon icon="list-alt" />
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/todolist">Todo</NavLink>
+              <NavLink to="/calendar">
+                <FontAwesomeIcon icon="calendar-alt" />
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/wishlist">Wish</NavLink>
+              <NavLink to="/todolist">
+                <FontAwesomeIcon icon="check-circle" />
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/help">i</NavLink>
+              <NavLink to="/wishlist">
+                <FontAwesomeIcon icon="heart" />
+              </NavLink>
             </li>
             <li>
+              <NavLink to="/help">
+                <FontAwesomeIcon icon="info-circle" />
+              </NavLink>
+            </li>
+            {/* <li>
               <NavLink to="/imageUpload">U</NavLink>
             </li>
             <li>
               <Link to="/search">S</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
