@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Wishlist extends Component {
   constructor() {
@@ -67,8 +68,8 @@ export class Wishlist extends Component {
       <div className="c-page">
         <h1>Wishlist</h1>
         <div>
-          <form onSubmit={this.handleSubmit} className="c-form">
-            <h3>dodaj link</h3>
+          <h3>dodaj link</h3>
+          <form onSubmit={this.handleSubmit} className="u-form">
             <input
               type="text"
               name="text"
@@ -83,21 +84,26 @@ export class Wishlist extends Component {
               onChange={this.handleAddUrl}
               value={this.state.url}
             />
-            <button className="c-btn">dodaj</button>
-            <hr />
+            <button className="btn">dodaj</button>
           </form>
+          <hr />
           <div>
             <h2>lista</h2>
-            <div className="c-list-display">
+            <div className="list-display">
               <ul>
                 {this.state.items.map(item => {
                   return (
-                    <li key={item.id}>
-                      <p>
-                        {item.title}: <a href="{item.link}">{item.link}</a>
+                    <li className="list-item" key={item.id}>
+                      <span className="list-star">&#10045;</span>
+                      <h3>{item.title}</h3>
+                      <p className="list-add-text">
+                        <a href="{item.link}">{item.link}</a>
                       </p>
-                      <button onClick={() => this.removeItem(item.id)}>
-                        już mam!
+                      <button
+                        className="btn--remove"
+                        onClick={() => this.removeItem(item.id)}
+                      >
+                        <FontAwesomeIcon icon="check-circle" />
                       </button>
                     </li>
                   );

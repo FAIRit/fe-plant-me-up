@@ -2,7 +2,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
+import {
+  far,
+  faTimesCircle,
+  faCheckCircle,
+  faTrashAlt
+} from "@fortawesome/free-regular-svg-icons";
 import {
   faCalendarAlt,
   faPlusCircle,
@@ -13,7 +18,6 @@ import {
   faBars,
   faEdit,
   faGripHorizontal,
-  faTimesCircle,
   faSortAlphaDown,
   faSortNumericDown,
   faCheck,
@@ -43,5 +47,7 @@ library.add(
   faCheck,
   faCloud,
   faSkull,
-  faPaw
+  faPaw,
+  faCheckCircle,
+  faTrashAlt
 );

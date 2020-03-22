@@ -3,6 +3,7 @@
 @import "./scss/ut--buttons.scss";
 @import "./scss//ut--mixins.scss";
 @import "./scss/ut--inputs.scss";
+@import "./scss/ut--lists.scss";
 @import "./scss/c-site-header.scss";
 @import "./scss/c-site_single-plant";
 
@@ -16,10 +17,6 @@ body {
   font-size: 14px;
   font-weight: 400;
   font-family: $font-family;
-
-  p {
-    font-size: 14px;
-  }
 }
 
 .priority {

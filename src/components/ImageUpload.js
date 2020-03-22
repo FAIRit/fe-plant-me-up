@@ -10,7 +10,8 @@ export class ImageUpload extends Component {
       image: null,
       url: "",
       progress: 0,
-      textarea: ""
+      textarea: "",
+      images: []
     };
   }
 
@@ -52,23 +53,22 @@ export class ImageUpload extends Component {
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            const plantsRef = firebase.database().ref("plants");
-            const plant = {
-              gallery: {
-                image: {
-                  url: url,
-                  description: this.state.textarea
-                }
-              }
+            const plantId = this.props.match.params.plantId;
+            const imagesRef = firebase
+              .database()
+              .ref(`plants/${plantId}/images`);
+            const image = {
+              url: url,
+              description: this.state.textarea
             };
-            plantsRef.push(plant);
+            imagesRef.push(image);
             console.log(url);
             this.setState({
               url,
               textarea: "",
               image: null,
               progress: 0,
-              imageName: ""
+              imageName: null
             });
           });
       }
@@ -77,7 +77,7 @@ export class ImageUpload extends Component {
 
   render() {
     return (
-      <div className="c-page-image-upload">
+      <div className="c-image-upload  gallery-item">
         <div className="c-image-upload--form">
           <div className="c-image-upload--zone">
             <FontAwesomeIcon
@@ -107,15 +107,13 @@ export class ImageUpload extends Component {
             onChange={this.handleImgDescription}
             value={this.state.textarea}
             rows={4}
-            cols={40}
+            cols={30}
           />
         </div>
-
         <button onClick={this.handleUpload} className="btn">
           dodaj
         </button>
         <br />
-
         <progress
           value={this.state.progress}
           max="100"
@@ -123,11 +121,6 @@ export class ImageUpload extends Component {
             this.state.progress === 0 ? "progress-bar--hid" : "progress-bar"
           }
         />
-        {/* <br />
-
-        <div className="c-image-upload--display">
-          <img src={this.state.url} alt="image" />
-        </div> */}
       </div>
     );
   }

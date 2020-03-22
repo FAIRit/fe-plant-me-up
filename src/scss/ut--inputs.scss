@@ -1,13 +1,21 @@
 input,
 textarea {
-  margin: 5px auto;
+  margin: 5px;
   padding: 5px;
   resize: none;
-  border: 1px solid #56a478;
+  border: 1px solid #7dae92;
   outline: none;
+
+  &::placeholder {
+    color: #7dae92;
+  }
 
   &:focus {
     color: $text-color;
     border-color: $brand-color;
   }
+}
+
+.u-form {
+  @include flex(row, wrap, flex-start, center);
 }

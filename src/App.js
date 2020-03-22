@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.scss";
-
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Catalog } from "./components/Catalog";
@@ -14,6 +13,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Search } from "./components/Search";
 import { PlantView } from "./components/PlantView";
 import { ImageUpload } from "./components/ImageUpload";
+import { SinglePlantTimeline } from "./components/SinglePlantTimeline";
 
 export class App extends Component {
   render() {
@@ -34,6 +34,10 @@ export class App extends Component {
                 <Route path="/plants/:plantId" component={PlantView} />
                 <Route path="/search" component={Search} />
                 <Route path="/imageUpload" component={ImageUpload} />
+                <Route
+                  path="/singlePlantTimeline"
+                  component={SinglePlantTimeline}
+                />
                 <Route component={Error} />
               </Switch>
             </div>

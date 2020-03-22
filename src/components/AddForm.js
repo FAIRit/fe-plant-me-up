@@ -144,7 +144,7 @@ export class AddForm extends Component {
               onChange={this.handleAddDescription}
               value={this.state.textarea}
               rows={5}
-              cols={40}
+              cols={30}
             />
             <br />
             <section className="c-form-tags">
@@ -203,41 +203,46 @@ export class AddForm extends Component {
                 <FontAwesomeIcon icon="skull" />
               </label>
             </section>
-            <div className="c-page-image-upload">
-              <div className="c-image-upload--form">
-                <div className="c-image-upload--zone">
-                  {this.state.imageName || (
-                    <p>kliknij i wybierz lub przeciągnij plik ze zdjęciem</p>
-                  )}
-                  <input
-                    ref={this.fileInput}
-                    id="c-image-upload-input"
-                    type="file"
-                    onChange={this.handleAddImage}
-                    onDrop={this.handleAddImage}
-                  />
-                </div>
-
-                <textarea
-                  type="textarea"
-                  name="imgTextarea"
-                  placeholder="opis zdjęcia"
-                  onChange={this.handleImgDescription}
-                  value={this.state.imgTextarea}
-                  cols="40"
-                  rows="5"
+            <div className="c-image-upload--form">
+              <div className="c-image-upload--zone">
+                <FontAwesomeIcon
+                  className="upload-plus-circle"
+                  icon="plus-circle"
+                />
+                <input
+                  ref={this.fileInput}
+                  id="c-image-upload-input"
+                  type="file"
+                  onChange={this.handleAddImage}
+                  onDrop={this.handleAddImage}
                 />
               </div>
-              <progress
-                value={this.state.progress}
-                max="100"
-                className={
-                  this.state.progress === 0
-                    ? "progress-bar--hid"
-                    : "progress-bar"
-                }
+              <div className="upload-file-name">
+                {this.state.imageName || (
+                  <p>Kliknij lub przeciągnij plik ze zdjęciem</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <textarea
+                type="textarea"
+                name="textarea"
+                className="input--textarea"
+                placeholder="wpisz opis zdjęcia"
+                onChange={this.handleImgDescription}
+                value={this.state.textarea}
+                rows={4}
+                cols={30}
               />
             </div>
+
+            <progress
+              value={this.state.progress}
+              max="100"
+              className={
+                this.state.progress === 0 ? "progress-bar--hid" : "progress-bar"
+              }
+            />
             <br />
             <button className="btn">dodaj</button>
           </form>

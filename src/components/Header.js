@@ -43,9 +43,6 @@ export const Header = () => {
             </li>
             {/* <li>
               <NavLink to="/imageUpload">U</NavLink>
-            </li>
-            <li>
-              <Link to="/search">S</Link>
             </li> */}
           </ul>
         </nav>

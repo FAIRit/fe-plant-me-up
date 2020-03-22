@@ -21,7 +21,7 @@
 }
 
 .c-single-plant-description {
-  @include flex(row, nowrap, flex-start, center);
+  @include flex(row, nowrap, space-between, center);
 
   margin: 15px auto;
   padding: 10px 0;
@@ -38,8 +38,14 @@
   @include flex(row, wrap, flex-start, flex-start);
 
   .gallery-item {
-    width: 100%;
+    width: 33%;
     height: auto;
+    margin: auto;
+
+    @include mobile {
+      width: 100%;
+      height: auto;
+    }
 
     img {
       width: 100%;
@@ -56,6 +62,10 @@
     width: 100%;
     height: auto;
   }
+}
+
+.c-single-plant-gallery-upload {
+  @include flex(column, wrap, flex-start, normal);
 }
 
 .c-image-upload--form {

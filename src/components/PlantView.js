@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SinglePlantTimeline } from "../components/SinglePlantTimeline";
 import { ImageUpload } from "../components/ImageUpload";
+import { ImagesGallery } from "../components/ImagesGallery";
 
 export class PlantView extends Component {
   state = {
@@ -75,18 +77,11 @@ export class PlantView extends Component {
                 <FontAwesomeIcon icon="pencil-alt" />
               </button>
             </div>
-            <div className="c-single-plant-gallery">
-              <div className="gallery-item">
-                <img
-                  src={this.state.plant.gallery.image.url}
-                  alt="Uploaded images"
-                />
-                <p>{this.state.plant.gallery.image.description}</p>
-              </div>
-              <div className="c-single-plant-gallery-upload gallery-item">
-                <ImageUpload />
-              </div>
-            </div>
+            <h2>Kalendarium rośliny</h2>
+            <SinglePlantTimeline />
+            <h2>Galeria rośliny</h2>
+            {/* <ImagesGallery /> */}
+            <ImageUpload />
           </div>
         )}
       </div>
