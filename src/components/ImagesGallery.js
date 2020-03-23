@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { firebase, storage } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GalleryModal } from "./utilities/GalleryModal";
 
 export class ImagesGallery extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      images: []
+      images: [],
+      showModal: false
     };
   }
 
@@ -30,17 +32,37 @@ export class ImagesGallery extends Component {
     });
   }
 
+  handleShowModal = () => {
+    this.setState({
+      showModal: true
+    });
+    console.log("click");
+  };
+
+  closeModal = () => {
+    this.setState({
+      showModal: false
+    });
+  };
+
   render() {
+    console.log(this.props);
     return (
       <div className="c-single-plant-gallery">
         {this.state.images.map(image => {
           return (
-            <div className="gallery-item">
-              <img key={image.id} src={image.url} alt="Uploaded images" />
+            <div className="gallery-item" key={image.id}>
+              <img
+                src={image.url}
+                url={image.url}
+                alt="Uploaded images"
+                onClick={this.handleShowModal}
+              />
               <p>{image.description}</p>
             </div>
           );
         })}
+        {this.state.showModal && <GalleryModal onClick={this.closeModal} />}
       </div>
     );
   }
