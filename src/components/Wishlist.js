@@ -8,10 +8,9 @@ export class Wishlist extends Component {
     this.state = {
       text: "",
       url: "",
+      textarea: "",
       items: []
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = e => {
@@ -26,12 +25,19 @@ export class Wishlist extends Component {
     });
   };
 
+  handleAddDescription = e => {
+    this.setState({
+      textarea: e.target.value
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const itemsRef = firebase.database().ref("items");
     const item = {
       title: this.state.text,
-      link: this.state.url
+      link: this.state.url,
+      description: this.state.textarea
     };
     itemsRef.push(item);
     this.setState({
@@ -49,7 +55,8 @@ export class Wishlist extends Component {
         newState.push({
           id: item,
           title: items[item].title,
-          link: items[item].link
+          link: items[item].link,
+          description: items[item].description
         });
       }
       this.setState({
@@ -66,9 +73,8 @@ export class Wishlist extends Component {
   render() {
     return (
       <div className="c-page">
-        <h1>Wishlist</h1>
+        <h1>Lista wymarzonych roślin</h1>
         <div>
-          <h3>dodaj link</h3>
           <form onSubmit={this.handleSubmit} className="u-form">
             <input
               type="text"
@@ -84,11 +90,19 @@ export class Wishlist extends Component {
               onChange={this.handleAddUrl}
               value={this.state.url}
             />
+            <textarea
+              type="textarea"
+              name="textarea"
+              placeholder="tu wpisz opis"
+              onChange={this.handleAddDescription}
+              value={this.state.textarea}
+              rows={2}
+              cols={30}
+            />
             <button className="btn">dodaj</button>
           </form>
           <hr />
           <div>
-            <h2>lista</h2>
             <div className="list-display">
               <ul>
                 {this.state.items.map(item => {
@@ -99,6 +113,7 @@ export class Wishlist extends Component {
                       <p className="list-add-text">
                         <a href="{item.link}">{item.link}</a>
                       </p>
+                      <p className="list-add-text">{item.description}</p>
                       <button
                         className="btn--remove"
                         onClick={() => this.removeItem(item.id)}

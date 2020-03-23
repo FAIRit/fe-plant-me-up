@@ -12,7 +12,8 @@ export class ImagesGallery extends Component {
   }
 
   componentDidMount() {
-    const imagesRef = firebase.database().ref("images");
+    const plantId = this.props.plantId;
+    const imagesRef = firebase.database().ref(`plants/${plantId}/images`);
     imagesRef.on("value", snapshot => {
       let images = snapshot.val();
       let newState = [];
@@ -32,16 +33,14 @@ export class ImagesGallery extends Component {
   render() {
     return (
       <div className="c-single-plant-gallery">
-        <div className="c-single-page-images-display">
-          {this.state.images.map(image => {
-            return (
-              <div className="gallery-item" key={image.id}>
-                <img src={this.state.image.url} alt="Uploaded images" />
-                <p>{this.state.image.description}</p>
-              </div>
-            );
-          })}
-        </div>
+        {this.state.images.map(image => {
+          return (
+            <div className="gallery-item">
+              <img key={image.id} src={image.url} alt="Uploaded images" />
+              <p>{image.description}</p>
+            </div>
+          );
+        })}
       </div>
     );
   }

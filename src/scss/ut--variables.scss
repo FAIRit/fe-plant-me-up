@@ -16,9 +16,9 @@ $nav-font-family: $font-family;
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 
 // SETTINGS COLORS
-$hr-color: #e5e5e5;
 
 $brand-color: #0da44e;
+$brand-color-light: #7dae92;
 $text-color: #111;
 
 $btn-color: #1abc9c;
@@ -32,6 +32,7 @@ $largeFontSize: 2rem;
 //HEADINGS
 h1 {
   font-family: $heading-font-family;
+  font-weight: 300;
 }
 
 // OBJECT CONTAINERS

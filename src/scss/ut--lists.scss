@@ -1,3 +1,7 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
 .list-display {
   width: 60%;
 
@@ -16,9 +20,27 @@
         margin-right: 5px;
       }
 
+      h3 {
+        @include mobile {
+          font-size: 14px;
+        }
+      }
+
       .list-add-text {
         margin-left: 20px;
       }
     }
   }
+}
+
+ol,
+ul {
+  @include flex(column, nowrap, flex-start, flex-start);
+}
+.list--reverse {
+  @include flex(column-reverse, nowrap, flex-start, flex-start);
+}
+
+.list--alpha {
+  list-style: none;
 }

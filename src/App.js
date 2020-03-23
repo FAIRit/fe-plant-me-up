@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Search } from "./components/Search";
 import { PlantView } from "./components/PlantView";
 import { ImageUpload } from "./components/ImageUpload";
+import { ImagesGallery } from "./components/ImagesGallery";
 import { SinglePlantTimeline } from "./components/SinglePlantTimeline";
 
 export class App extends Component {
@@ -34,6 +35,7 @@ export class App extends Component {
                 <Route path="/plants/:plantId" component={PlantView} />
                 <Route path="/search" component={Search} />
                 <Route path="/imageUpload" component={ImageUpload} />
+                <Route path="/imagesGallery" component={ImagesGallery} />
                 <Route
                   path="/singlePlantTimeline"
                   component={SinglePlantTimeline}

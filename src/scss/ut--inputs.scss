@@ -3,11 +3,12 @@ textarea {
   margin: 5px;
   padding: 5px;
   resize: none;
-  border: 1px solid #7dae92;
+  border: 1px solid $brand-color-light;
+  border-radius: 5px;
   outline: none;
 
   &::placeholder {
-    color: #7dae92;
+    color: $brand-color-light;
   }
 
   &:focus {

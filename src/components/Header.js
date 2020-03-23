@@ -18,7 +18,7 @@ export const Header = () => {
             </li>
             <li>
               <NavLink to="/" exact>
-                <FontAwesomeIcon icon="list-alt" />
+                <FontAwesomeIcon icon="leaf" />
               </NavLink>
             </li>
             <li>
@@ -42,7 +42,7 @@ export const Header = () => {
               </NavLink>
             </li>
             {/* <li>
-              <NavLink to="/imageUpload">U</NavLink>
+              <NavLink to="/imagesGallery">U</NavLink>
             </li> */}
           </ul>
         </nav>

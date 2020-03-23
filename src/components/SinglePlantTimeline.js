@@ -33,7 +33,7 @@ export class SinglePlantTimeline extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const plantId = this.props.match.params.plantId;
+    const plantId = this.props.plantId;
     const eventsRef = firebase.database().ref(`plants/${plantId}/events`);
     const event = {
       title: this.state.text,
@@ -49,7 +49,8 @@ export class SinglePlantTimeline extends Component {
   };
 
   componentDidMount() {
-    const eventsRef = firebase.database().ref("events");
+    const plantId = this.props.plantId;
+    const eventsRef = firebase.database().ref(`plants/${plantId}/events`);
     eventsRef.on("value", snapshot => {
       let events = snapshot.val();
       let newState = [];
@@ -68,7 +69,10 @@ export class SinglePlantTimeline extends Component {
   }
 
   removeEvent(eventId) {
-    const eventRef = firebase.database().ref(`/events/${eventId}`);
+    const plantId = this.props.plantId;
+    const eventRef = firebase
+      .database()
+      .ref(`plants/${plantId}/events/${eventId}`);
     eventRef.remove();
   }
 
@@ -84,7 +88,6 @@ export class SinglePlantTimeline extends Component {
               onChange={this.handleAddEvent}
               value={this.state.text}
             />
-
             <input
               type="date"
               value={this.state.date}
@@ -104,7 +107,7 @@ export class SinglePlantTimeline extends Component {
         </div>
         <div>
           <div className="c-timeline-list-display list-display">
-            <ul>
+            <ul className="list--reverse">
               {this.state.events.map(event => {
                 return (
                   <li className="list-item" key={event.id}>

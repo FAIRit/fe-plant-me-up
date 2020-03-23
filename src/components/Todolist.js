@@ -3,8 +3,8 @@ import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Todolist extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: "",
       checked: false,
@@ -64,9 +64,8 @@ export class Todolist extends Component {
   render() {
     return (
       <div className="c-page">
-        <h1>Todo list</h1>
+        <h1>Dodaj nowe zadanie:</h1>
         <div>
-          <h3>dodaj zadanie</h3>
           <form onSubmit={this.handleSubmit} className="u-form">
             <input
               type="text"
@@ -86,7 +85,6 @@ export class Todolist extends Component {
           </form>
           <hr />
           <div>
-            <h2>lista</h2>
             <div className="list-display">
               <ul>
                 {this.state.todos.map(todo => {

@@ -93,11 +93,9 @@ export class AddForm extends Component {
                 tagSafe: this.state.tagSafe,
                 tagPoison: this.state.tagPoison
               },
-              gallery: {
-                image: {
-                  url: url,
-                  description: this.state.imgTextarea
-                }
+              image: {
+                url: url,
+                description: this.state.imgTextarea
               }
             };
             plantsRef.push(plant);
@@ -124,10 +122,9 @@ export class AddForm extends Component {
   render() {
     return (
       <div className="c-page">
-        <h1>Formularz dodawania</h1>
+        <h1>Dodaj nową roślinę:</h1>
         <div>
-          <form onSubmit={this.handleSubmit} className="c-form">
-            <h3>dodaj roślinę</h3>
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               name="text"
@@ -230,7 +227,7 @@ export class AddForm extends Component {
                 className="input--textarea"
                 placeholder="wpisz opis zdjęcia"
                 onChange={this.handleImgDescription}
-                value={this.state.textarea}
+                value={this.state.imgTextarea}
                 rows={4}
                 cols={30}
               />

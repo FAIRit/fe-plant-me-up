@@ -53,7 +53,7 @@ export class ImageUpload extends Component {
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            const plantId = this.props.match.params.plantId;
+            const plantId = this.props.plantId;
             const imagesRef = firebase
               .database()
               .ref(`plants/${plantId}/images`);
@@ -77,7 +77,7 @@ export class ImageUpload extends Component {
 
   render() {
     return (
-      <div className="c-image-upload  gallery-item">
+      <div className="c-image-upload">
         <div className="c-image-upload--form">
           <div className="c-image-upload--zone">
             <FontAwesomeIcon
@@ -89,12 +89,12 @@ export class ImageUpload extends Component {
               id="c-image-upload-input"
               type="file"
               onChange={this.handleAddImage}
-              onDrop={this.handleAddImage}
+              // onDrop={this.handleAddImage}
             />
           </div>
           <div className="upload-file-name">
             {this.state.imageName || (
-              <p>Kliknij lub przeciągnij plik ze zdjęciem</p>
+              <p>Kliknij, aby dodać plik ze zdjęciem.</p>
             )}
           </div>
         </div>
@@ -106,7 +106,7 @@ export class ImageUpload extends Component {
             placeholder="wpisz opis zdjęcia"
             onChange={this.handleImgDescription}
             value={this.state.textarea}
-            rows={4}
+            rows={2}
             cols={30}
           />
         </div>

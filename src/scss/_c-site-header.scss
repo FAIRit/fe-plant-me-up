@@ -4,14 +4,20 @@
 
 .c-site-header {
   padding: 15px;
-  background-color: $brand-color;
+  background: $brand-color;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 82, 121, 1) 0%,
+    rgba(12, 159, 80, 1) 0%,
+    rgba(13, 164, 78, 1) 35%,
+    rgba(11, 156, 108, 1) 100%,
+    rgba(9, 151, 128, 1) 100%,
+    rgba(5, 141, 168, 1) 100%
+  );
 }
 
 .c-site-header-inner {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, nowrap, space-between, center);
 }
 
 .c-site-header-logo {
@@ -21,11 +27,7 @@
 
 .c-site-nav {
   ul {
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-
+    @include flex(row, nowrap, flex-start, flex-start);
     list-style: none;
 
     li {
