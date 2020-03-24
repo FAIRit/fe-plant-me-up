@@ -72,3 +72,53 @@
     }
   }
 }
+
+.image--remove {
+  display: none;
+
+  @include mobileLandscape {
+    display: block;
+    float: right;
+  }
+}
+
+.modal-overlay {
+  @include flex(row, nowrap, center, center);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 21, 21, 0.75);
+}
+
+.modal-body {
+  position: absolute;
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  z-index: 11;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: white;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.modal--close {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  font-size: 1.2rem;
+  opacity: 1;
+}
+
+.modal--remove {
+  float: right;
+}

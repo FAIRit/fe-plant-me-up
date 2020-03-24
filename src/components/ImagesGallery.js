@@ -9,7 +9,8 @@ export class ImagesGallery extends Component {
 
     this.state = {
       images: [],
-      showModal: false
+      showModal: false,
+      image: null
     };
   }
 
@@ -32,18 +33,30 @@ export class ImagesGallery extends Component {
     });
   }
 
-  handleShowModal = () => {
-    this.setState({
-      showModal: true
-    });
-    console.log("click");
+  handleShowModal = image => {
+    const isMobile = window.innerWidth < 480;
+    if (isMobile === false) {
+      this.setState({
+        showModal: true,
+        image
+      });
+    }
   };
 
-  closeModal = () => {
+  handleCloseModal = () => {
     this.setState({
       showModal: false
     });
+    console.log("close");
   };
+
+  handleRemoveImage(imageId) {
+    const plantId = this.props.plantId;
+    const imageRef = firebase
+      .database()
+      .ref(`plants/${plantId}/images/${imageId}`);
+    imageRef.remove();
+  }
 
   render() {
     console.log(this.props);
@@ -56,13 +69,26 @@ export class ImagesGallery extends Component {
                 src={image.url}
                 url={image.url}
                 alt="Uploaded images"
-                onClick={this.handleShowModal}
+                onClick={() => this.handleShowModal(image)}
               />
               <p>{image.description}</p>
+              <button
+                className="btn--remove image--remove"
+                onClick={() => this.handleRemoveImage(image.id)}
+              >
+                <FontAwesomeIcon icon="trash" />
+              </button>
             </div>
           );
         })}
-        {this.state.showModal && <GalleryModal onClick={this.closeModal} />}
+        {this.state.showModal && (
+          <GalleryModal
+            url={this.state.image.url}
+            description={this.state.image.description}
+            onClick={this.handleCloseModal}
+            removeImage={() => this.handleRemoveImage(this.state.image.id)}
+          />
+        )}
       </div>
     );
   }

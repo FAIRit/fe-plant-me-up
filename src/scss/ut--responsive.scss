@@ -13,7 +13,7 @@ $desktopWide: 1400px;
 }
 
 @mixin mobileLandscape {
-  @media (min-width: #{$mobile}) and (max-width: #{$mobileLandscape + 1px}) {
+  @media (min-width: #{$mobile}) and (max-width: #{$mobileLandscape - 1px}) {
     @content;
   }
 }
