@@ -1,0 +1,57 @@
+@import "./scss/ut--responsive.scss";
+@import "./scss/ut--variables.scss";
+@import "./scss/ut--buttons.scss";
+@import "./scss//ut--mixins.scss";
+@import "./scss/ut--inputs.scss";
+@import "./scss/ut--lists.scss";
+
+.c-catalogue-display {
+  a {
+    color: $brand-color;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: larger;
+
+    &:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+  }
+}
+
+.c-catalogue-title {
+  @include flex(row, nowrap, space-between, center);
+}
+
+.c-catalogue-list {
+  ol,
+  ul {
+    @include flex(column, nowrap, flex-start, flex-start);
+    padding-left: 20px;
+
+    li {
+      padding: 10px 0;
+    }
+  }
+
+  .list--reverse {
+    @include flex(column-reverse, nowrap, flex-start, flex-start);
+  }
+}
+.grid-display {
+  @include flex(row, wrap, space-between, center);
+}
+
+.grid-display--reverse {
+  @include flex(row-reverse, wrap, space-between, center);
+}
+
+.grid-item {
+  width: 30%;
+  height: auto;
+  margin: 15px auto;
+  padding: 5px;
+  border: 1px solid $brand-color-light;
+  border-radius: 5px;
+  align-self: center;
+}

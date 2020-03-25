@@ -18,7 +18,8 @@ export class AddForm extends Component {
       url: "",
       progress: 0,
       imgTextarea: "",
-      plants: []
+      plants: [],
+      images: []
     };
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
@@ -93,9 +94,11 @@ export class AddForm extends Component {
                 tagSafe: this.state.tagSafe,
                 tagPoison: this.state.tagPoison
               },
-              image: {
-                url: url,
-                description: this.state.imgTextarea
+              images: {
+                image: {
+                  url: url,
+                  description: this.state.imgTextarea
+                }
               }
             };
             plantsRef.push(plant);
