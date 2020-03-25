@@ -3,14 +3,11 @@ import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Todolist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "",
-      checked: false,
-      todos: []
-    };
-  }
+  state = {
+    text: "",
+    checked: false,
+    todos: []
+  };
 
   handleChange = e => {
     this.setState({

@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import defaultProfileImg from "../img/default-profile-img.jpg";
+import { Link } from "react-router-dom";
 
 export class PlantsGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   text: "",
-      //   textarea: "",
       plants: []
-      //   isNumericList: true,
-      //   reverseNumericList: false,
-      //   reverseAlphaList: false
-      // isReverseList: true,
-      // isAlphaList: false
     };
   }
 
@@ -39,36 +33,13 @@ export class PlantsGrid extends Component {
     });
   }
 
-  //   handleNumericList = () => {
-  //     this.setState({
-  //       isNumericList: true
-  //     });
-  //     if (this.state.isNumericList === true) {
-  //       this.setState({
-  //         reverseNumericList: !this.state.reverseNumericList
-  //       });
-  //     }
-  //   };
-
-  //   handleAlphaList = () => {
-  //     this.setState({
-  //       isNumericList: false
-  //     });
-  //     if (this.state.isNumericList === false) {
-  //       this.setState({
-  //         reverseAlphaList: !this.state.reverseAlphaList
-  //       });
-  //     }
-  //   };
-
   render() {
-    // const { isNumericList, reverseAlphaList, reverseNumericList } = this.state;
-
     return (
       <div className="grid-display">
         {this.state.plants.map(plant => {
           return (
             <div className="grid-item">
+              <img src={defaultProfileImg} className="grid-profile-img" />
               <SinglePlant
                 plantName={plant.name}
                 plantId={plant.id}

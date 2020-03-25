@@ -5,10 +5,9 @@ export class SinglePlant extends Component {
   render() {
     return (
       <div className="c-single-plant">
-        <h2>
-          {this.props.plantName}
-          <Link to={`/plants/${this.props.plantId}`}>&#10152;</Link>
-        </h2>
+        <Link to={`/plants/${this.props.plantId}`}>
+          <h2>{this.props.plantName}</h2>
+        </Link>
       </div>
     );
   }

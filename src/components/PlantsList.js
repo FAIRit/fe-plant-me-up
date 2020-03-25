@@ -7,14 +7,10 @@ export class PlantsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   text: "",
-      //   textarea: "",
       plants: [],
       isNumericList: true,
       reverseNumericList: false,
       reverseAlphaList: false
-      // isReverseList: true,
-      // isAlphaList: false
     };
   }
 
@@ -30,7 +26,8 @@ export class PlantsList extends Component {
         newState.push({
           id: plant,
           name: plants[plant].name,
-          description: plants[plant].description
+          description: plants[plant].description,
+          date: plants[plant].date
         });
       }
       this.setState({
@@ -83,18 +80,25 @@ export class PlantsList extends Component {
         {isNumericList === true ? (
           <div className="c-catalogue-list" id="numeric-list">
             <ol className={reverseNumericList ? null : "list--reverse"}>
-              {this.state.plants.map(plant => {
-                return (
-                  <li>
-                    <SinglePlant
-                      plantName={plant.name}
-                      plantId={plant.id}
-                      key={plant.id}
-                      plantDescription={plant.description}
-                    />
-                  </li>
-                );
-              })}
+              {this.state.plants
+                .sort(function(a, b) {
+                  if (a.date < b.date) return -1;
+                  if (a.date > b.date) return 1;
+                  return 0;
+                })
+                .map(plant => {
+                  return (
+                    <li>
+                      <SinglePlant
+                        plantName={plant.name}
+                        plantId={plant.id}
+                        key={plant.id}
+                        plantDescription={plant.description}
+                        plantDate={plant.date}
+                      />
+                    </li>
+                  );
+                })}
             </ol>
           </div>
         ) : (

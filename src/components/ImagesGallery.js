@@ -71,6 +71,7 @@ export class ImagesGallery extends Component {
                 alt="Uploaded images"
                 onClick={() => this.handleShowModal(image)}
               />
+
               <p>{image.description}</p>
               <button
                 className="btn--remove image--remove"
