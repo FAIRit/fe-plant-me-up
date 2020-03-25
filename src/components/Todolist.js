@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Todolist extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       text: "",
       checked: false,
       todos: []
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleCheckbox = this.handleCheckbox.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = e => {
@@ -67,10 +64,9 @@ export class Todolist extends Component {
   render() {
     return (
       <div className="c-page">
-        <h1>Todo list</h1>
+        <h1>Dodaj nowe zadanie:</h1>
         <div>
-          <form onSubmit={this.handleSubmit} className="c-form">
-            <h3>dodaj zadanie</h3>
+          <form onSubmit={this.handleSubmit} className="u-form">
             <input
               type="text"
               name="text"
@@ -85,21 +81,24 @@ export class Todolist extends Component {
               onChange={this.handleCheckbox}
             />
             <label htmlFor="important">WAŻNE</label>
-            <button className="c-btn">dodaj</button>
-            <hr />
+            <button className="btn">dodaj</button>
           </form>
+          <hr />
           <div>
-            <h2>lista</h2>
-            <div className="c-list-display">
+            <div className="list-display">
               <ul>
                 {this.state.todos.map(todo => {
                   return (
-                    <li key={todo.id}>
-                      <p className={todo.important ? "priority" : null}>
+                    <li className="list-item" key={todo.id}>
+                      <span className="list-star">&#10045;</span>
+                      <h3 className={todo.important ? "priority" : null}>
                         {todo.title}
-                      </p>
-                      <button onClick={() => this.removeItem(todo.id)}>
-                        zrobione!
+                      </h3>
+                      <button
+                        className="btn--remove"
+                        onClick={() => this.removeItem(todo.id)}
+                      >
+                        <FontAwesomeIcon icon="check-circle" />
                       </button>
                     </li>
                   );

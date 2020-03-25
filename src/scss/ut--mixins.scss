@@ -1,0 +1,25 @@
+// LINKS
+@mixin links($link, $visited, $hover, $active) {
+  & {
+    color: $link;
+    &:visited {
+      color: $visited;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active,
+    &:focus {
+      color: $active;
+    }
+  }
+}
+
+//FLEX
+@mixin flex($flexDirection, $flexWrap, $justifyContent, $alignItems) {
+  display: flex;
+  flex-direction: $flexDirection;
+  flex-wrap: $flexWrap;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}

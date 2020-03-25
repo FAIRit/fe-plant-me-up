@@ -1,0 +1,124 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
+.c-single-plant {
+  display: block;
+
+  h2 {
+    margin: 15px 0;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+}
+
+.c-single-plant-title {
+  @include flex(row, nowrap, space-between, center);
+}
+
+.c-plant-view-tags {
+  @include flex(row, nowrap, flex-start, flex-start);
+  margin-bottom: 15px;
+
+  p {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+}
+
+.c-single-plant-description {
+  @include flex(row, nowrap, space-between, center);
+
+  margin: 15px auto;
+  padding: 10px 0;
+
+  button {
+    margin: 10px 0;
+  }
+}
+
+.c-timeline-list-display {
+  h3 {
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+}
+
+.c-single-plant-gallery {
+  @include flex(row, wrap, flex-start, flex-start);
+
+  .gallery-item {
+    width: 30%;
+    height: auto;
+    margin: 15px auto;
+    padding: 5px;
+    border: 1px solid $brand-color-light;
+    border-radius: 5px;
+    align-self: center;
+
+    @include mobileLandscape {
+      width: 100%;
+      height: auto;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+  }
+}
+
+.image--remove {
+  display: none;
+
+  @include mobileLandscape {
+    display: block;
+    float: right;
+  }
+}
+
+.modal-overlay {
+  @include flex(row, nowrap, center, center);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 21, 21, 0.75);
+}
+
+.modal-body {
+  position: absolute;
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  z-index: 11;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: white;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.modal--close {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  font-size: 1.2rem;
+  opacity: 1;
+}
+
+.modal--remove {
+  float: right;
+}

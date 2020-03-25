@@ -1,0 +1,22 @@
+input,
+textarea {
+  margin: 5px;
+  padding: 5px;
+  resize: none;
+  border: 1px solid $brand-color-light;
+  border-radius: 5px;
+  outline: none;
+
+  &::placeholder {
+    color: $brand-color-light;
+  }
+
+  &:focus {
+    color: $text-color;
+    border-color: $brand-color;
+  }
+}
+
+.u-form {
+  @include flex(row, wrap, flex-start, center);
+}

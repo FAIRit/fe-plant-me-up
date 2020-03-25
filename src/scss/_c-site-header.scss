@@ -1,0 +1,49 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
+.c-site-header {
+  padding: 15px;
+  background: $brand-color;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 82, 121, 1) 0%,
+    rgba(12, 159, 80, 1) 0%,
+    rgba(13, 164, 78, 1) 35%,
+    rgba(11, 156, 108, 1) 100%,
+    rgba(9, 151, 128, 1) 100%,
+    rgba(5, 141, 168, 1) 100%
+  );
+}
+
+.c-site-header-inner {
+  @include flex(row, nowrap, space-between, center);
+}
+
+.c-site-header-logo {
+  img {
+  }
+}
+
+.c-site-nav {
+  ul {
+    @include flex(row, nowrap, flex-start, flex-start);
+    list-style: none;
+
+    li {
+      padding: 5px 10px;
+      color: #fff;
+      font-size: $mediumFontSize;
+      font-weight: lighter;
+
+      a {
+        @include links(#fff, #fff, #fff, #fff);
+        display: block;
+      }
+    }
+  }
+}
+
+.active {
+  transform: scale(1.5);
+}
