@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PlantsList } from "./PlantsList";
 import { PlantsGrid } from "./PlantsGrid";
-// import { Search } from "./Search";
+import { Search } from "./Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Catalog extends Component {
@@ -19,6 +19,7 @@ export class Catalog extends Component {
     return (
       <div className="c-page">
         {/* <Search /> */}
+
         <div className="c-catalogue-title">
           <h1>Moje rośliny</h1>
           <div>
@@ -31,11 +32,7 @@ export class Catalog extends Component {
           </div>
         </div>
         <div className="c-catalogue-display">
-          {this.state.displayMode ? (
-            <PlantsList plants={this.state.plants} />
-          ) : (
-            <PlantsGrid plants={this.state.plants} />
-          )}
+          {this.state.displayMode ? <PlantsList /> : <PlantsGrid />}
         </div>
       </div>
     );

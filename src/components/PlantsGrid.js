@@ -7,7 +7,8 @@ export class PlantsGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      plants: []
+      plants: [],
+      search: ""
     };
   }
 
@@ -32,10 +33,27 @@ export class PlantsGrid extends Component {
     });
   }
 
+  handleSearch = e => {
+    this.setState({
+      search: e.target.value.substr(0, 20)
+    });
+  };
+
   render() {
+    let filteredPlants = this.state.plants.filter(plant => {
+      return plant.name.indexOf(this.state.search) !== -1;
+    });
+
     return (
       <div className="grid-display">
-        {this.state.plants.map(plant => {
+        <input
+          type="text"
+          className="input"
+          placeholder="Search..."
+          value={this.state.search}
+          onChange={this.handleSearch}
+        />
+        {filteredPlants.map(plant => {
           return (
             <div className="grid-item" key={plant.id}>
               {/* <img src={defaultProfileImg} className="grid-profile-img" /> */}

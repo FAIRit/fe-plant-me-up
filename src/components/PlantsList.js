@@ -10,7 +10,8 @@ export class PlantsList extends Component {
       plants: [],
       isNumericList: true,
       reverseNumericList: false,
-      reverseAlphaList: false
+      reverseAlphaList: false,
+      search: ""
     };
   }
 
@@ -35,6 +36,12 @@ export class PlantsList extends Component {
       });
     });
   }
+
+  handleSearch = e => {
+    this.setState({
+      search: e.target.value.substr(0, 20)
+    });
+  };
 
   handleNumericList = () => {
     this.setState({
@@ -61,8 +68,19 @@ export class PlantsList extends Component {
   render() {
     const { isNumericList, reverseAlphaList, reverseNumericList } = this.state;
 
+    let filteredPlants = this.state.plants.filter(plant => {
+      return plant.name.indexOf(this.state.search) !== -1;
+    });
+
     return (
       <div>
+        <input
+          type="text"
+          className="input"
+          placeholder="Search..."
+          value={this.state.search}
+          onChange={this.handleSearch}
+        />
         <button className="btn--select" onClick={this.handleNumericList}>
           {reverseNumericList ? (
             <FontAwesomeIcon icon="sort-numeric-down" />
@@ -80,7 +98,7 @@ export class PlantsList extends Component {
         {isNumericList === true ? (
           <div className="c-catalogue-list" id="numeric-list">
             <ol className={reverseNumericList ? null : "list--reverse"}>
-              {this.state.plants
+              {filteredPlants
                 .sort(function(a, b) {
                   if (a.date < b.date) return -1;
                   if (a.date > b.date) return 1;
