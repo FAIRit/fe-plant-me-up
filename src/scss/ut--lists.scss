@@ -10,6 +10,7 @@
   }
 
   ul {
+    @include flex(column, nowrap, flex-start, flex-start);
     list-style-type: none;
     li {
       @include flex(row, wrap, flex-start, baseline);
@@ -31,16 +32,4 @@
       }
     }
   }
-}
-
-ol,
-ul {
-  @include flex(column, nowrap, flex-start, flex-start);
-}
-.list--reverse {
-  @include flex(column-reverse, nowrap, flex-start, flex-start);
-}
-
-.list--alpha {
-  list-style: none;
 }

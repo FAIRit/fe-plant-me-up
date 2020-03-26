@@ -1,12 +1,13 @@
 @import "./scss/ut--responsive.scss";
 @import "./scss/ut--variables.scss";
 @import "./scss/ut--buttons.scss";
-@import "./scss//ut--mixins.scss";
+@import "./scss/ut--mixins.scss";
 @import "./scss/ut--inputs.scss";
 @import "./scss/ut--lists.scss";
 @import "./scss/c-site-header.scss";
-@import "./scss/c-site_single-plant";
-@import "./scss/c-image-upload";
+@import "./scss/c-site_single-plant.scss";
+@import "./scss/c-image-upload.scss";
+@import "./scss/c-site-catalogue.scss";
 
 * {
   margin: 0;

@@ -40,3 +40,12 @@
     opacity: 1;
   }
 }
+
+.btn--select {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid $brand-color;
+  border-radius: 5px;
+  background-color: white;
+  color: $brand-color;
+}

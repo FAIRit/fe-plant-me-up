@@ -3,15 +3,12 @@ import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Wishlist extends Component {
-  constructor() {
-    super();
-    this.state = {
-      text: "",
-      url: "",
-      textarea: "",
-      items: []
-    };
-  }
+  state = {
+    text: "",
+    url: "",
+    textarea: "",
+    items: []
+  };
 
   handleChange = e => {
     this.setState({

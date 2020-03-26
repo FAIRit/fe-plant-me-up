@@ -1,0 +1,60 @@
+@import "./scss/ut--responsive.scss";
+@import "./scss/ut--variables.scss";
+@import "./scss/ut--buttons.scss";
+@import "./scss//ut--mixins.scss";
+@import "./scss/ut--inputs.scss";
+@import "./scss/ut--lists.scss";
+
+.c-catalogue-display {
+  a {
+    color: $brand-color;
+    text-decoration: none;
+    &:hover {
+      opacity: 0.7;
+      text-decoration: none;
+    }
+  }
+}
+
+.c-catalogue-title {
+  @include flex(row, nowrap, space-between, center);
+}
+
+.c-catalogue-list {
+  ol,
+  ul {
+    @include flex(column, nowrap, flex-start, flex-start);
+    padding-left: 20px;
+  }
+
+  .list--reverse {
+    @include flex(column-reverse, nowrap, flex-start, flex-start);
+  }
+}
+.grid-display {
+  @include flex(row, wrap, space-between, start);
+}
+
+.grid-display--reverse {
+  @include flex(row-reverse, wrap, space-between, start);
+}
+
+.grid-item {
+  width: 30%;
+  height: auto;
+  margin: 15px auto;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid $brand-color-light;
+  border-radius: 5px;
+  align-self: center;
+
+  h2 {
+    margin: 5px auto;
+  }
+}
+
+.grid-profile-img {
+  width: 100%;
+  height: auto;
+}

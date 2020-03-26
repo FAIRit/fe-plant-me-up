@@ -8,20 +8,15 @@ export class AddForm extends Component {
     this.state = {
       text: "",
       textarea: "",
+      date: new Date().toISOString().slice(0, 10),
       tagPoison: false,
       tagSafe: false,
       tagMoreSun: false,
       tagMoreWater: false,
       tagLittleSun: false,
       tagLittleWater: false,
-      image: null,
-      url: "",
-      progress: 0,
-      imgTextarea: "",
       plants: []
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = e => {
@@ -42,81 +37,35 @@ export class AddForm extends Component {
     });
   };
 
-  handleAddImage = e => {
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
-    }
-    const imageName = e.target.files[0].name;
-    this.setState({ imageName });
-    console.log(imageName);
-  };
-
-  handleImgDescription = e => {
-    this.setState({
-      imgTextarea: e.target.value
-    });
-  };
-
   handleSubmit = e => {
     e.preventDefault();
-    const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      snapshot => {
-        // progress function ....
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        this.setState({ progress });
-      },
-      error => {
-        // error function ....
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            const plantsRef = firebase.database().ref("plants");
-            const plant = {
-              name: this.state.text,
-              description: this.state.textarea,
-              tags: {
-                tagLittleSun: this.state.tagLittleSun,
-                tagMoreSun: this.state.tagMoreSun,
-                tagLittleWater: this.state.tagLittleWater,
-                tagMoreWater: this.state.tagMoreWater,
-                tagSafe: this.state.tagSafe,
-                tagPoison: this.state.tagPoison
-              },
-              image: {
-                url: url,
-                description: this.state.imgTextarea
-              }
-            };
-            plantsRef.push(plant);
-            this.setState({
-              text: "",
-              textarea: "",
-              tagPoison: false,
-              tagSafe: false,
-              tagMoreSun: false,
-              tagMoreWater: false,
-              tagLittleSun: false,
-              tagLittleWater: false,
-              imgTextarea: "",
-              image: null,
-              progress: 0,
-              imageName: ""
-            });
-            alert("Dodano roślinkę!");
-          });
+
+    const plantsRef = firebase.database().ref("plants");
+    const plant = {
+      name: this.state.text,
+      description: this.state.textarea,
+      date: this.state.date,
+      tags: {
+        tagLittleSun: this.state.tagLittleSun,
+        tagMoreSun: this.state.tagMoreSun,
+        tagLittleWater: this.state.tagLittleWater,
+        tagMoreWater: this.state.tagMoreWater,
+        tagSafe: this.state.tagSafe,
+        tagPoison: this.state.tagPoison
       }
-    );
+    };
+    plantsRef.push(plant);
+    this.setState({
+      text: "",
+      textarea: "",
+      tagPoison: false,
+      tagSafe: false,
+      tagMoreSun: false,
+      tagMoreWater: false,
+      tagLittleSun: false,
+      tagLittleWater: false
+    });
+    alert("Dodano roślinkę!");
   };
 
   render() {
@@ -200,46 +149,7 @@ export class AddForm extends Component {
                 <FontAwesomeIcon icon="skull" />
               </label>
             </section>
-            <div className="c-image-upload--form">
-              <div className="c-image-upload--zone">
-                <FontAwesomeIcon
-                  className="upload-plus-circle"
-                  icon="plus-circle"
-                />
-                <input
-                  ref={this.fileInput}
-                  id="c-image-upload-input"
-                  type="file"
-                  onChange={this.handleAddImage}
-                  onDrop={this.handleAddImage}
-                />
-              </div>
-              <div className="upload-file-name">
-                {this.state.imageName || (
-                  <p>Kliknij lub przeciągnij plik ze zdjęciem</p>
-                )}
-              </div>
-            </div>
-            <div>
-              <textarea
-                type="textarea"
-                name="textarea"
-                className="input--textarea"
-                placeholder="wpisz opis zdjęcia"
-                onChange={this.handleImgDescription}
-                value={this.state.imgTextarea}
-                rows={4}
-                cols={30}
-              />
-            </div>
 
-            <progress
-              value={this.state.progress}
-              max="100"
-              className={
-                this.state.progress === 0 ? "progress-bar--hid" : "progress-bar"
-              }
-            />
             <br />
             <button className="btn">dodaj</button>
           </form>

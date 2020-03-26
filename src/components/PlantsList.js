@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
-import { PlantsListNumeric } from "./PlantsListNumeric";
-import { PlantsListAlphabetic } from "./PlantsListAlphabetic";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class PlantsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   text: "",
-      //   textarea: "",
       plants: [],
-      isReverseList: true,
-      isAlphaList: false
+      isNumericList: true,
+      reverseNumericList: false,
+      reverseAlphaList: false
     };
   }
 
@@ -29,7 +26,8 @@ export class PlantsList extends Component {
         newState.push({
           id: plant,
           name: plants[plant].name,
-          description: plants[plant].description
+          description: plants[plant].description,
+          date: plants[plant].date
         });
       }
       this.setState({
@@ -38,78 +36,95 @@ export class PlantsList extends Component {
     });
   }
 
-  handleReverseList = () => {
+  handleNumericList = () => {
     this.setState({
-      isReverseList: !this.state.isReverseList
+      isNumericList: true
     });
+    if (this.state.isNumericList === true) {
+      this.setState({
+        reverseNumericList: !this.state.reverseNumericList
+      });
+    }
   };
 
   handleAlphaList = () => {
     this.setState({
-      isAlphaList: !this.state.isAlphaList
+      isNumericList: false
     });
+    if (this.state.isNumericList === false) {
+      this.setState({
+        reverseAlphaList: !this.state.reverseAlphaList
+      });
+    }
   };
 
   render() {
+    const { isNumericList, reverseAlphaList, reverseNumericList } = this.state;
+
     return (
       <div>
-        {this.state.isReverseList ? (
-          <button className="btn" onClick={this.handleReverseList}>
-            <FontAwesomeIcon icon="sort-numeric-down"></FontAwesomeIcon>
-          </button>
+        <button className="btn--select" onClick={this.handleNumericList}>
+          {reverseNumericList ? (
+            <FontAwesomeIcon icon="sort-numeric-down" />
+          ) : (
+            <FontAwesomeIcon icon="sort-numeric-up" />
+          )}
+        </button>
+        <button className="btn--select" onClick={this.handleAlphaList}>
+          {reverseAlphaList ? (
+            <FontAwesomeIcon icon="sort-alpha-up" />
+          ) : (
+            <FontAwesomeIcon icon="sort-alpha-down" />
+          )}
+        </button>
+        {isNumericList === true ? (
+          <div className="c-catalogue-list" id="numeric-list">
+            <ol className={reverseNumericList ? null : "list--reverse"}>
+              {this.state.plants
+                .sort(function(a, b) {
+                  if (a.date < b.date) return -1;
+                  if (a.date > b.date) return 1;
+                  return 0;
+                })
+                .map(plant => {
+                  return (
+                    <li>
+                      <SinglePlant
+                        plantName={plant.name}
+                        plantId={plant.id}
+                        key={plant.id}
+                        plantDescription={plant.description}
+                        plantDate={plant.date}
+                      />
+                    </li>
+                  );
+                })}
+            </ol>
+          </div>
         ) : (
-          <button className="btn" onClick={this.handleReverseList}>
-            <FontAwesomeIcon icon="sort-numeric-up"></FontAwesomeIcon>
-          </button>
+          <div className="c-catalogue-list">
+            <ul className={reverseAlphaList ? "list--reverse" : null}>
+              {this.state.plants
+                .sort(function(a, b) {
+                  if (a.name < b.name) return -1;
+                  if (a.name > b.name) return 1;
+                  return 0;
+                })
+                .map(plant => {
+                  return (
+                    <li>
+                      <SinglePlant
+                        plantName={plant.name}
+                        plantId={plant.id}
+                        key={plant.id}
+                        plantDescription={plant.description}
+                      />
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
         )}
-        {this.state.isAlphaList ? (
-          <button className="btn" onClick={this.handleAlphaList}>
-            <FontAwesomeIcon icon="sort-alpha-up"></FontAwesomeIcon>
-          </button>
-        ) : (
-          <button className="btn" onClick={this.handleAlphaList}>
-            <FontAwesomeIcon icon="sort-alpha-down"></FontAwesomeIcon>
-          </button>
-        )}
-
-        <div className="list-display" id="numeric-list">
-          <ol className={this.state.isReverseList ? null : "ol--reverse"}>
-            {this.state.plants.map(plant => {
-              return (
-                <li>
-                  <SinglePlant
-                    plantName={plant.name}
-                    plantId={plant.id}
-                    key={plant.id}
-                    plantDescription={plant.description}
-                  />
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-        {/* <div className="list-display">
-          <ul className={this.state.isReverseList ? "ol--reverse" : null}>
-            {this.state.plants
-              .sort(function(a, b) {
-                if (a.name < b.name) return -1;
-                if (a.name > b.name) return 1;
-                return 0;
-              })
-              .map(plant => {
-                return (
-                  <li>
-                    <SinglePlant
-                      plantName={plant.name}
-                      plantId={plant.id}
-                      key={plant.id}
-                      plantDescription={plant.description}
-                    />
-                  </li>
-                );
-              })}
-          </ul>
-        </div> */}
       </div>
     );
   }
