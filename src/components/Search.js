@@ -1,9 +1,53 @@
-import React from 'react';
- 
+import React, { Component } from "react";
 
-export const Search = () => (
-    <div className="c-page">
-        <h1>Pomoc</h1>
-        <img src="https://via.placeholder.com/250x400" alt="placeholder"></img>
-    </div>
-);
+export class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentList: props.plants,
+      filtered: []
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      filtered: this.props.plants
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      filtered: nextProps.plants
+    });
+  }
+
+  handleSearch = e => {
+    let newList = [];
+
+    if (e.target.value !== "") {
+      newList = this.state.currentList.filter(plant => {
+        const lc = plant.toLowerCase();
+        const filter = e.target.value.toLowerCase();
+        return lc.icludes(filter);
+      });
+    } else {
+      newList = this.state.currentList;
+    }
+    this.setState({
+      filtered: newList
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          className="input"
+          placeholder="Search..."
+          onChange={this.handleSearch}
+        />
+      </div>
+    );
+  }
+}

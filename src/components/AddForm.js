@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebase, storage } from "../firebase";
+import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class AddForm extends Component {
@@ -8,7 +8,7 @@ export class AddForm extends Component {
     this.state = {
       text: "",
       textarea: "",
-      date: new Date().toISOString().slice(0, 10),
+      date: firebase.database.ServerValue.TIMESTAMP,
       tagPoison: false,
       tagSafe: false,
       tagMoreSun: false,

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const GalleryModal = props => {
@@ -8,7 +8,7 @@ export const GalleryModal = props => {
         <button className="btn--remove modal--close" onClick={props.onClick}>
           <FontAwesomeIcon icon="times-circle" />
         </button>
-        <img src={props.url} />
+        <img src={props.url} alt="bigger" />
         <p>{props.description}</p>
         <button
           className="btn--remove modal--remove"

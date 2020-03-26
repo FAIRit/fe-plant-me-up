@@ -9,6 +9,10 @@
     width: 100%;
   }
 
+  .list--reverse {
+    @include flex(column-reverse, nowrap, flex-start, flex-start);
+  }
+
   ul {
     @include flex(column, nowrap, flex-start, flex-start);
     list-style-type: none;

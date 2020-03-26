@@ -88,11 +88,10 @@ export class PlantsList extends Component {
                 })
                 .map(plant => {
                   return (
-                    <li>
+                    <li key={plant.id}>
                       <SinglePlant
                         plantName={plant.name}
                         plantId={plant.id}
-                        key={plant.id}
                         plantDescription={plant.description}
                         plantDate={plant.date}
                       />
@@ -112,11 +111,10 @@ export class PlantsList extends Component {
                 })
                 .map(plant => {
                   return (
-                    <li>
+                    <li key={plant.id}>
                       <SinglePlant
                         plantName={plant.name}
                         plantId={plant.id}
-                        key={plant.id}
                         plantDescription={plant.description}
                       />
                     </li>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebase, storage } from "../firebase";
+import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GalleryModal } from "./utilities/GalleryModal";
 
@@ -43,6 +43,17 @@ export class ImagesGallery extends Component {
     }
   };
 
+  showProfileImage = image => {
+    const plantId = this.props.plantId;
+    const images = firebase.database().ref(`plants/${plantId}/images/`);
+    const profileImage = images[images - 1].url;
+
+    this.setState({
+      profileImage: this.state.profileImage,
+      image
+    });
+  };
+
   handleCloseModal = () => {
     this.setState({
       showModal: false
@@ -59,7 +70,6 @@ export class ImagesGallery extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="c-single-plant-gallery">
         {this.state.images.map(image => {
@@ -70,6 +80,7 @@ export class ImagesGallery extends Component {
                 url={image.url}
                 alt="Uploaded images"
                 onClick={() => this.handleShowModal(image)}
+                profileImage={() => this.showProfileImage(image)}
               />
 
               <p>{image.description}</p>
