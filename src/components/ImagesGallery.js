@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GalleryModal } from "./utilities/GalleryModal";
+import { ProfileImage } from "./utilities/ProfileImage";
 
 export class ImagesGallery extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export class ImagesGallery extends Component {
     this.state = {
       images: [],
       showModal: false,
-      image: null
+      image: null,
+      profileImage: null
     };
   }
 
@@ -43,15 +45,13 @@ export class ImagesGallery extends Component {
     }
   };
 
-  showProfileImage = image => {
-    const plantId = this.props.plantId;
-    const images = firebase.database().ref(`plants/${plantId}/images/`);
-    const profileImage = images[images - 1].url;
-
+  showProfileImage = () => {
+    const images = this.state.images;
+    console.log(images);
     this.setState({
-      profileImage: this.state.profileImage,
-      image
+      profileImage: this.state.images[images.length - 1].url
     });
+    console.log(this.state.profileImage);
   };
 
   handleCloseModal = () => {
@@ -66,6 +66,7 @@ export class ImagesGallery extends Component {
     const imageRef = firebase
       .database()
       .ref(`plants/${plantId}/images/${imageId}`);
+
     imageRef.remove();
   }
 
@@ -80,7 +81,6 @@ export class ImagesGallery extends Component {
                 url={image.url}
                 alt="Uploaded images"
                 onClick={() => this.handleShowModal(image)}
-                profileImage={() => this.showProfileImage(image)}
               />
 
               <p>{image.description}</p>
@@ -93,6 +93,7 @@ export class ImagesGallery extends Component {
             </div>
           );
         })}
+
         {this.state.showModal && (
           <GalleryModal
             url={this.state.image.url}
@@ -101,6 +102,9 @@ export class ImagesGallery extends Component {
             removeImage={() => this.handleRemoveImage(this.state.image.id)}
           />
         )}
+        <div>
+          <button onClick={this.showProfileImage} />
+        </div>
       </div>
     );
   }

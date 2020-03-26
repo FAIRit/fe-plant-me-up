@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
-import defaultProfileImg from "../img/default-profile-img.jpg";
+import { ProfileImage } from "./utilities/ProfileImage";
 
 export class PlantsGrid extends Component {
   constructor(props) {
@@ -45,33 +45,32 @@ export class PlantsGrid extends Component {
     });
 
     return (
-      <div className="grid-display">
-        <input
-          type="text"
-          className="input"
-          placeholder="Search..."
-          value={this.state.search}
-          onChange={this.handleSearch}
-        />
-        {filteredPlants.map(plant => {
-          return (
-            <div className="grid-item" key={plant.id}>
-              {/* <img src={defaultProfileImg} className="grid-profile-img" /> */}
-              <img
-                src={this.props.profileImage}
-                className="grid-profile-img"
-                alt="profile picture"
-              />
+      <>
+        <div>
+          <input
+            type="text"
+            className="input"
+            placeholder="Search..."
+            value={this.state.search}
+            onChange={this.handleSearch}
+          />
+        </div>
+        <div className="grid-display">
+          {filteredPlants.map(plant => {
+            return (
+              <div className="grid-item" key={plant.id}>
+                <ProfileImage profileImage={this.state.profileImage} />
 
-              <SinglePlant
-                plantName={plant.name}
-                plantId={plant.id}
-                plantDescription={plant.description}
-              />
-            </div>
-          );
-        })}
-      </div>
+                <SinglePlant
+                  plantName={plant.name}
+                  plantId={plant.id}
+                  plantDescription={plant.description}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </>
     );
   }
 }

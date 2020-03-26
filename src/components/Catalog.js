@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { PlantsList } from "./PlantsList";
 import { PlantsGrid } from "./PlantsGrid";
-import { Search } from "./Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Catalog extends Component {
@@ -18,8 +17,6 @@ export class Catalog extends Component {
   render() {
     return (
       <div className="c-page">
-        {/* <Search /> */}
-
         <div className="c-catalogue-title">
           <h1>Moje rośliny</h1>
           <div>
