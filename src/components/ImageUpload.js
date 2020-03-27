@@ -11,18 +11,22 @@ export class ImageUpload extends Component {
       url: "",
       progress: 0,
       textarea: "",
-      images: []
+      images: [],
+      file: null
     };
   }
 
   handleAddImage = e => {
-    if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
+    const image = e.target.files[0];
+    if (!image) {
+      return;
     }
-    const imageName = e.target.files[0].name;
-    this.setState({ imageName });
-    console.log(imageName);
+    const imageName = image.name;
+    this.setState({
+      image,
+      imageName,
+      file: URL.createObjectURL(image)
+    });
   };
 
   handleImgDescription = e => {
@@ -33,7 +37,8 @@ export class ImageUpload extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { plantId } = this.props;
+    const uploadTask = storage.ref(`images/${plantId}`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -50,19 +55,23 @@ export class ImageUpload extends Component {
       () => {
         storage
           .ref("images")
-          .child(image.name)
+          .child(plantId)
           .getDownloadURL()
           .then(url => {
-            const plantId = this.props.plantId;
-            const imagesRef = firebase
+            const plantRef = firebase
               .database()
-              .ref(`plants/${plantId}/images`);
+              .ref("plants")
+              .child(plantId);
+            const imagesRef = plantRef.child("images");
+
             const image = {
               url: url,
               description: this.state.textarea
             };
+
+            plantRef.update({ profileImage: image });
             imagesRef.push(image);
-            console.log(url);
+
             this.setState({
               url,
               textarea: "",
@@ -80,10 +89,24 @@ export class ImageUpload extends Component {
       <div className="c-image-upload">
         <div className="c-image-upload--form">
           <div className="c-image-upload--zone">
-            <FontAwesomeIcon
-              className="upload-plus-circle"
-              icon="plus-circle"
-            />
+            {this.state.file ? (
+              <div
+                style={{
+                  backgroundImage: `url(${this.state.file})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  width: 100,
+                  height: 100
+                }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="upload-plus-circle"
+                icon="plus-circle"
+              />
+            )}
+
             <input
               ref={this.fileInput}
               id="c-image-upload-input"

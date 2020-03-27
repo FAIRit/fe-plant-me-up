@@ -24,7 +24,8 @@ export class PlantsGrid extends Component {
         newState.push({
           id: plant,
           name: plants[plant].name,
-          description: plants[plant].description
+          description: plants[plant].description,
+          profileImage: plants[plant].profileImage
         });
       }
       this.setState({
@@ -57,9 +58,10 @@ export class PlantsGrid extends Component {
         </div>
         <div className="grid-display">
           {filteredPlants.map(plant => {
+            console.log(plant)
             return (
               <div className="grid-item" key={plant.id}>
-                <ProfileImage profileImage={this.state.profileImage} />
+                <ProfileImage profileImage={plant.profileImage} />
 
                 <SinglePlant
                   plantName={plant.name}

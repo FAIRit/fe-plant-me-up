@@ -32,12 +32,6 @@ export class App extends Component {
                 <Route path="/wishlist" component={Wishlist} />
                 <Route path="/help" component={Help} />
                 <Route path="/plants/:plantId" component={PlantView} />
-                <Route path="/imageUpload" component={ImageUpload} />
-                <Route path="/imagesGallery" component={ImagesGallery} />
-                <Route
-                  path="/singlePlantTimeline"
-                  component={SinglePlantTimeline}
-                />
                 <Route component={Error} />
               </Switch>
             </div>
