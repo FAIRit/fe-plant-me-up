@@ -2,9 +2,10 @@ import React from "react";
 import defaultProfileImg from "./img/default-profile-img.jpg";
 
 export const ProfileImage = props => {
+  console.log(defaultProfileImg)
   return (
     <div>
-      {props.profileImage === null ? (
+      {props.profileImage === undefined ? (
         <div>
           <img
             src={defaultProfileImg}
