@@ -10,7 +10,6 @@ import { AddForm } from "./components/AddForm";
 import { Help } from "./components/Help";
 import { Error } from "./components/Error";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Search } from "./components/Search";
 import { PlantView } from "./components/PlantView";
 import { ImageUpload } from "./components/ImageUpload";
 import { ImagesGallery } from "./components/ImagesGallery";
@@ -33,7 +32,6 @@ export class App extends Component {
                 <Route path="/wishlist" component={Wishlist} />
                 <Route path="/help" component={Help} />
                 <Route path="/plants/:plantId" component={PlantView} />
-                <Route path="/search" component={Search} />
                 <Route path="/imageUpload" component={ImageUpload} />
                 <Route path="/imagesGallery" component={ImagesGallery} />
                 <Route

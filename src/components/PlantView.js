@@ -11,6 +11,7 @@ export class PlantView extends Component {
     super(props);
     this.state = {
       plant: null
+
       // isNameEdit: false
     };
   }

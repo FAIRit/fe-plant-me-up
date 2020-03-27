@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
-import defaultProfileImg from "../img/default-profile-img.jpg";
-import { Link } from "react-router-dom";
+import { ProfileImage } from "./utilities/ProfileImage";
 
 export class PlantsGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      plants: []
+      plants: [],
+      search: ""
     };
   }
 
@@ -33,23 +33,44 @@ export class PlantsGrid extends Component {
     });
   }
 
+  handleSearch = e => {
+    this.setState({
+      search: e.target.value.substr(0, 20)
+    });
+  };
+
   render() {
+    let filteredPlants = this.state.plants.filter(plant => {
+      return plant.name.indexOf(this.state.search) !== -1;
+    });
+
     return (
-      <div className="grid-display">
-        {this.state.plants.map(plant => {
-          return (
-            <div className="grid-item">
-              <img src={defaultProfileImg} className="grid-profile-img" />
-              <SinglePlant
-                plantName={plant.name}
-                plantId={plant.id}
-                key={plant.id}
-                plantDescription={plant.description}
-              />
-            </div>
-          );
-        })}
-      </div>
+      <>
+        <div>
+          <input
+            type="text"
+            className="input"
+            placeholder="Search..."
+            value={this.state.search}
+            onChange={this.handleSearch}
+          />
+        </div>
+        <div className="grid-display">
+          {filteredPlants.map(plant => {
+            return (
+              <div className="grid-item" key={plant.id}>
+                <ProfileImage profileImage={this.state.profileImage} />
+
+                <SinglePlant
+                  plantName={plant.name}
+                  plantId={plant.id}
+                  plantDescription={plant.description}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </>
     );
   }
 }
