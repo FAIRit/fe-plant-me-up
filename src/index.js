@@ -3,6 +3,6 @@ import { render } from "react-dom";
 
 import { App } from "./App";
 
-// import { fontawesome } from "./fontawesome";
+import "./fontawesome";
 
 render(<App />, document.getElementById("root"));
