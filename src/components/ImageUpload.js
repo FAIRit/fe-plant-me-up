@@ -54,15 +54,17 @@ export class ImageUpload extends Component {
           .getDownloadURL()
           .then(url => {
             const plantId = this.props.plantId;
-            const imagesRef = firebase
-              .database()
-              .ref(`plants/${plantId}/images`);
+            const plantRef = firebase.database().ref('plants').child(plantId);
+            const imagesRef = plantRef.child('images');
+
             const image = {
               url: url,
               description: this.state.textarea
             };
+
+            plantRef.update({ profileImage: image })
             imagesRef.push(image);
-            console.log(url);
+
             this.setState({
               url,
               textarea: "",

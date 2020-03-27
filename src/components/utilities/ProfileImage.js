@@ -2,7 +2,6 @@ import React from "react";
 import defaultProfileImg from "./img/default-profile-img.jpg";
 
 export const ProfileImage = props => {
-  console.log(defaultProfileImg)
   return (
     <div>
       {props.profileImage === undefined ? (
@@ -15,7 +14,11 @@ export const ProfileImage = props => {
         </div>
       ) : (
         <div>
-          <img src={props.profileImage} alt="profile" />
+          <img
+            src={props.profileImage.url}
+            alt="profile"
+            className="grid-profile-img"
+          />
         </div>
       )}
     </div>
