@@ -37,7 +37,8 @@ export class ImageUpload extends Component {
 
   handleUpload = () => {
     const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { plantId } = this.props;
+    const uploadTask = storage.ref(`images/${plantId}`).put(image);
     uploadTask.on(
       "state_changed",
       snapshot => {
@@ -54,10 +55,9 @@ export class ImageUpload extends Component {
       () => {
         storage
           .ref("images")
-          .child(image.name)
+          .child(plantId)
           .getDownloadURL()
           .then(url => {
-            const plantId = this.props.plantId;
             const plantRef = firebase
               .database()
               .ref("plants")
