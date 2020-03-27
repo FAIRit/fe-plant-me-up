@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { EditForm } from "../components/EditForm";
+// import { EditForm } from "../components/EditForm";
 import { SinglePlantTimeline } from "../components/SinglePlantTimeline";
 import { ImageUpload } from "../components/ImageUpload";
 import { ImagesGallery } from "../components/ImagesGallery";

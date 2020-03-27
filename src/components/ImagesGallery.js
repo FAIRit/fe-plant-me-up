@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GalleryModal } from "./utilities/GalleryModal";
-import { ProfileImage } from "./utilities/ProfileImage";
+// import { ProfileImage } from "./utilities/ProfileImage";
 
 export class ImagesGallery extends Component {
   constructor(props) {

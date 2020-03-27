@@ -32,11 +32,11 @@
   }
 }
 .grid-display {
-  @include flex(row, wrap, space-between, start);
+  @include flex(row, wrap, space-between, flex-start);
 }
 
 .grid-display--reverse {
-  @include flex(row-reverse, wrap, space-between, start);
+  @include flex(row-reverse, wrap, space-between, flex-start);
 }
 
 .grid-item {
