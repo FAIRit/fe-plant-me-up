@@ -58,7 +58,7 @@ export class PlantsGrid extends Component {
         </div>
         <div className="grid-display">
           {filteredPlants.map(plant => {
-            console.log(plant)
+            console.log(plant);
             return (
               <div className="grid-item" key={plant.id}>
                 <ProfileImage profileImage={plant.profileImage} />

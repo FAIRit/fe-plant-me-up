@@ -8,12 +8,10 @@ import { Todolist } from "./components/Todolist";
 import { Wishlist } from "./components/Wishlist";
 import { AddForm } from "./components/AddForm";
 import { Help } from "./components/Help";
+import { LoginSite } from "./components/LoginSite";
 import { Error } from "./components/Error";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PlantView } from "./components/PlantView";
-import { ImageUpload } from "./components/ImageUpload";
-import { ImagesGallery } from "./components/ImagesGallery";
-import { SinglePlantTimeline } from "./components/SinglePlantTimeline";
 
 export class App extends Component {
   render() {
@@ -26,7 +24,8 @@ export class App extends Component {
             <div className="c-site-content">
               <Switch>
                 <Route path="/add-form" component={AddForm} />
-                <Route path="/" exact component={Catalog} />
+                <Route path="/" exact component={LoginSite} />
+                <Route path="/catalog" component={Catalog} />
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/todolist" component={Todolist} />
                 <Route path="/wishlist" component={Wishlist} />

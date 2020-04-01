@@ -77,7 +77,8 @@ export class ImageUpload extends Component {
               textarea: "",
               image: null,
               progress: 0,
-              imageName: null
+              imageName: null,
+              file: null
             });
           });
       }

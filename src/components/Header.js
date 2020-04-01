@@ -17,7 +17,7 @@ export const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/" exact>
+              <NavLink to="/catalog">
                 <FontAwesomeIcon icon="leaf" />
               </NavLink>
             </li>
