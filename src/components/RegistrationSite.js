@@ -31,6 +31,7 @@ export class RegistrationSite extends Component {
         const user = firebase.auth().currentUser;
         user
           .updateProfile({ displayName: username })
+
           .then(() => {
             this.props.history.push("/");
           })
@@ -41,6 +42,7 @@ export class RegistrationSite extends Component {
       .catch(error => {
         this.setState({ error });
       });
+
     console.log("submitting here");
   };
 
