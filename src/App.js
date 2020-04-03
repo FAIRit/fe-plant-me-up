@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.scss";
+import { firebase } from "./firebase";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Catalog } from "./components/Catalog";
@@ -15,6 +16,21 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PlantView } from "./components/PlantView";
 
 export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+  }
+
+  componentDidMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -24,11 +40,18 @@ export class App extends Component {
           <div className="o-container">
             <div className="c-site-content">
               <Switch>
-                <Route path="/registrationSite" component={RegistrationSite} />
-                <Route path="/" exact component={LoginSite} />
-                <Route path="/add-form" component={AddForm} />
+                <Route
+                  path="/registrationSite"
+                  exact
+                  component={RegistrationSite}
+                />
+                {this.state.user ? (
+                  <Route path="/" exact component={Catalog} />
+                ) : (
+                  <Route path="/" exact component={LoginSite} />
+                )}
 
-                <Route path="/catalog" exact component={Catalog} />
+                <Route path="/add-form" component={AddForm} />
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/todolist" component={Todolist} />
                 <Route path="/wishlist" component={Wishlist} />
@@ -39,7 +62,7 @@ export class App extends Component {
             </div>
           </div>
           <hr />
-          <Footer />
+          <Footer user={this.state.user} />
         </div>
       </Router>
     );

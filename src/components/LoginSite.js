@@ -22,7 +22,7 @@ export class LoginSite extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        this.props.history.push("/catalog");
+        this.props.history.push("/");
       })
       .catch(error => {
         this.setState({ error });
@@ -34,7 +34,11 @@ export class LoginSite extends Component {
     return (
       <>
         <div className="c-login-site">
-          <h3>Zaloguj się:</h3>
+          {this.state.error ? (
+            <p>{this.state.error.message}</p>
+          ) : (
+            <h3>Zaloguj się:</h3>
+          )}
           <form onSubmit={this.handleSubmit} className="c-login-form">
             <input
               type="text"

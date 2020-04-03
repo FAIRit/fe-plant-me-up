@@ -32,7 +32,7 @@ export class RegistrationSite extends Component {
         user
           .updateProfile({ displayName: username })
           .then(() => {
-            this.props.history.push("/catalog");
+            this.props.history.push("/");
           })
           .catch(error => {
             this.setState({ error });
@@ -55,7 +55,6 @@ export class RegistrationSite extends Component {
       <div className="c-site">
         <div className="c-login-site">
           <h3>załóż konto:</h3>
-
           <form onSubmit={this.handleSubmit} className="c-login-form">
             <input
               type="text"
@@ -103,8 +102,8 @@ export class RegistrationSite extends Component {
             >
               ok
             </button>
-          </form>
-          {this.state.error && <p>coś poszło nie tak...</p>}
+          </form>{" "}
+          {this.state.error && <p>{this.state.error.message}</p>}
         </div>
       </div>
     );
