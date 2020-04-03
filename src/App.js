@@ -9,6 +9,7 @@ import { Wishlist } from "./components/Wishlist";
 import { AddForm } from "./components/AddForm";
 import { Help } from "./components/Help";
 import { LoginSite } from "./components/LoginSite";
+import { RegistrationSite } from "./components/RegistrationSite";
 import { Error } from "./components/Error";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PlantView } from "./components/PlantView";
@@ -23,8 +24,10 @@ export class App extends Component {
           <div className="o-container">
             <div className="c-site-content">
               <Switch>
-                <Route path="/add-form" component={AddForm} />
+                <Route path="/registrationSite" component={RegistrationSite} />
                 <Route path="/" exact component={LoginSite} />
+                <Route path="/add-form" component={AddForm} />
+
                 <Route path="/catalog" component={Catalog} />
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/todolist" component={Todolist} />

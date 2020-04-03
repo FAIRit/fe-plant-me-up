@@ -15,7 +15,19 @@ export class LoginSite extends Component {
     });
   };
 
-  handleSubmit() {}
+  handleSubmit = e => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        this.props.history.push("/");
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+  };
 
   render() {
     return (
