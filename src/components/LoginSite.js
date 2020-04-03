@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { firebase, auth, provider } from "../firebase";
+import { firebase, auth } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class LoginSite extends Component {
-  state = {
-    displayMode: true
-  };
+  state = {};
 
   handleChange = e => {
     this.setState({
