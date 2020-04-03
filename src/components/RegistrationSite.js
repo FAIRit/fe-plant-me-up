@@ -21,7 +21,28 @@ export class RegistrationSite extends Component {
     });
   };
 
-  handleSubmit = () => {};
+  handleSubmit = e => {
+    e.preventDefault();
+    const { username, email, passwordOne } = this.state;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, passwordOne)
+      .then(() => {
+        const user = firebase.auth().currentUser;
+        user
+          .updateProfile({ displayName: username })
+          .then(() => {
+            this.props.history.push("/catalog");
+          })
+          .catch(error => {
+            this.setState({ error });
+          });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+    console.log("submitting here");
+  };
 
   render() {
     const isInvalid =
@@ -34,6 +55,7 @@ export class RegistrationSite extends Component {
       <div className="c-site">
         <div className="c-login-site">
           <h3>załóż konto:</h3>
+
           <form onSubmit={this.handleSubmit} className="c-login-form">
             <input
               type="text"
@@ -54,7 +76,7 @@ export class RegistrationSite extends Component {
             />
             <br />
             <input
-              type="text"
+              type="password"
               name="passwordOne"
               placeholder="hasło"
               onChange={this.handleChange}
@@ -63,7 +85,7 @@ export class RegistrationSite extends Component {
             />
             <br />
             <input
-              type="text"
+              type="password"
               name="passwordTwo"
               placeholder="powtórz hasło"
               onChange={this.handleChange}
@@ -71,11 +93,18 @@ export class RegistrationSite extends Component {
               cols={40}
             />
             <br />
-            <button className="btn login-btn" disabled={isInvalid}>
+            <button
+              className={
+                isInvalid
+                  ? "btn login-btn login-btn--disabled"
+                  : "btn login-btn"
+              }
+              disabled={isInvalid}
+            >
               ok
             </button>
-            {/* {error && <p>coś poszło nie tak...</p>} */}
           </form>
+          {this.state.error && <p>coś poszło nie tak...</p>}
         </div>
       </div>
     );

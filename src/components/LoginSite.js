@@ -22,11 +22,12 @@ export class LoginSite extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        this.props.history.push("/");
+        this.props.history.push("/catalog");
       })
       .catch(error => {
         this.setState({ error });
       });
+    console.log("zalogowano");
   };
 
   render() {
@@ -45,7 +46,7 @@ export class LoginSite extends Component {
             />
             <br />
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="hasło"
               onChange={this.handleChange}

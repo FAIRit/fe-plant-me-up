@@ -28,7 +28,7 @@ export class App extends Component {
                 <Route path="/" exact component={LoginSite} />
                 <Route path="/add-form" component={AddForm} />
 
-                <Route path="/catalog" component={Catalog} />
+                <Route path="/catalog" exact component={Catalog} />
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/todolist" component={Todolist} />
                 <Route path="/wishlist" component={Wishlist} />
