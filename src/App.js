@@ -46,18 +46,19 @@ export class App extends Component {
                   component={RegistrationSite}
                 />
                 {this.state.user ? (
-                  <Route path="/" exact component={Catalog} />
+                  <>
+                    <Route path="/" exact component={Catalog} />
+                    <Route path="/add-form" component={AddForm} />
+                    <Route path="/calendar" component={Calendar} />
+                    <Route path="/todolist" component={Todolist} />
+                    <Route path="/wishlist" component={Wishlist} />
+                    <Route path="/help" component={Help} />
+                    <Route path="/plants/:plantId" component={PlantView} />
+                  </>
                 ) : (
                   <Route path="/" exact component={LoginSite} />
                 )}
-
-                <Route path="/add-form" component={AddForm} />
-                <Route path="/calendar" component={Calendar} />
-                <Route path="/todolist" component={Todolist} />
-                <Route path="/wishlist" component={Wishlist} />
-                <Route path="/help" component={Help} />
-                <Route path="/plants/:plantId" component={PlantView} />
-                <Route component={Error} />
+                {/* <Route component={Error} /> */}
               </Switch>
             </div>
           </div>

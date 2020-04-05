@@ -23,7 +23,11 @@ export class Todolist extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const todosRef = firebase.database().ref("todos");
+    const user = firebase.auth().currentUser;
+    const todosRef = firebase
+      .database()
+      .ref("todos")
+      .child(user.uid);
     const todo = {
       title: this.state.text,
       important: this.state.checked
@@ -36,7 +40,11 @@ export class Todolist extends Component {
   };
 
   componentDidMount() {
-    const todosRef = firebase.database().ref("todos");
+    const user = firebase.auth().currentUser;
+    const todosRef = firebase
+      .database()
+      .ref("todos")
+      .child(user.uid);
     todosRef.on("value", snapshot => {
       let todos = snapshot.val();
       let newState = [];
@@ -54,7 +62,13 @@ export class Todolist extends Component {
   }
 
   removeItem(todoId) {
-    const todoRef = firebase.database().ref(`/todos/${todoId}`);
+    const user = firebase.auth().currentUser;
+    const todoRef = firebase
+      .database()
+      .ref("todos")
+      .child(user.uid)
+      .child(todoId);
+
     todoRef.remove();
   }
 

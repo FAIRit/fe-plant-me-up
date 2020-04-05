@@ -17,12 +17,15 @@ export class PlantView extends Component {
   }
 
   componentDidMount() {
+    const user = firebase.auth().currentUser;
     const plantId = this.props.match.params.plantId;
     const plantsRef = firebase
       .database()
       .ref()
       .child("plants")
+      .child(user.uid)
       .child(plantId);
+
     plantsRef.on("value", snapshot => {
       let plant = snapshot.val();
 

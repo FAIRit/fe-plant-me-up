@@ -16,10 +16,12 @@ export class PlantsList extends Component {
   }
 
   componentDidMount() {
+    const user = firebase.auth().currentUser;
     const plantsRef = firebase
       .database()
       .ref()
-      .child("plants");
+      .child("plants")
+      .child(user.uid);
     plantsRef.on("value", snapshot => {
       let plants = snapshot.val();
       let newState = [];

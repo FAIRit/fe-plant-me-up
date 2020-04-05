@@ -22,9 +22,11 @@ export class Footer extends Component {
       <header className="c-site-footer">
         <h4>Footer here.</h4>
         {this.props.user && (
-          <button className="btn--remove" onClick={this.handleLogout}>
-            wyloguj
-          </button>
+          <>
+            <button className="btn--remove" onClick={this.handleLogout}>
+              wyloguj
+            </button>
+          </>
         )}
       </header>
     );

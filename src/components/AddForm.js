@@ -39,8 +39,11 @@ export class AddForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const plantsRef = firebase.database().ref("plants");
+    const user = firebase.auth().currentUser;
+    const plantsRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid);
     const plant = {
       name: this.state.text,
       description: this.state.textarea,

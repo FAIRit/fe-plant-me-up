@@ -58,9 +58,11 @@ export class ImageUpload extends Component {
           .child(plantId)
           .getDownloadURL()
           .then(url => {
+            const user = firebase.auth().currentUser;
             const plantRef = firebase
               .database()
               .ref("plants")
+              .child(user.uid)
               .child(plantId);
             const imagesRef = plantRef.child("images");
 

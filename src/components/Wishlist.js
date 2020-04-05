@@ -30,7 +30,11 @@ export class Wishlist extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const itemsRef = firebase.database().ref("items");
+    const user = firebase.auth().currentUser;
+    const itemsRef = firebase
+      .database()
+      .ref("items")
+      .child(user.uid);
     const item = {
       title: this.state.text,
       link: this.state.url,
@@ -44,7 +48,11 @@ export class Wishlist extends Component {
   };
 
   componentDidMount() {
-    const itemsRef = firebase.database().ref("items");
+    const user = firebase.auth().currentUser;
+    const itemsRef = firebase
+      .database()
+      .ref("items")
+      .child(user.uid);
     itemsRef.on("value", snapshot => {
       let items = snapshot.val();
       let newState = [];
@@ -63,7 +71,12 @@ export class Wishlist extends Component {
   }
 
   removeItem(itemId) {
-    const itemRef = firebase.database().ref(`/items/${itemId}`);
+    const user = firebase.auth().currentUser;
+    const itemRef = firebase
+      .database()
+      .ref("items")
+      .child(user.uid)
+      .child(itemId);
     itemRef.remove();
   }
 

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { firebase, auth, provider } from "../firebase";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { firebase } from "../firebase";
 
 export class RegistrationSite extends Component {
   constructor(props) {
@@ -29,9 +27,14 @@ export class RegistrationSite extends Component {
       .createUserWithEmailAndPassword(email, passwordOne)
       .then(() => {
         const user = firebase.auth().currentUser;
-        user
-          .updateProfile({ displayName: username })
-
+        firebase
+          .database()
+          .ref("users")
+          .child(user.uid)
+          .set({
+            username,
+            email
+          })
           .then(() => {
             this.props.history.push("/");
           })
