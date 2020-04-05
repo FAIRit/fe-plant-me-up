@@ -9,6 +9,7 @@
 @import "./scss/c-site_single-plant.scss";
 @import "./scss/c-image-upload.scss";
 @import "./scss/c-site-catalogue.scss";
+@import "./scss/c-site-footer.scss";
 
 * {
   margin: 0;
@@ -27,7 +28,7 @@ body {
 }
 
 .c-site-content {
-  margin: 20px;
+  margin: 20px 20px 50px;
 }
 
 hr {

@@ -35,7 +35,7 @@ export class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header user={this.state.user} />
 
           <div className="o-container">
             <div className="c-site-content">
@@ -52,17 +52,18 @@ export class App extends Component {
                     <Route path="/calendar" component={Calendar} />
                     <Route path="/todolist" component={Todolist} />
                     <Route path="/wishlist" component={Wishlist} />
-                    <Route path="/help" component={Help} />
+
                     <Route path="/plants/:plantId" component={PlantView} />
                   </>
                 ) : (
                   <Route path="/" exact component={LoginSite} />
                 )}
-                {/* <Route component={Error} /> */}
+                <Route path="/help" component={Help} />
+                <Route component={Error} />
               </Switch>
             </div>
           </div>
-          <hr />
+
           <Footer user={this.state.user} />
         </div>
       </Router>

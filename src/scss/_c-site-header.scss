@@ -27,7 +27,7 @@
 
 .c-site-nav {
   ul {
-    @include flex(row, nowrap, flex-start, flex-start);
+    @include flex(row, nowrap, flex-start, baseline);
     list-style: none;
 
     li {
@@ -39,6 +39,10 @@
       a {
         @include links(#fff, #fff, #fff, #fff);
         display: block;
+      }
+
+      h2 {
+        font-family: $heading-font-family;
       }
     }
   }

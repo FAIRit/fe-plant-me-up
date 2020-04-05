@@ -15,6 +15,10 @@
     width: 100%;
   }
 
+  p {
+    color: $brand-color;
+  }
+
   h3,
   h4 {
     font-weight: lighter;
@@ -39,6 +43,10 @@
 
 .login-btn {
   margin: auto;
+}
+
+.login-btn--password {
+  margin-top: 25px;
 }
 
 .login-btn--disabled {
