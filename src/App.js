@@ -19,16 +19,15 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: undefined,
     };
   }
 
   componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
+    firebase.auth().onAuthStateChanged((user) => {
+       this.setState({ user });
       }
-    });
+    );
   };
 
   render() {
@@ -40,24 +39,32 @@ export class App extends Component {
           <div className="o-container">
             <div className="c-site-content">
               <Switch>
-                <Route
-                  path="/registrationSite"
-                  exact
-                  component={RegistrationSite}
-                />
-                {this.state.user ? (
-                  <Route path="/" exact component={Catalog} />
-                ) : (
-                  <Route path="/" exact component={LoginSite} />
-                )}
+                {this.state.user === undefined ? (
+                  <p>Loading...</p>
+                ) : this.state.user ? (
+                  <>
+                    <Route path="/" exact component={Catalog} />
+                    <Route path="/add-form" component={AddForm} />
+                    <Route path="/calendar" component={Calendar} />
+                    <Route path="/todolist" component={Todolist} />
+                    <Route path="/wishlist" component={Wishlist} />
 
-                <Route path="/add-form" component={AddForm} />
-                <Route path="/calendar" component={Calendar} />
-                <Route path="/todolist" component={Todolist} />
-                <Route path="/wishlist" component={Wishlist} />
-                <Route path="/help" component={Help} />
-                <Route path="/plants/:plantId" component={PlantView} />
-                <Route component={Error} />
+                    <Route path="/plants/:plantId" component={PlantView} />
+                    <Route path="/help" component={Help} />
+                    <Route component={Error} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" component={LoginSite} />
+                    <Route
+                      path="/registrationSite"
+                      exact
+                      component={RegistrationSite}
+                    />
+                    <Route path="/help" component={Help} />
+                    <Route component={Error} />
+                  </>
+                )}
               </Switch>
             </div>
           </div>

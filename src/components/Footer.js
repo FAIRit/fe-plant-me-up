@@ -14,7 +14,7 @@ export class Footer extends Component {
     firebase
       .auth()
       .signOut()
-      .then((window.location = "/"));
+      .then(() => {window.location = "/"});
   };
 
   render() {
