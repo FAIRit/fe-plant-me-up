@@ -25,7 +25,8 @@ import {
   faSun,
   faCloud,
   faSkull,
-  faPaw
+  faPaw,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -52,5 +53,6 @@ library.add(
   faSkull,
   faPaw,
   faCheckCircle,
-  faTrashAlt
+  faTrashAlt,
+  faSignOutAlt
 );

@@ -74,30 +74,32 @@ export class PlantsList extends Component {
 
     return (
       <div>
-        <input
-          type="text"
-          className="input"
-          placeholder="Search..."
-          value={this.state.search}
-          onChange={this.handleSearch}
-        />
-        <button className="btn--select" onClick={this.handleNumericList}>
-          {reverseNumericList ? (
-            <FontAwesomeIcon icon="sort-numeric-down" />
-          ) : (
-            <FontAwesomeIcon icon="sort-numeric-up" />
-          )}
-        </button>
-        <button className="btn--select" onClick={this.handleAlphaList}>
-          {reverseAlphaList ? (
-            <FontAwesomeIcon icon="sort-alpha-up" />
-          ) : (
-            <FontAwesomeIcon icon="sort-alpha-down" />
-          )}
-        </button>
+        <div>
+          <input
+            type="text"
+            className="input"
+            placeholder="Search..."
+            value={this.state.search}
+            onChange={this.handleSearch}
+          />
+          <button className="btn--select" onClick={this.handleNumericList}>
+            {reverseNumericList ? (
+              <FontAwesomeIcon icon="sort-numeric-up" />
+            ) : (
+              <FontAwesomeIcon icon="sort-numeric-down" />
+            )}
+          </button>
+          <button className="btn--select" onClick={this.handleAlphaList}>
+            {reverseAlphaList ? (
+              <FontAwesomeIcon icon="sort-alpha-up" />
+            ) : (
+              <FontAwesomeIcon icon="sort-alpha-down" />
+            )}
+          </button>
+        </div>
         {isNumericList === true ? (
           <div className="c-catalogue-list" id="numeric-list">
-            <ol className={reverseNumericList ? null : "list--reverse"}>
+            <ol className={reverseNumericList ? "list--reverse" : null}>
               {filteredPlants
                 .sort(function(a, b) {
                   if (a.date < b.date) return -1;

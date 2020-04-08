@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GalleryModal } from "./utilities/GalleryModal";
-// import { ProfileImage } from "./utilities/ProfileImage";
 
 export class ImagesGallery extends Component {
   constructor(props) {
@@ -43,15 +42,6 @@ export class ImagesGallery extends Component {
         image
       });
     }
-  };
-
-  showProfileImage = () => {
-    const images = this.state.images;
-    console.log(images);
-    this.setState({
-      profileImage: this.state.images[images.length - 1].url
-    });
-    console.log(this.state.profileImage);
   };
 
   handleCloseModal = () => {
@@ -102,9 +92,6 @@ export class ImagesGallery extends Component {
             removeImage={() => this.handleRemoveImage(this.state.image.id)}
           />
         )}
-        <div>
-          <button onClick={this.showProfileImage} />
-        </div>
       </div>
     );
   }
