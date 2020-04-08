@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { EditForm } from "../components/EditForm";
+import { EditForm } from "../components/EditForm";
 import { SinglePlantTimeline } from "../components/SinglePlantTimeline";
 import { ImageUpload } from "../components/ImageUpload";
 import { ImagesGallery } from "../components/ImagesGallery";
@@ -10,9 +10,9 @@ export class PlantView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      plant: null
+      plant: null,
 
-      // isNameEdit: false
+      isNameEdit: false,
     };
   }
 
@@ -26,24 +26,22 @@ export class PlantView extends Component {
       .child(user.uid)
       .child(plantId);
 
-    plantsRef.on("value", snapshot => {
+    plantsRef.on("value", (snapshot) => {
       let plant = snapshot.val();
 
       this.setState({
-        plant
+        plant,
       });
     });
   }
 
-  // handleNameEdit = () => {
-  //   this.setState({
-  //     isNameEdit: true
-  //   });
-  // };
+  handleNameEdit = () => {
+    this.setState({
+      isNameEdit: !this.state.isNameEdit,
+    });
+  };
 
   render() {
-    // const isNameEdit = this.state;
-
     return (
       <div className="c-single-plant">
         {this.state.plant === null ? (
@@ -51,8 +49,15 @@ export class PlantView extends Component {
         ) : (
           <div>
             <div className="c-single-plant-title">
-              {/* {isNameEdit ? <EditForm /> : <h1>{this.state.plant.name}</h1>} */}
-              <h1>{this.state.plant.name}</h1>
+              {!this.state.isNameEdit ? (
+                <h1>{this.state.plant.name}</h1>
+              ) : (
+                <EditForm
+                  plantName={this.state.plant.name}
+                  plantId={this.state.plant.id}
+                  isNameEdit={this.state.isNameEdit}
+                />
+              )}
               <button className="btn--edit" onClick={this.handleNameEdit}>
                 <FontAwesomeIcon icon="pencil-alt" />
               </button>
@@ -95,9 +100,9 @@ export class PlantView extends Component {
                 <FontAwesomeIcon icon="pencil-alt" />
               </button>
             </div>
-            <h2>Kalendarium rośliny</h2>
+            <h2>Kalendarium</h2>
             <SinglePlantTimeline plantId={this.props.match.params.plantId} />
-            <h2>Galeria rośliny</h2>
+            <h2>Galeria</h2>
             <ImagesGallery plantId={this.props.match.params.plantId} />
             <ImageUpload plantId={this.props.match.params.plantId} />
           </div>

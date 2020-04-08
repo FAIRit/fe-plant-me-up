@@ -19,15 +19,13 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: undefined,
     };
   }
 
   componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
-      }
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ user });
     });
   };
 
@@ -40,12 +38,9 @@ export class App extends Component {
           <div className="o-container">
             <div className="c-site-content">
               <Switch>
-                <Route
-                  path="/registrationSite"
-                  exact
-                  component={RegistrationSite}
-                />
-                {this.state.user ? (
+                {this.state.user === undefined ? (
+                  <p>Loading...</p>
+                ) : this.state.user ? (
                   <>
                     <Route path="/" exact component={Catalog} />
                     <Route path="/add-form" component={AddForm} />
@@ -54,16 +49,23 @@ export class App extends Component {
                     <Route path="/wishlist" component={Wishlist} />
 
                     <Route path="/plants/:plantId" component={PlantView} />
+                    <Route path="/help" component={Help} />
                   </>
                 ) : (
-                  <Route path="/" exact component={LoginSite} />
+                  <>
+                    <Route path="/" component={LoginSite} />
+                    <Route
+                      path="/registrationSite"
+                      exact
+                      component={RegistrationSite}
+                    />
+                    <Route path="/help" component={Help} />
+                  </>
                 )}
-                <Route path="/help" component={Help} />
-                <Route component={Error} />
               </Switch>
             </div>
           </div>
-
+          <hr />
           <Footer user={this.state.user} />
         </div>
       </Router>

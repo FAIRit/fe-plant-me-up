@@ -5,33 +5,32 @@ export class EditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: this.props.plantId.current.name
+      text: props.plantName,
+      isNameEdit: props.isNameEdit,
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
+    const user = firebase.auth().currentUser;
     const plantId = this.props.match.params.plantId;
-    const newNameRef = firebase
+    const plantsRef = firebase
       .database()
       .ref()
       .child("plants")
-      .child(plantId)
-      .push().name;
-    const newName = this.state.plantId.name;
-    const updates = {};
-    updates["plants" + newNameRef] = newName;
-
-    return firebase
-      .database()
-      .ref()
-      .update(updates);
+      .child(user.uid)
+      .child(plantId);
+    const name = this.state.text;
+    plantsRef.update(name);
+    this.setState = {
+      isNameEdit: false,
+    };
   };
 
   render() {
@@ -41,9 +40,8 @@ export class EditForm extends Component {
           <input
             type="text"
             name="text"
-            placeholder="tu wpisz nazwę"
             onChange={this.handleChange}
-            value={this.state.current.name}
+            value={this.state.text}
             cols={40}
           />
           <button className="btn--edit">zapisz</button>

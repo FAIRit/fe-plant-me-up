@@ -8,18 +8,14 @@ export class PlantsGrid extends Component {
     super(props);
     this.state = {
       plants: [],
-      search: ""
+      search: "",
     };
   }
 
   componentDidMount() {
     const user = firebase.auth().currentUser;
-    const plantsRef = firebase
-      .database()
-      .ref()
-      .child("plants")
-      .child(user.uid);
-    plantsRef.on("value", snapshot => {
+    const plantsRef = firebase.database().ref().child("plants").child(user.uid);
+    plantsRef.on("value", (snapshot) => {
       let plants = snapshot.val();
       let newState = [];
       for (let plant in plants) {
@@ -27,23 +23,23 @@ export class PlantsGrid extends Component {
           id: plant,
           name: plants[plant].name,
           description: plants[plant].description,
-          profileImage: plants[plant].profileImage
+          profileImage: plants[plant].profileImage,
         });
       }
       this.setState({
-        plants: newState
+        plants: newState,
       });
     });
   }
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     this.setState({
-      search: e.target.value.substr(0, 20)
+      search: e.target.value.substr(0, 20),
     });
   };
 
   render() {
-    let filteredPlants = this.state.plants.filter(plant => {
+    let filteredPlants = this.state.plants.filter((plant) => {
       return plant.name.indexOf(this.state.search) !== -1;
     });
 
@@ -59,7 +55,7 @@ export class PlantsGrid extends Component {
           />
         </div>
         <div className="grid-display">
-          {filteredPlants.map(plant => {
+          {filteredPlants.map((plant) => {
             console.log(plant);
             return (
               <div className="grid-item" key={plant.id}>
