@@ -17,8 +17,12 @@
 }
 
 .c-plant-view-tags {
-  @include flex(row, nowrap, flex-start, flex-start);
+  @include flex(row, nowrap, space-between, flex-start);
   margin-bottom: 15px;
+
+  section {
+    @include flex(row, nowrap, flex-start, flex-start);
+  }
 
   p {
     margin-right: 10px;

@@ -20,3 +20,15 @@ textarea {
 .u-form {
   @include flex(row, wrap, flex-start, center);
 }
+
+.edit-form {
+  @include flex(row, nowrap, flex-start, center);
+
+  .edit-input {
+    margin: 21px 0;
+  }
+
+  section {
+    margin-bottom: 15px;
+  }
+}

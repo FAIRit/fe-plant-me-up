@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { firebase } from "../firebase";
+import { firebase } from "../../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export class EditForm extends Component {
+export class NameEditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,14 +13,15 @@ export class EditForm extends Component {
 
   handleChange = (e) => {
     this.setState({
-      text: e.target.value,
+      [e.target.name]: e.target.checked,
     });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const user = firebase.auth().currentUser;
-    const plantId = this.props.match.params.plantId;
+    const plantId = this.props.plantId;
+    console.log(plantId);
     const plantsRef = firebase
       .database()
       .ref()
@@ -27,24 +29,25 @@ export class EditForm extends Component {
       .child(user.uid)
       .child(plantId);
     const name = this.state.text;
-    plantsRef.update(name);
-    this.setState = {
-      isNameEdit: false,
-    };
+    plantsRef.update({ name });
+    this.props.onUpdate();
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit} className="u-form">
+        <form onSubmit={this.handleSubmit} className="edit-form">
           <input
             type="text"
             name="text"
             onChange={this.handleChange}
             value={this.state.text}
             cols={40}
+            className="edit-input"
           />
-          <button className="btn--edit">zapisz</button>
+          <button className="btn--edit">
+            <FontAwesomeIcon icon="check" />
+          </button>
         </form>
       </div>
     );
