@@ -65,7 +65,7 @@ export class App extends Component {
               </Switch>
             </div>
           </div>
-          <hr />
+
           <Footer user={this.state.user} />
         </div>
       </Router>
