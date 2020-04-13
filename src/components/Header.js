@@ -6,7 +6,7 @@ export class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -32,11 +32,7 @@ export class Header extends Component {
                     <FontAwesomeIcon icon="leaf" />
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/calendar">
-                    <FontAwesomeIcon icon="calendar-alt" />
-                  </NavLink>
-                </li>
+
                 <li>
                   <NavLink to="/todolist">
                     <FontAwesomeIcon icon="check-circle" />

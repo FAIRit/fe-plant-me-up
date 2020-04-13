@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { firebase, auth } from "../firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { firebase } from "../firebase";
 import { Link } from "react-router-dom";
 
 export class LoginSite extends Component {
@@ -9,25 +8,25 @@ export class LoginSite extends Component {
     password: "",
     isPasswordForgotten: false,
     emailForgPass: "",
-    isResetEmailSend: false
+    isResetEmailSend: false,
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => {
+      .then((user) => {
         this.props.history.push("/");
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
     console.log("zalogowano");
@@ -35,26 +34,26 @@ export class LoginSite extends Component {
 
   handleForgottenPassword = () => {
     this.setState({
-      isPasswordForgotten: true
+      isPasswordForgotten: true,
     });
   };
 
-  forgottenPasswordForm = e => {
+  forgottenPasswordForm = (e) => {
     e.preventDefault();
     const { emailForgPass } = this.state;
     firebase
       .auth()
       .sendPasswordResetEmail(emailForgPass)
-      .then(function() {
+      .then(function () {
         //email sent
       })
-      .catch(function(error) {
+      .catch(function (error) {
         //an error happened
       });
     this.setState({
       emailForgPass: "",
       isPasswordForgotten: false,
-      isResetEmailSend: true
+      isResetEmailSend: true,
     });
   };
 

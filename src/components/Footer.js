@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { firebase, auth } from "../firebase";
+import { firebase } from "../firebase";
 import exit from "../components/utilities/img/exit.png";
 
 export class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -24,7 +24,7 @@ export class Footer extends Component {
           <h4>2020 &#169; plant me up.</h4>
           {this.props.user && (
             <button className="btn" onClick={this.handleLogout}>
-              <img src={exit} />
+              <img src={exit} alt="log out" />
             </button>
           )}
         </div>
