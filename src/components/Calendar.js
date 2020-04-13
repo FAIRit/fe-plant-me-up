@@ -1,9 +1,14 @@
-import React from 'react';
- 
+import React, { Component } from "react";
 
-export const Calendar = () => (
-    <div className="c-page">
-        <h1>Kalendarz</h1>
-        <img src="https://via.placeholder.com/250x400" alt="placeholder"></img>
-    </div>
-);
+export class Calendar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className="c-page"> //---pierwszy div start</div> //---pierwszy div koniec
+    );
+  }
+}
