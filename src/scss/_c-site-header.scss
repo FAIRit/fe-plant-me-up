@@ -3,6 +3,7 @@
 @import "./ut--responsive.scss";
 
 .c-site-header {
+  // height: 81.4px;
   padding: 15px;
   background: $brand-color;
   background: linear-gradient(
@@ -21,13 +22,19 @@
 }
 
 .c-site-header-logo {
+  height: 50px;
+  width: 50px;
+
   img {
+    height: 100%;
+    width: auto;
+    border-radius: 50px;
   }
 }
 
 .c-site-nav {
   ul {
-    @include flex(row, nowrap, flex-start, flex-start);
+    @include flex(row, nowrap, flex-start, baseline);
     list-style: none;
 
     li {
@@ -38,12 +45,68 @@
 
       a {
         @include links(#fff, #fff, #fff, #fff);
+        position: relative;
         display: block;
+      }
+
+      a:hover::after {
+        content: " ";
+        position: absolute;
+        top: 30px;
+        padding: 3px;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: white;
+        background-color: transparent;
+        text-align: center;
+        z-index: 1;
+      }
+
+      a.active:hover::after {
+        top: 20px;
+        transform: scale(0.6);
+      }
+
+      h2 {
+        font-family: $heading-font-family;
+        font-size: 30px;
+        letter-spacing: 2px;
       }
     }
   }
 }
 
+a#addForm:hover::after {
+  content: "dodaj roślinę";
+  width: 80px;
+  left: -30px;
+}
+
+a#catalog:hover::after {
+  content: "katalog roślin";
+  width: 80px;
+  left: -30px;
+}
+
+a#toDoList:hover::after {
+  content: "ToDoList";
+  width: 50px;
+  left: -15px;
+}
+
+a#wishList:hover::after {
+  content: "wishlist";
+  width: 50px;
+  left: -15px;
+}
+
+a#about:hover::after,
+a#about2:hover::after {
+  content: "info";
+  width: 30px;
+  left: -5px;
+}
+
 .active {
-  transform: scale(1.5);
+  transform: scale(1.7);
 }

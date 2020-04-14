@@ -15,6 +15,10 @@
     width: 100%;
   }
 
+  p {
+    color: $brand-color;
+  }
+
   h3,
   h4 {
     font-weight: lighter;
@@ -29,6 +33,10 @@
       opacity: 0.7;
     }
   }
+
+  .login-btn {
+    margin: 10px auto;
+  }
 }
 
 .c-login-form {
@@ -37,8 +45,8 @@
   text-align: center;
 }
 
-.login-btn {
-  margin: auto;
+.login-btn--password {
+  margin-top: 25px;
 }
 
 .login-btn--disabled {

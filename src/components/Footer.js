@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { firebase, auth } from "../firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { firebase } from "../firebase";
+import exit from "../components/utilities/img/exit.png";
 
 export class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
     };
   }
 
@@ -19,14 +19,16 @@ export class Footer extends Component {
 
   render() {
     return (
-      <header className="c-site-footer">
-        <h4>Footer here.</h4>
-        {this.props.user && (
-          <button className="btn--remove" onClick={this.handleLogout}>
-            wyloguj
-          </button>
-        )}
-      </header>
+      <footer className="c-site-footer">
+        <div className="o-container c-footer-nav">
+          <h4>2020 &#169; plant me up.</h4>
+          {this.props.user && (
+            <button className="btn" onClick={this.handleLogout} id="logOut">
+              <img src={exit} alt="log out" />
+            </button>
+          )}
+        </div>
+      </footer>
     );
   }
 }

@@ -12,11 +12,11 @@ export class ImageUpload extends Component {
       progress: 0,
       textarea: "",
       images: [],
-      file: null
+      file: null,
     };
   }
 
-  handleAddImage = e => {
+  handleAddImage = (e) => {
     const image = e.target.files[0];
     if (!image) {
       return;
@@ -25,13 +25,20 @@ export class ImageUpload extends Component {
     this.setState({
       image,
       imageName,
-      file: URL.createObjectURL(image)
+      file: URL.createObjectURL(image),
     });
   };
 
-  handleImgDescription = e => {
+  handleRemovePreview = () => {
     this.setState({
-      textarea: e.target.value
+      imageName: null,
+      file: null,
+    });
+  };
+
+  handleImgDescription = (e) => {
+    this.setState({
+      textarea: e.target.value,
     });
   };
 
@@ -41,14 +48,14 @@ export class ImageUpload extends Component {
     const uploadTask = storage.ref(`images/${plantId}`).put(image);
     uploadTask.on(
       "state_changed",
-      snapshot => {
+      (snapshot) => {
         // progress function ....
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         this.setState({ progress });
       },
-      error => {
+      (error) => {
         // error function ....
         console.log(error);
       },
@@ -57,16 +64,18 @@ export class ImageUpload extends Component {
           .ref("images")
           .child(plantId)
           .getDownloadURL()
-          .then(url => {
+          .then((url) => {
+            const user = firebase.auth().currentUser;
             const plantRef = firebase
               .database()
               .ref("plants")
+              .child(user.uid)
               .child(plantId);
             const imagesRef = plantRef.child("images");
 
             const image = {
               url: url,
-              description: this.state.textarea
+              description: this.state.textarea,
             };
 
             plantRef.update({ profileImage: image });
@@ -78,7 +87,7 @@ export class ImageUpload extends Component {
               image: null,
               progress: 0,
               imageName: null,
-              file: null
+              file: null,
             });
           });
       }
@@ -89,18 +98,32 @@ export class ImageUpload extends Component {
     return (
       <div className="c-image-upload">
         <div className="c-image-upload--form">
-          <div className="c-image-upload--zone">
+          <div
+            className={
+              this.state.file
+                ? "c-image-upload--preview c-image-upload--zone"
+                : "c-image-upload--zone"
+            }
+          >
             {this.state.file ? (
               <div
                 style={{
+                  position: "relative",
                   backgroundImage: `url(${this.state.file})`,
                   backgroundSize: "contain",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
                   width: 100,
-                  height: 100
+                  height: 100,
                 }}
-              />
+              >
+                <button
+                  className="btn--remove btn--remove-preview"
+                  onClick={this.handleRemovePreview}
+                >
+                  <FontAwesomeIcon icon="times-circle" />
+                </button>
+              </div>
             ) : (
               <FontAwesomeIcon
                 className="upload-plus-circle"

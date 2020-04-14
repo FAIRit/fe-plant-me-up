@@ -6,61 +6,69 @@ export class Todolist extends Component {
   state = {
     text: "",
     checked: false,
-    todos: []
+    todos: [],
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleCheckbox = e => {
+  handleCheckbox = (e) => {
     this.setState({
-      checked: e.target.checked
+      checked: e.target.checked,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const todosRef = firebase.database().ref("todos");
+    const user = firebase.auth().currentUser;
+    const todosRef = firebase.database().ref("todos").child(user.uid);
     const todo = {
       title: this.state.text,
-      important: this.state.checked
+      important: this.state.checked,
     };
     todosRef.push(todo);
     this.setState({
       text: "",
-      checked: false
+      checked: false,
     });
   };
 
   componentDidMount() {
-    const todosRef = firebase.database().ref("todos");
-    todosRef.on("value", snapshot => {
+    const user = firebase.auth().currentUser;
+    const todosRef = firebase.database().ref("todos").child(user.uid);
+    todosRef.on("value", (snapshot) => {
       let todos = snapshot.val();
       let newState = [];
       for (let todo in todos) {
         newState.push({
           id: todo,
           title: todos[todo].title,
-          important: todos[todo].important
+          important: todos[todo].important,
         });
       }
       this.setState({
-        todos: newState
+        todos: newState,
       });
     });
   }
 
   removeItem(todoId) {
-    const todoRef = firebase.database().ref(`/todos/${todoId}`);
+    const user = firebase.auth().currentUser;
+    const todoRef = firebase
+      .database()
+      .ref("todos")
+      .child(user.uid)
+      .child(todoId);
+
     todoRef.remove();
   }
 
   render() {
     return (
-      <div className="c-page">
+      <div className="c-site-content">
         <h1>Dodaj nowe zadanie:</h1>
         <div>
           <form onSubmit={this.handleSubmit} className="u-form">
@@ -84,7 +92,7 @@ export class Todolist extends Component {
           <div>
             <div className="list-display">
               <ul>
-                {this.state.todos.map(todo => {
+                {this.state.todos.map((todo) => {
                   return (
                     <li className="list-item" key={todo.id}>
                       <span className="list-star">&#10045;</span>

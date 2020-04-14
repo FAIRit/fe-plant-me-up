@@ -7,45 +7,47 @@ export class Wishlist extends Component {
     text: "",
     url: "",
     textarea: "",
-    items: []
+    items: [],
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleAddUrl = e => {
+  handleAddUrl = (e) => {
     this.setState({
-      url: e.target.value
+      url: e.target.value,
     });
   };
 
-  handleAddDescription = e => {
+  handleAddDescription = (e) => {
     this.setState({
-      textarea: e.target.value
+      textarea: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const itemsRef = firebase.database().ref("items");
+    const user = firebase.auth().currentUser;
+    const itemsRef = firebase.database().ref("items").child(user.uid);
     const item = {
       title: this.state.text,
       link: this.state.url,
-      description: this.state.textarea
+      description: this.state.textarea,
     };
     itemsRef.push(item);
     this.setState({
       text: "",
-      url: ""
+      url: "",
     });
   };
 
   componentDidMount() {
-    const itemsRef = firebase.database().ref("items");
-    itemsRef.on("value", snapshot => {
+    const user = firebase.auth().currentUser;
+    const itemsRef = firebase.database().ref("items").child(user.uid);
+    itemsRef.on("value", (snapshot) => {
       let items = snapshot.val();
       let newState = [];
       for (let item in items) {
@@ -53,24 +55,29 @@ export class Wishlist extends Component {
           id: item,
           title: items[item].title,
           link: items[item].link,
-          description: items[item].description
+          description: items[item].description,
         });
       }
       this.setState({
-        items: newState
+        items: newState,
       });
     });
   }
 
   removeItem(itemId) {
-    const itemRef = firebase.database().ref(`/items/${itemId}`);
+    const user = firebase.auth().currentUser;
+    const itemRef = firebase
+      .database()
+      .ref("items")
+      .child(user.uid)
+      .child(itemId);
     itemRef.remove();
   }
 
   render() {
     return (
-      <div className="c-page">
-        <h1>Lista wymarzonych roślin</h1>
+      <div className="c-site-content">
+        <h1>wishlist</h1>
         <div>
           <form onSubmit={this.handleSubmit} className="u-form">
             <input
@@ -102,7 +109,7 @@ export class Wishlist extends Component {
           <div>
             <div className="list-display">
               <ul>
-                {this.state.items.map(item => {
+                {this.state.items.map((item) => {
                   return (
                     <li className="list-item" key={item.id}>
                       <span className="list-star">&#10045;</span>

@@ -11,13 +11,20 @@ export class ImagesGallery extends Component {
       images: [],
       showModal: false,
       image: null,
-      profileImage: null
+      profileImage: null,
+      showBiggerSize: false
     };
   }
 
   componentDidMount() {
+    const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
-    const imagesRef = firebase.database().ref(`plants/${plantId}/images`);
+    const imagesRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId)
+      .child("images");
     imagesRef.on("value", snapshot => {
       let images = snapshot.val();
       let newState = [];
@@ -42,6 +49,11 @@ export class ImagesGallery extends Component {
         image
       });
     }
+    if (isMobile === true) {
+      this.setState({
+        showBiggerSize: !this.state.showBiggerSize
+      });
+    }
   };
 
   handleCloseModal = () => {
@@ -52,11 +64,15 @@ export class ImagesGallery extends Component {
   };
 
   handleRemoveImage(imageId) {
+    const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
     const imageRef = firebase
       .database()
-      .ref(`plants/${plantId}/images/${imageId}`);
-
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId)
+      .child("images")
+      .child(imageId);
     imageRef.remove();
   }
 
@@ -65,21 +81,33 @@ export class ImagesGallery extends Component {
       <div className="c-single-plant-gallery">
         {this.state.images.map(image => {
           return (
-            <div className="gallery-item" key={image.id}>
+            <div
+              className={
+                this.state.showBiggerSize
+                  ? "img-bigger-size gallery-item"
+                  : "gallery-item"
+              }
+              key={image.id}
+            >
               <img
                 src={image.url}
                 url={image.url}
                 alt="Uploaded images"
                 onClick={() => this.handleShowModal(image)}
               />
-
-              <p>{image.description}</p>
-              <button
-                className="btn--remove image--remove"
-                onClick={() => this.handleRemoveImage(image.id)}
+              <div
+                className={
+                  this.state.showBiggerSize ? "img-data--visible" : "img-data"
+                }
               >
-                <FontAwesomeIcon icon="trash" />
-              </button>
+                <p>{image.description}</p>
+                <button
+                  className="btn--remove image--remove"
+                  onClick={() => this.handleRemoveImage(image.id)}
+                >
+                  <FontAwesomeIcon icon="trash" />
+                </button>
+              </div>
             </div>
           );
         })}

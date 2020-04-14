@@ -33,8 +33,14 @@ export class SinglePlantTimeline extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
-    const eventsRef = firebase.database().ref(`plants/${plantId}/events`);
+    const eventsRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId)
+      .child("events");
     const event = {
       title: this.state.text,
       description: this.state.textarea,
@@ -49,8 +55,14 @@ export class SinglePlantTimeline extends Component {
   };
 
   componentDidMount() {
+    const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
-    const eventsRef = firebase.database().ref(`plants/${plantId}/events`);
+    const eventsRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId)
+      .child("events");
     eventsRef.on("value", snapshot => {
       let events = snapshot.val();
       let newState = [];

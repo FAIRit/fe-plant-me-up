@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
+import { RemovePlantConfirm } from "../components/utilities/RemovePlantConfirm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class PlantsList extends Component {
@@ -11,16 +12,15 @@ export class PlantsList extends Component {
       isNumericList: true,
       reverseNumericList: false,
       reverseAlphaList: false,
-      search: ""
+      search: "",
+      isPlantRemoved: false,
     };
   }
 
   componentDidMount() {
-    const plantsRef = firebase
-      .database()
-      .ref()
-      .child("plants");
-    plantsRef.on("value", snapshot => {
+    const user = firebase.auth().currentUser;
+    const plantsRef = firebase.database().ref().child("plants").child(user.uid);
+    plantsRef.on("value", (snapshot) => {
       let plants = snapshot.val();
       let newState = [];
       for (let plant in plants) {
@@ -28,47 +28,72 @@ export class PlantsList extends Component {
           id: plant,
           name: plants[plant].name,
           description: plants[plant].description,
-          date: plants[plant].date
+          date: plants[plant].date,
         });
       }
       this.setState({
-        plants: newState
+        plants: newState,
       });
     });
   }
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     this.setState({
-      search: e.target.value.substr(0, 20)
+      search: e.target.value.substr(0, 20),
     });
   };
 
   handleNumericList = () => {
     this.setState({
-      isNumericList: true
+      isNumericList: true,
     });
     if (this.state.isNumericList === true) {
       this.setState({
-        reverseNumericList: !this.state.reverseNumericList
+        reverseNumericList: !this.state.reverseNumericList,
       });
     }
   };
 
   handleAlphaList = () => {
     this.setState({
-      isNumericList: false
+      isNumericList: false,
     });
     if (this.state.isNumericList === false) {
       this.setState({
-        reverseAlphaList: !this.state.reverseAlphaList
+        reverseAlphaList: !this.state.reverseAlphaList,
       });
     }
+  };
+
+  handleRemovePlant(plantId) {
+    const user = firebase.auth().currentUser;
+    const plantRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId);
+    plantRef.remove();
+    this.setState({
+      isPlantRemoved: false,
+    });
+  }
+
+  openRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: true,
+    });
+  };
+
+  closeRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: false,
+    });
   };
 
   render() {
     const { isNumericList, reverseAlphaList, reverseNumericList } = this.state;
 
-    let filteredPlants = this.state.plants.filter(plant => {
+    let filteredPlants = this.state.plants.filter((plant) => {
       return plant.name.indexOf(this.state.search) !== -1;
     });
 
@@ -101,20 +126,34 @@ export class PlantsList extends Component {
           <div className="c-catalogue-list" id="numeric-list">
             <ol className={reverseNumericList ? "list--reverse" : null}>
               {filteredPlants
-                .sort(function(a, b) {
+                .sort(function (a, b) {
                   if (a.date < b.date) return -1;
                   if (a.date > b.date) return 1;
                   return 0;
                 })
-                .map(plant => {
+                .map((plant) => {
                   return (
                     <li key={plant.id}>
-                      <SinglePlant
-                        plantName={plant.name}
-                        plantId={plant.id}
-                        plantDescription={plant.description}
-                        plantDate={plant.date}
-                      />
+                      <div className="plant-list-item">
+                        <SinglePlant
+                          plantName={plant.name}
+                          plantId={plant.id}
+                          plantDescription={plant.description}
+                          plantDate={plant.date}
+                        />
+                        <button
+                          className="btn--remove"
+                          onClick={this.openRemoveConfirm}
+                        >
+                          <FontAwesomeIcon icon="trash" />
+                        </button>
+                        {this.state.isPlantRemoved && (
+                          <RemovePlantConfirm
+                            onYesButton={() => this.handleRemovePlant(plant.id)}
+                            onNoButton={this.closeRemoveConfirm}
+                          />
+                        )}
+                      </div>
                     </li>
                   );
                 })}
@@ -124,19 +163,36 @@ export class PlantsList extends Component {
           <div className="c-catalogue-list">
             <ul className={reverseAlphaList ? "list--reverse" : null}>
               {this.state.plants
-                .sort(function(a, b) {
+                .sort(function (a, b) {
                   if (a.name < b.name) return -1;
                   if (a.name > b.name) return 1;
                   return 0;
                 })
-                .map(plant => {
+                .map((plant) => {
                   return (
                     <li key={plant.id}>
-                      <SinglePlant
-                        plantName={plant.name}
-                        plantId={plant.id}
-                        plantDescription={plant.description}
-                      />
+                      <div className="plant-list-item">
+                        <SinglePlant
+                          plantName={plant.name}
+                          plantId={plant.id}
+                          plantDescription={plant.description}
+                          plantDate={plant.date}
+                        />
+                        <button
+                          className="btn--remove"
+                          onClick={this.openRemoveConfirm}
+                        >
+                          <FontAwesomeIcon icon="trash" />
+                        </button>
+                        {this.state.isPlantRemoved && (
+                          <RemovePlantConfirm
+                            onYesButton={() =>
+                              this.handleRemovePlant(this.state.plant.id)
+                            }
+                            onNoButton={() => this.closeRemoveConfirm}
+                          />
+                        )}
+                      </div>
                     </li>
                   );
                 })}

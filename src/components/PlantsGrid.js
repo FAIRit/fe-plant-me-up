@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
 import { ProfileImage } from "./utilities/ProfileImage";
+import { RemovePlantConfirm } from "../components/utilities/RemovePlantConfirm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class PlantsGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
       plants: [],
-      search: ""
+      search: "",
     };
   }
 
   componentDidMount() {
-    const plantsRef = firebase
-      .database()
-      .ref()
-      .child("plants");
-    plantsRef.on("value", snapshot => {
+    const user = firebase.auth().currentUser;
+    const plantsRef = firebase.database().ref().child("plants").child(user.uid);
+    plantsRef.on("value", (snapshot) => {
       let plants = snapshot.val();
       let newState = [];
       for (let plant in plants) {
@@ -25,23 +25,48 @@ export class PlantsGrid extends Component {
           id: plant,
           name: plants[plant].name,
           description: plants[plant].description,
-          profileImage: plants[plant].profileImage
+          profileImage: plants[plant].profileImage,
         });
       }
       this.setState({
-        plants: newState
+        plants: newState,
       });
     });
   }
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     this.setState({
-      search: e.target.value.substr(0, 20)
+      search: e.target.value.substr(0, 20),
+    });
+  };
+
+  handleRemovePlant(plantId) {
+    const user = firebase.auth().currentUser;
+    const plantRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId);
+    plantRef.remove();
+    this.setState({
+      isPlantRemoved: false,
+    });
+  }
+
+  openRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: true,
+    });
+  };
+
+  closeRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: false,
     });
   };
 
   render() {
-    let filteredPlants = this.state.plants.filter(plant => {
+    let filteredPlants = this.state.plants.filter((plant) => {
       return plant.name.indexOf(this.state.search) !== -1;
     });
 
@@ -57,8 +82,7 @@ export class PlantsGrid extends Component {
           />
         </div>
         <div className="grid-display">
-          {filteredPlants.map(plant => {
-        
+          {filteredPlants.map((plant) => {
             return (
               <div className="grid-item" key={plant.id}>
                 <ProfileImage profileImage={plant.profileImage} />
@@ -68,6 +92,18 @@ export class PlantsGrid extends Component {
                   plantId={plant.id}
                   plantDescription={plant.description}
                 />
+                <button
+                  className="btn--remove"
+                  onClick={this.openRemoveConfirm}
+                >
+                  <FontAwesomeIcon icon="trash" />
+                </button>
+                {this.state.isPlantRemoved && (
+                  <RemovePlantConfirm
+                    onYesButton={() => this.handleRemovePlant(plant.id)}
+                    onNoButton={this.closeRemoveConfirm}
+                  />
+                )}
               </div>
             );
           })}

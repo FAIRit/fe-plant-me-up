@@ -9,11 +9,14 @@
 @import "./scss/c-site_single-plant.scss";
 @import "./scss/c-image-upload.scss";
 @import "./scss/c-site-catalogue.scss";
+@import "./scss/c-site-footer.scss";
+@import "./scss/c-site-add-form.scss";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -26,8 +29,16 @@ body {
   color: red;
 }
 
+.c-content {
+  @include mobileLandscape {
+    height: 500px;
+    background: url(./components/utilities/img/background-img-mobile.jpg) bottom
+      no-repeat;
+  }
+}
+
 .c-site-content {
-  margin: 20px;
+  margin: 20px 20px 50px;
 }
 
 hr {
@@ -40,4 +51,12 @@ hr {
     rgba(13, 164, 78, 0.75),
     rgba(13, 164, 78, 0)
   );
+}
+
+.img-loader {
+  text-align: center;
+}
+
+.img-loader--main {
+  margin-top: 20px;
 }

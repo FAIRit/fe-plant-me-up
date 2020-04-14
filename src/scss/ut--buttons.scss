@@ -1,3 +1,7 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
 .btn {
   margin: 5px 10px;
   padding: 10px;
@@ -11,10 +15,15 @@
     cursor: pointer;
     opacity: 0.9;
   }
+
+  a {
+    @include links(#fff, #fff, #fff, #fff);
+    text-decoration: none;
+  }
 }
 
 .btn--edit {
-  margin-left: 30px;
+  margin-left: 5px;
   padding: 5px;
   border: none;
   background-color: transparent;
@@ -39,6 +48,15 @@
     cursor: pointer;
     opacity: 1;
   }
+}
+
+.btn--remove-preview {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .btn--select {

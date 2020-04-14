@@ -25,6 +25,14 @@
   ul {
     @include flex(column, nowrap, flex-start, flex-start);
     padding-left: 20px;
+    li {
+      width: 100%;
+    }
+
+    .plant-list-item {
+      width: 100%;
+      @include flex(row, nowrap, space-between, center);
+    }
   }
 
   .list--reverse {
@@ -49,12 +57,17 @@
   border-radius: 5px;
   align-self: center;
 
+  button {
+    float: right;
+  }
+
   @include mobileLandscape {
     width: 45%;
   }
 
   h2 {
     margin: 5px auto;
+    word-wrap: anywhere;
 
     @include mobile {
       font-size: 18px;

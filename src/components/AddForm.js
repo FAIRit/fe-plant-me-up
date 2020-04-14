@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PlantAddedInfo } from "./utilities/PlantAddedInfo";
 
 export class AddForm extends Component {
   constructor(props) {
@@ -15,32 +16,33 @@ export class AddForm extends Component {
       tagMoreWater: false,
       tagLittleSun: false,
       tagLittleWater: false,
-      plants: []
+      plants: [],
+      isPlantAdded: false,
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleAddDescription = e => {
+  handleAddDescription = (e) => {
     this.setState({
-      textarea: e.target.value
+      textarea: e.target.value,
     });
   };
 
-  handleCheckbox = e => {
+  handleCheckbox = (e) => {
     this.setState({
-      [e.target.name]: e.target.checked
+      [e.target.name]: e.target.checked,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-
-    const plantsRef = firebase.database().ref("plants");
+    const user = firebase.auth().currentUser;
+    const plantsRef = firebase.database().ref("plants").child(user.uid);
     const plant = {
       name: this.state.text,
       description: this.state.textarea,
@@ -51,10 +53,15 @@ export class AddForm extends Component {
         tagLittleWater: this.state.tagLittleWater,
         tagMoreWater: this.state.tagMoreWater,
         tagSafe: this.state.tagSafe,
-        tagPoison: this.state.tagPoison
-      }
+        tagPoison: this.state.tagPoison,
+      },
     };
-    plantsRef.push(plant);
+    plantsRef.push(plant).then((ref) => {
+      console.log(ref.key);
+      this.setState({
+        id: ref.key,
+      });
+    });
     this.setState({
       text: "",
       textarea: "",
@@ -63,14 +70,20 @@ export class AddForm extends Component {
       tagMoreSun: false,
       tagMoreWater: false,
       tagLittleSun: false,
-      tagLittleWater: false
+      tagLittleWater: false,
+      isPlantAdded: true,
     });
-    alert("Dodano roślinkę!");
+  };
+
+  handleCloseInfo = () => {
+    this.setState({
+      isPlantAdded: false,
+    });
   };
 
   render() {
     return (
-      <div className="c-page">
+      <div className="c-site-content">
         <h1>Dodaj nową roślinę:</h1>
         <div>
           <form onSubmit={this.handleSubmit}>
@@ -100,7 +113,7 @@ export class AddForm extends Component {
                 checked={this.state.tagMoreSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreSun">
+              <label htmlFor="tagMoreSun" id="tagMoreSun">
                 <FontAwesomeIcon icon="sun" />
               </label>
               <input
@@ -109,7 +122,7 @@ export class AddForm extends Component {
                 checked={this.state.tagLittleSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleSun">
+              <label htmlFor="tagLittleSun" id="tagLittleSun">
                 <FontAwesomeIcon icon="cloud" />
               </label>
               <input
@@ -118,7 +131,7 @@ export class AddForm extends Component {
                 checked={this.state.tagMoreWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreWater">
+              <label htmlFor="tagMoreWater" id="tagMoreWater">
                 <FontAwesomeIcon icon="tint" />
               </label>
               <input
@@ -127,7 +140,7 @@ export class AddForm extends Component {
                 checked={this.state.tagLittleWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleWater">
+              <label htmlFor="tagLittleWater" id="tagLittleWater">
                 <FontAwesomeIcon icon="tint-slash" />
               </label>
               <input
@@ -136,7 +149,7 @@ export class AddForm extends Component {
                 checked={this.state.tagSafe}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagSafe">
+              <label htmlFor="tagSafe" id="tagSafe">
                 <FontAwesomeIcon icon="paw" />
               </label>
               <input
@@ -145,7 +158,7 @@ export class AddForm extends Component {
                 checked={this.state.tagPoison}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagPoison">
+              <label htmlFor="tagPoison" id="tagPoison">
                 <FontAwesomeIcon icon="skull" />
               </label>
             </section>
@@ -153,6 +166,12 @@ export class AddForm extends Component {
             <br />
             <button className="btn">dodaj</button>
           </form>
+          {this.state.isPlantAdded && (
+            <PlantAddedInfo
+              onClick={this.handleCloseInfo}
+              plantId={this.state.id}
+            />
+          )}
         </div>
       </div>
     );
