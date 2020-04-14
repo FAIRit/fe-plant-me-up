@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { SinglePlant } from "./SinglePlant";
 import { ProfileImage } from "./utilities/ProfileImage";
+import { RemovePlantConfirm } from "../components/utilities/RemovePlantConfirm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class PlantsGrid extends Component {
   constructor(props) {
@@ -38,6 +40,31 @@ export class PlantsGrid extends Component {
     });
   };
 
+  handleRemovePlant(plantId) {
+    const user = firebase.auth().currentUser;
+    const plantRef = firebase
+      .database()
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId);
+    plantRef.remove();
+    this.setState({
+      isPlantRemoved: false,
+    });
+  }
+
+  openRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: true,
+    });
+  };
+
+  closeRemoveConfirm = () => {
+    this.setState({
+      isPlantRemoved: false,
+    });
+  };
+
   render() {
     let filteredPlants = this.state.plants.filter((plant) => {
       return plant.name.indexOf(this.state.search) !== -1;
@@ -66,6 +93,18 @@ export class PlantsGrid extends Component {
                   plantId={plant.id}
                   plantDescription={plant.description}
                 />
+                <button
+                  className="btn--remove"
+                  onClick={this.openRemoveConfirm}
+                >
+                  <FontAwesomeIcon icon="trash" />
+                </button>
+                {this.state.isPlantRemoved && (
+                  <RemovePlantConfirm
+                    onYesButton={() => this.handleRemovePlant(plant.id)}
+                    onNoButton={this.closeRemoveConfirm}
+                  />
+                )}
               </div>
             );
           })}
