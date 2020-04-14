@@ -24,28 +24,28 @@ export class Header extends Component {
             <nav className="c-site-nav">
               <ul>
                 <li>
-                  <NavLink to="/add-form">
+                  <NavLink to="/add-form" id="addForm">
                     <FontAwesomeIcon icon="plus-circle" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" exact>
+                  <NavLink to="/" exact id="catalog">
                     <FontAwesomeIcon icon="leaf" />
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink to="/todolist">
+                  <NavLink to="/todolist" id="toDoList">
                     <FontAwesomeIcon icon="check-circle" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/wishlist">
+                  <NavLink to="/wishlist" id="wishList">
                     <FontAwesomeIcon icon="heart" />
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/help">
+                  <NavLink to="/help" id="about">
                     <FontAwesomeIcon icon="info-circle" />
                   </NavLink>
                 </li>
@@ -58,7 +58,7 @@ export class Header extends Component {
                   <h2>plant me up.</h2>
                 </li>
                 <li>
-                  <NavLink to="/help">
+                  <NavLink to="/help" id="about2">
                     <FontAwesomeIcon icon="info-circle" />
                   </NavLink>
                 </li>

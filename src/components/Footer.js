@@ -23,7 +23,7 @@ export class Footer extends Component {
         <div className="o-container c-footer-nav">
           <h4>2020 &#169; plant me up.</h4>
           {this.props.user && (
-            <button className="btn" onClick={this.handleLogout}>
+            <button className="btn" onClick={this.handleLogout} id="logOut">
               <img src={exit} alt="log out" />
             </button>
           )}

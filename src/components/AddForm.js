@@ -100,7 +100,7 @@ export class AddForm extends Component {
                 checked={this.state.tagMoreSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreSun">
+              <label htmlFor="tagMoreSun" id="tagMoreSun">
                 <FontAwesomeIcon icon="sun" />
               </label>
               <input
@@ -109,7 +109,7 @@ export class AddForm extends Component {
                 checked={this.state.tagLittleSun}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleSun">
+              <label htmlFor="tagLittleSun" id="tagLittleSun">
                 <FontAwesomeIcon icon="cloud" />
               </label>
               <input
@@ -118,7 +118,7 @@ export class AddForm extends Component {
                 checked={this.state.tagMoreWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagMoreWater">
+              <label htmlFor="tagMoreWater" id="tagMoreWater">
                 <FontAwesomeIcon icon="tint" />
               </label>
               <input
@@ -127,7 +127,7 @@ export class AddForm extends Component {
                 checked={this.state.tagLittleWater}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagLittleWater">
+              <label htmlFor="tagLittleWater" id="tagLittleWater">
                 <FontAwesomeIcon icon="tint-slash" />
               </label>
               <input
@@ -136,7 +136,7 @@ export class AddForm extends Component {
                 checked={this.state.tagSafe}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagSafe">
+              <label htmlFor="tagSafe" id="tagSafe">
                 <FontAwesomeIcon icon="paw" />
               </label>
               <input
@@ -145,7 +145,7 @@ export class AddForm extends Component {
                 checked={this.state.tagPoison}
                 onChange={this.handleCheckbox}
               />
-              <label htmlFor="tagPoison">
+              <label htmlFor="tagPoison" id="tagPoison">
                 <FontAwesomeIcon icon="skull" />
               </label>
             </section>

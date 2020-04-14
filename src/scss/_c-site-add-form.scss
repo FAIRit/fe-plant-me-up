@@ -1,0 +1,63 @@
+@import "./scss/ut--responsive.scss";
+@import "./scss/ut--variables.scss";
+@import "./scss/ut--buttons.scss";
+@import "./scss/ut--mixins.scss";
+@import "./scss/ut--inputs.scss";
+@import "./scss/ut--lists.scss";
+
+.c-form-tags {
+  label {
+    position: relative;
+    font-size: 22px;
+  }
+
+  label:hover::after {
+    content: " ";
+    position: absolute;
+    top: 25px;
+    padding: 3px;
+    font-size: 12px;
+
+    text-transform: uppercase;
+    color: black;
+    background-color: transparent;
+    text-align: center;
+    z-index: 1;
+  }
+}
+
+label#tagMoreSun:hover::after {
+  content: "stanowisko na słońcu";
+  width: 130px;
+  left: -40px;
+}
+
+label#tagLittleSun:hover::after {
+  content: "stanowisko w cieniu";
+  width: 120px;
+  left: -50px;
+}
+
+label#tagMoreWater:hover::after {
+  content: "potrzebuje dużo wody";
+  width: 135px;
+  left: -60px;
+}
+
+label#tagLittleWater:hover::after {
+  content: "potrzebuje mało wody";
+  width: 135px;
+  left: -60px;
+}
+
+label#tagSafe:hover::after {
+  content: "bezpieczna dla zwierząt";
+  width: 140px;
+  left: -65px;
+}
+
+label#tagPoison:hover::after {
+  content: "trująca";
+  width: 80px;
+  left: -35px;
+}
