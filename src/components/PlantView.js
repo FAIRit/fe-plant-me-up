@@ -7,6 +7,7 @@ import { TagsEditForm } from "../components/editing forms/TagsEditForm";
 import { SinglePlantTimeline } from "../components/SinglePlantTimeline";
 import { ImageUpload } from "../components/ImageUpload";
 import { ImagesGallery } from "../components/ImagesGallery";
+import loader from "../components/utilities/img/loader.gif";
 
 export class PlantView extends Component {
   constructor(props) {
@@ -61,7 +62,13 @@ export class PlantView extends Component {
     return (
       <div className="c-single-plant">
         {this.state.plant === null ? (
-          <p>Plant data is loading...</p>
+          <div className="img-loader">
+            <img
+              src={loader}
+              alt="data are loading..."
+              className="img-loader"
+            />
+          </div>
         ) : (
           <div>
             <div className="c-single-plant-title">

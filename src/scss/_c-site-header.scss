@@ -3,6 +3,7 @@
 @import "./ut--responsive.scss";
 
 .c-site-header {
+  // height: 81.4px;
   padding: 15px;
   background: $brand-color;
   background: linear-gradient(
@@ -43,11 +44,12 @@
 
       h2 {
         font-family: $heading-font-family;
+        font-size: 30px;
       }
     }
   }
 }
 
 .active {
-  transform: scale(1.5);
+  transform: scale(1.72);
 }
