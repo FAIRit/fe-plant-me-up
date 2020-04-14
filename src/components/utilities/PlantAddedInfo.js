@@ -7,10 +7,10 @@ export const PlantAddedInfo = (props) => {
       <div className="modal-body plant-added-info">
         <h2>Roślina została dodana!</h2>
         <button className="btn" onClick={props.onClick}>
-          dodaj kolejną roślinę
+          dodaj kolejną
         </button>
         <button className="btn">
-          <Link to={"/"}>przejdź do katalogu</Link>
+          <Link to={`plants/${props.plantId}`}>zobacz nową roślinkę</Link>
         </button>
       </div>
     </div>

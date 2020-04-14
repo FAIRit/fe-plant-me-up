@@ -56,7 +56,12 @@ export class AddForm extends Component {
         tagPoison: this.state.tagPoison,
       },
     };
-    plantsRef.push(plant);
+    plantsRef.push(plant).then((ref) => {
+      console.log(ref.key);
+      this.setState({
+        id: ref.key,
+      });
+    });
     this.setState({
       text: "",
       textarea: "",
