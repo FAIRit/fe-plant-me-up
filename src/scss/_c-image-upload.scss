@@ -17,7 +17,11 @@
 }
 
 .c-image-upload--form {
-  @include flex(row, nowrap, space-between, center);
+  @include flex(row, nowrap, flex-start, center);
+
+  @include mobile {
+    @include flex(row, nowrap, space-between, center);
+  }
 }
 
 .c-image-upload--zone {

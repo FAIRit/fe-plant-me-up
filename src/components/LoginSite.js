@@ -87,7 +87,7 @@ export class LoginSite extends Component {
             <Link to={"/registrationSite"}>Nie masz konta? Załóż je!</Link>
           </h4>
           <button
-            className="btn btn--remove"
+            className="btn btn--remove login-btn"
             onClick={this.handleForgottenPassword}
           >
             nie pamiętasz hasła?
