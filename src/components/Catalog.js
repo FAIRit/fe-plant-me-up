@@ -5,18 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Catalog extends Component {
   state = {
-    displayMode: true
+    displayMode: true,
   };
 
   toggleDisplayMode = () => {
     this.setState({
-      displayMode: !this.state.displayMode
+      displayMode: !this.state.displayMode,
     });
   };
 
   render() {
     return (
-      <div className="c-page">
+      <div className="c-site-content">
         <div className="c-catalogue-title">
           <h1>Moje rośliny</h1>
           <div>

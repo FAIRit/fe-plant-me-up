@@ -76,7 +76,7 @@ export class Wishlist extends Component {
 
   render() {
     return (
-      <div className="c-page">
+      <div className="c-site-content">
         <h1>wishlist</h1>
         <div>
           <form onSubmit={this.handleSubmit} className="u-form">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../components/utilities/img/logo-small.jpg";
 
 export class Header extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export class Header extends Component {
         <div className="o-container c-site-header-inner">
           <div className="c-site-header-logo">
             <Link to="/" exact>
-              <img src="https://via.placeholder.com/40x40" alt="placeholder" />
+              <img src={logo} alt="logo" />
             </Link>
           </div>
           {this.props.user ? (

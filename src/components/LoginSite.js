@@ -59,7 +59,7 @@ export class LoginSite extends Component {
 
   render() {
     return (
-      <>
+      <div className="c-content">
         <div className="c-login-site">
           {this.state.error ? <p>{this.state.error.message}</p> : null}
           <form onSubmit={this.handleSubmit} className="c-login-form">
@@ -118,7 +118,7 @@ export class LoginSite extends Component {
             <p>Wysłano wiadomość na podany email!</p>
           ) : null}
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -15,35 +15,32 @@ export class AddForm extends Component {
       tagMoreWater: false,
       tagLittleSun: false,
       tagLittleWater: false,
-      plants: []
+      plants: [],
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleAddDescription = e => {
+  handleAddDescription = (e) => {
     this.setState({
-      textarea: e.target.value
+      textarea: e.target.value,
     });
   };
 
-  handleCheckbox = e => {
+  handleCheckbox = (e) => {
     this.setState({
-      [e.target.name]: e.target.checked
+      [e.target.name]: e.target.checked,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const user = firebase.auth().currentUser;
-    const plantsRef = firebase
-      .database()
-      .ref("plants")
-      .child(user.uid);
+    const plantsRef = firebase.database().ref("plants").child(user.uid);
     const plant = {
       name: this.state.text,
       description: this.state.textarea,
@@ -54,8 +51,8 @@ export class AddForm extends Component {
         tagLittleWater: this.state.tagLittleWater,
         tagMoreWater: this.state.tagMoreWater,
         tagSafe: this.state.tagSafe,
-        tagPoison: this.state.tagPoison
-      }
+        tagPoison: this.state.tagPoison,
+      },
     };
     plantsRef.push(plant);
     this.setState({
@@ -66,14 +63,14 @@ export class AddForm extends Component {
       tagMoreSun: false,
       tagMoreWater: false,
       tagLittleSun: false,
-      tagLittleWater: false
+      tagLittleWater: false,
     });
     alert("Dodano roślinkę!");
   };
 
   render() {
     return (
-      <div className="c-page">
+      <div className="c-site-content">
         <h1>Dodaj nową roślinę:</h1>
         <div>
           <form onSubmit={this.handleSubmit}>

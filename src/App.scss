@@ -27,6 +27,15 @@ body {
 .priority {
   color: red;
 }
+
+.c-content {
+  @include mobileLandscape {
+    height: 500px;
+    background: url(./components/utilities/img/background-img-mobile.jpg) bottom
+      no-repeat;
+  }
+}
+
 .c-site-content {
   margin: 20px 20px 50px;
 }
@@ -45,4 +54,8 @@ hr {
 
 .img-loader {
   text-align: center;
+}
+
+.img-loader--main {
+  margin-top: 20px;
 }

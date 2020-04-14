@@ -22,7 +22,13 @@
 }
 
 .c-site-header-logo {
+  height: 50px;
+  width: 50px;
+
   img {
+    height: 100%;
+    width: auto;
+    border-radius: 50px;
   }
 }
 
@@ -51,5 +57,5 @@
 }
 
 .active {
-  transform: scale(1.72);
+  transform: scale(1.7);
 }

@@ -35,10 +35,10 @@ export class App extends Component {
           <Header user={this.state.user} />
 
           <div className="o-container">
-            <div className="c-site-content">
+            <div>
               <Switch>
                 {this.state.user === undefined ? (
-                  <div className="img-loader">
+                  <div className="img-loader img-loader--main">
                     <img
                       src={loader}
                       alt="data are loading..."

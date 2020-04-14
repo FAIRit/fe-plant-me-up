@@ -9,17 +9,17 @@ export class RegistrationSite extends Component {
       email: "",
       passwordOne: "",
       passwordTwo: "",
-      error: null
+      error: null,
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { username, email, passwordOne } = this.state;
     firebase
@@ -33,16 +33,16 @@ export class RegistrationSite extends Component {
           .child(user.uid)
           .set({
             username,
-            email
+            email,
           })
           .then(() => {
             this.props.history.push("/");
           })
-          .catch(error => {
+          .catch((error) => {
             this.setState({ error });
           });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
 
@@ -57,7 +57,7 @@ export class RegistrationSite extends Component {
       this.state.username === "";
 
     return (
-      <div className="c-site">
+      <div className="c-site-content">
         <div className="c-login-site">
           <h3>załóż konto:</h3>
           <form onSubmit={this.handleSubmit} className="c-login-form">
