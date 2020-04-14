@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PlantAddedInfo } from "./utilities/PlantAddedInfo";
 
 export class AddForm extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class AddForm extends Component {
       tagLittleSun: false,
       tagLittleWater: false,
       plants: [],
+      isPlantAdded: false,
     };
   }
 
@@ -64,8 +66,14 @@ export class AddForm extends Component {
       tagMoreWater: false,
       tagLittleSun: false,
       tagLittleWater: false,
+      isPlantAdded: true,
     });
-    alert("Dodano roślinkę!");
+  };
+
+  handleCloseInfo = () => {
+    this.setState({
+      isPlantAdded: false,
+    });
   };
 
   render() {
@@ -153,6 +161,12 @@ export class AddForm extends Component {
             <br />
             <button className="btn">dodaj</button>
           </form>
+          {this.state.isPlantAdded && (
+            <PlantAddedInfo
+              onClick={this.handleCloseInfo}
+              plantId={this.state.id}
+            />
+          )}
         </div>
       </div>
     );
