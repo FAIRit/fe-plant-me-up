@@ -41,6 +41,7 @@ export class Wishlist extends Component {
     this.setState({
       text: "",
       url: "",
+      textarea: "",
     });
   };
 
@@ -115,7 +116,9 @@ export class Wishlist extends Component {
                       <span className="list-star">&#10045;</span>
                       <h3>{item.title}</h3>
                       <p className="list-add-text">
-                        <a href="{item.link}">{item.link}</a>
+                        <a href="{item.link}" className="wishlist-link">
+                          {item.link}
+                        </a>
                       </p>
                       <p className="list-add-text">{item.description}</p>
                       <button

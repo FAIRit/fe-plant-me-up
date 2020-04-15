@@ -19,16 +19,30 @@
 
 .c-site-header-inner {
   @include flex(row, nowrap, space-between, center);
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .c-site-header-logo {
+  @include flex(row, nowrap, flex-start, center);
+
   height: 50px;
-  width: 50px;
+  width: auto;
 
   img {
     height: 100%;
     width: auto;
     border-radius: 50px;
+  }
+
+  h2 {
+    margin-left: 10px;
+    font-family: $heading-font-family;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #fff;
   }
 }
 

@@ -1,0 +1,49 @@
+@import "./ut--mixins.scss";
+@import "./ut--variables.scss";
+@import "./ut--responsive.scss";
+
+.wishlist-link {
+  text-decoration: none;
+  color: $brand-color;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: none;
+  }
+}
+
+.c-help-info {
+  margin: 15px auto;
+
+  h4 {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 0;
+
+    a {
+      text-decoration: none;
+      color: $brand-color;
+
+      &:hover {
+        opacity: 0.7;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.c-help-gallery {
+  @include flex(row, wrap, space-between, center);
+}
+
+.c-help-gallery-item {
+  @include flex(row, wrap, flex-start, flex-start);
+
+  padding: 10px;
+
+  h3 {
+    margin-right: 10px;
+    font-size: 20px;
+    color: $brand-color;
+  }
+}

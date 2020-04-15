@@ -14,6 +14,7 @@ export class PlantsList extends Component {
       reverseAlphaList: false,
       search: "",
       isPlantRemoved: false,
+      idOfPlantIsRemoved: null,
     };
   }
 
@@ -74,19 +75,19 @@ export class PlantsList extends Component {
       .child(plantId);
     plantRef.remove();
     this.setState({
-      isPlantRemoved: false,
+      idOfPlantToRemove: null,
     });
   }
 
-  openRemoveConfirm = () => {
+  openRemoveConfirm = (plantId) => {
     this.setState({
-      isPlantRemoved: true,
+      idOfPlantToRemove: plantId,
     });
   };
 
   closeRemoveConfirm = () => {
     this.setState({
-      isPlantRemoved: false,
+      idOfPlantToRemove: null,
     });
   };
 
@@ -143,11 +144,11 @@ export class PlantsList extends Component {
                         />
                         <button
                           className="btn--remove"
-                          onClick={this.openRemoveConfirm}
+                          onClick={() => this.openRemoveConfirm(plant.id)}
                         >
                           <FontAwesomeIcon icon="trash" />
                         </button>
-                        {this.state.isPlantRemoved && (
+                        {this.state.idOfPlantToRemove === plant.id && (
                           <RemovePlantConfirm
                             onYesButton={() => this.handleRemovePlant(plant.id)}
                             onNoButton={this.closeRemoveConfirm}
@@ -180,11 +181,11 @@ export class PlantsList extends Component {
                         />
                         <button
                           className="btn--remove"
-                          onClick={this.openRemoveConfirm}
+                          onClick={() => this.openRemoveConfirm(plant.id)}
                         >
                           <FontAwesomeIcon icon="trash" />
                         </button>
-                        {this.state.isPlantRemoved && (
+                        {this.state.idOfPlantToRemove === plant.id && (
                           <RemovePlantConfirm
                             onYesButton={() =>
                               this.handleRemovePlant(this.state.plant.id)
