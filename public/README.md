@@ -10,16 +10,14 @@ developed in association with FAIRit project.
 
 This application helps to take care of your plants. You can put in one place all useful notes, plan your caring routine, make a calendar of events for every plant and collect photo documentation.
 
-### Visit https://plant-me-up.web.app/ and grow your personal jungle.
+![](src/../../src/assets/plantMeUpA.jpg) ![](src/../../src/assets/plantMeUpB.jpg) ![](src/../../src/assets/plantMeUpC.jpg)
 
-![](src/assets/plantMeUpA.jpg) ![](src/assets/plantMeUpB.jpg) ![](src/assets/plantMeUpC.jpg)
+![](src/../../src/assets/plantMeUpD.jpg) ![](src/../../src/assets/plantMeUpE.jpg) ![](src/../../src/assets/plantMeUpF.jpg) 
 
-![](src/assets/plantMeUpD.jpg) ![](src/assets/plantMeUpE.jpg) ![](src/assets/plantMeUpF.jpg) 
-
-![](src/assets/plantMeUpG.jpg) 
+![](src/../../src/assets/plantMeUpG.jpg) 
 
 
-
+## Visit `https://plant-me-up.web.app/` and grow your personal jungle with PLANT ME UP.
 
 ___
 #### I create this project with React and Firebase. If you want to test it locally:
