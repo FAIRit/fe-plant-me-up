@@ -17,7 +17,7 @@ This application helps to take care of your plants. You can put in one place all
 ![](src/../../src/assets/plantMeUpG.jpg) 
 
 
-## Grow your personal jungle with PLANT ME UP.
+## Visit `https://plant-me-up.web.app/` and grow your personal jungle with PLANT ME UP.
 
 ___
 #### I create this project with React and Firebase. If you want to test it locally:
