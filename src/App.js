@@ -56,7 +56,7 @@ export class App extends Component {
                   </>
                 ) : (
                   <>
-                    <Route path="/" component={LoginSite} />
+                    <Route path="/" exact component={LoginSite} />
                     <Route
                       path="/registrationSite"
                       exact

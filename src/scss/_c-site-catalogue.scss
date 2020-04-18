@@ -21,6 +21,8 @@
 }
 
 .c-catalogue-list {
+  position: relative;
+
   ol,
   ul {
     @include flex(column, nowrap, flex-start, flex-start);
@@ -41,6 +43,8 @@
 }
 .grid-display {
   @include flex(row, wrap, space-between, flex-start);
+
+  position: relative;
 }
 
 .grid-display--reverse {
@@ -78,4 +82,29 @@
 .grid-profile-img {
   width: 100%;
   height: auto;
+}
+
+.remove-popup-overlay {
+  @include flex(row, nowrap, center, center);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 21, 21, 0.15);
+}
+
+.remove-popup-body {
+  position: absolute;
+  max-width: 450px;
+  width: 90%;
+  height: auto;
+  z-index: 11;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
 }

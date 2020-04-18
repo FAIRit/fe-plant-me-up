@@ -18,7 +18,7 @@ export class TagsEditForm extends Component {
 
   handleCheckbox = (e) => {
     this.setState({
-      text: e.target.value,
+      [e.target.name]: e.target.checked,
     });
   };
 

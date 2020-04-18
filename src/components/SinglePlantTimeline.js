@@ -9,29 +9,29 @@ export class SinglePlantTimeline extends Component {
       text: "",
       textarea: "",
       date: new Date().toISOString().slice(0, 10),
-      events: []
+      events: [],
     };
   }
 
-  handleAddEvent = e => {
+  handleAddEvent = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
-  handleAddDecsription = e => {
+  handleAddDecsription = (e) => {
     this.setState({
-      textarea: e.target.value
+      textarea: e.target.value,
     });
   };
 
-  handleDate = e => {
+  handleDate = (e) => {
     this.setState({
-      date: e.target.value
+      date: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
@@ -44,13 +44,13 @@ export class SinglePlantTimeline extends Component {
     const event = {
       title: this.state.text,
       description: this.state.textarea,
-      date: this.state.date
+      date: this.state.date,
     };
     eventsRef.push(event);
     this.setState({
       text: "",
       textarea: "",
-      date: new Date().toISOString().slice(0, 10)
+      date: new Date().toISOString().slice(0, 10),
     });
   };
 
@@ -63,7 +63,7 @@ export class SinglePlantTimeline extends Component {
       .child(user.uid)
       .child(plantId)
       .child("events");
-    eventsRef.on("value", snapshot => {
+    eventsRef.on("value", (snapshot) => {
       let events = snapshot.val();
       let newState = [];
       for (let event in events) {
@@ -71,20 +71,25 @@ export class SinglePlantTimeline extends Component {
           id: event,
           title: events[event].title,
           description: events[event].description,
-          date: events[event].date
+          date: events[event].date,
         });
       }
       this.setState({
-        events: newState
+        events: newState,
       });
     });
   }
 
   removeEvent(eventId) {
+    const user = firebase.auth().currentUser;
     const plantId = this.props.plantId;
     const eventRef = firebase
       .database()
-      .ref(`plants/${plantId}/events/${eventId}`);
+      .ref("plants")
+      .child(user.uid)
+      .child(plantId)
+      .child("events")
+      .child(eventId);
     eventRef.remove();
   }
 
@@ -120,7 +125,7 @@ export class SinglePlantTimeline extends Component {
         <div>
           <div className="c-timeline-list-display list-display">
             <ul className="list--reverse">
-              {this.state.events.map(event => {
+              {this.state.events.map((event) => {
                 return (
                   <li className="list-item" key={event.id}>
                     <span className="list-star">&#10045;</span>

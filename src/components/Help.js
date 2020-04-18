@@ -59,6 +59,7 @@ export class Help extends Component {
             Kontakt:
             <a href="mailto: turrrbokitty@gmail.com"> turrrbokitty@gmail.com</a>
           </h4>
+          <h5>Created by Mechacats Inc.</h5>
         </div>
       </div>
     );

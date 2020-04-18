@@ -85,7 +85,9 @@ export class Todolist extends Component {
               checked={this.state.checked}
               onChange={this.handleCheckbox}
             />
-            <label htmlFor="important">WAŻNE</label>
+            <label htmlFor="important" className="priority">
+              WAŻNE
+            </label>
             <button className="btn">dodaj</button>
           </form>
           <hr />

@@ -5,12 +5,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Catalog extends Component {
   state = {
-    displayMode: true,
+    isDisplayModeList: true,
+    isDisplayMOdeGrid: false,
   };
 
-  toggleDisplayMode = () => {
+  toggleDisplayModeList = () => {
     this.setState({
-      displayMode: !this.state.displayMode,
+      isDisplayModeList: true,
+      isDisplayMOdeGrid: false,
+    });
+  };
+
+  toggleDisplayModeGrid = () => {
+    this.setState({
+      isDisplayModeList: false,
+      isDisplayMOdeGrid: true,
     });
   };
 
@@ -20,16 +29,22 @@ export class Catalog extends Component {
         <div className="c-catalogue-title">
           <h1>Moje rośliny</h1>
           <div>
-            <button className="btn--select" onClick={this.toggleDisplayMode}>
+            <button
+              className="btn--select"
+              onClick={this.toggleDisplayModeList}
+            >
               <FontAwesomeIcon icon="bars" />
             </button>
-            <button className="btn--select" onClick={this.toggleDisplayMode}>
+            <button
+              className="btn--select"
+              onClick={this.toggleDisplayModeGrid}
+            >
               <FontAwesomeIcon icon="grip-horizontal" />
             </button>
           </div>
         </div>
         <div className="c-catalogue-display">
-          {this.state.displayMode ? <PlantsList /> : <PlantsGrid />}
+          {this.state.isDisplayModeList ? <PlantsList /> : <PlantsGrid />}
         </div>
       </div>
     );
