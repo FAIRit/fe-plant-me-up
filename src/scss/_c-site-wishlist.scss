@@ -1,0 +1,59 @@
+@import "./scss/ut--responsive.scss";
+@import "./scss/ut--variables.scss";
+@import "./scss/ut--buttons.scss";
+@import "./scss/ut--mixins.scss";
+@import "./scss/ut--inputs.scss";
+@import "./scss/ut--lists.scss";
+
+.wishlist-display {
+  width: 80%;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  ul {
+    // @include flex(column, nowrap, flex-start, flex-start);
+    list-style-type: none;
+
+    li {
+      padding: 10px 0;
+    }
+  }
+}
+
+.c-wishlist-item-title {
+  @include flex(row, nowrap, flex-start, center);
+  margin-bottom: 10px;
+
+  .list-star {
+    color: $brand-color;
+    margin-right: 5px;
+  }
+
+  h3 {
+    text-transform: uppercase;
+  }
+}
+
+.c-wishlist-item-content {
+  @include flex(row, wrap, flex-start, center);
+
+  p,
+  div {
+    margin-right: 10px;
+  }
+
+  .wishlist-item-image {
+    max-width: 150px;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+      padding: 5px;
+      border: 1px solid $brand-color;
+      border-radius: 5px;
+    }
+  }
+}

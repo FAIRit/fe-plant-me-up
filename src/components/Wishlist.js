@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { firebase } from "../firebase";
+import { WishItemEditForm } from "./editing forms/WishItemEditForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export class Wishlist extends Component {
   state = {
     text: "",
     url: "",
+    imgUrl: "",
     textarea: "",
     items: [],
+    idOfEditedItem: null,
   };
 
   handleChange = (e) => {
@@ -19,6 +22,12 @@ export class Wishlist extends Component {
   handleAddUrl = (e) => {
     this.setState({
       url: e.target.value,
+    });
+  };
+
+  handleAddImgUrl = (e) => {
+    this.setState({
+      imgUrl: e.target.value,
     });
   };
 
@@ -35,12 +44,14 @@ export class Wishlist extends Component {
     const item = {
       title: this.state.text,
       link: this.state.url,
+      image: this.state.imgUrl,
       description: this.state.textarea,
     };
     itemsRef.push(item);
     this.setState({
       text: "",
       url: "",
+      imgUrl: "",
       textarea: "",
     });
   };
@@ -56,6 +67,7 @@ export class Wishlist extends Component {
           id: item,
           title: items[item].title,
           link: items[item].link,
+          image: items[item].image,
           description: items[item].description,
         });
       }
@@ -74,6 +86,12 @@ export class Wishlist extends Component {
       .child(itemId);
     itemRef.remove();
   }
+
+  handleItemEdit = (itemId) => {
+    this.setState({
+      idOfEditedItem: itemId,
+    });
+  };
 
   render() {
     return (
@@ -95,6 +113,13 @@ export class Wishlist extends Component {
               onChange={this.handleAddUrl}
               value={this.state.url}
             />
+            <input
+              type="url"
+              name="imgUrl"
+              placeholder="dodaj link do obrazka"
+              onChange={this.handleAddImgUrl}
+              value={this.state.imgUrl}
+            />
             <textarea
               type="textarea"
               name="textarea"
@@ -104,29 +129,65 @@ export class Wishlist extends Component {
               rows={2}
               cols={30}
             />
+
             <button className="btn">dodaj</button>
           </form>
           <hr />
           <div>
-            <div className="list-display">
+            <div className="wishlist-display">
               <ul>
                 {this.state.items.map((item) => {
                   return (
                     <li className="list-item" key={item.id}>
-                      <span className="list-star">&#10045;</span>
-                      <h3>{item.title}</h3>
-                      <p className="list-add-text">
-                        <a href="{item.link}" className="wishlist-link">
-                          {item.link}
-                        </a>
-                      </p>
-                      <p className="list-add-text">{item.description}</p>
-                      <button
-                        className="btn--remove"
-                        onClick={() => this.removeItem(item.id)}
-                      >
-                        <FontAwesomeIcon icon="check-circle" />
-                      </button>
+                      {this.state.idOfEditedItem === item.id ? (
+                        <WishItemEditForm
+                          itemTitle={item.title}
+                          itemLink={item.link}
+                          itemImage={item.image}
+                          itemDescription={item.description}
+                          itemId={item.id}
+                          idOfEditedItem={this.state.idOfEditedItem}
+                          onUpdate={() =>
+                            this.setState({ idOfEditedItem: null })
+                          }
+                        />
+                      ) : (
+                        <>
+                          <div className="c-wishlist-item-title">
+                            <span className="list-star">&#10045;</span>
+                            <h3>{item.title}</h3>
+                            <button
+                              className="btn--edit"
+                              onClick={() => this.handleItemEdit(item.id)}
+                            >
+                              <FontAwesomeIcon icon="pencil-alt" />
+                            </button>
+                            <button
+                              className="btn--remove"
+                              onClick={() => this.removeItem(item.id)}
+                            >
+                              <FontAwesomeIcon icon="times-circle" />
+                            </button>
+                          </div>
+                          <div className="c-wishlist-item-content">
+                            <p className="list-add-text">
+                              <a href={item.link} className="wishlist-link">
+                                {item.link}
+                              </a>
+                            </p>
+
+                            {item.image ? (
+                              <div className="wishlist-item-image">
+                                <a href={item.image}>
+                                  <img src={item.image} alt="wishlist item" />
+                                </a>
+                              </div>
+                            ) : null}
+
+                            <p className="list-add-text">{item.description}</p>
+                          </div>
+                        </>
+                      )}
                     </li>
                   );
                 })}

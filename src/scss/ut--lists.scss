@@ -17,7 +17,7 @@
     @include flex(column, nowrap, flex-start, flex-start);
     list-style-type: none;
     li {
-      @include flex(row, wrap, flex-start, baseline);
+      @include flex(row, wrap, flex-start, center);
       padding: 10px 0;
 
       .list-star {
@@ -33,6 +33,19 @@
 
       .list-add-text {
         margin-left: 20px;
+      }
+
+      .list-image {
+        max-width: 150px;
+        height: auto;
+
+        img {
+          width: 100%;
+          height: auto;
+          padding: 5px;
+          border: 1px solid $brand-color;
+          border-radius: 5px;
+        }
       }
     }
   }

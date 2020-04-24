@@ -43,9 +43,16 @@ export class ImageUpload extends Component {
   };
 
   handleUpload = () => {
+    const user = firebase.auth().currentUser;
     const { image } = this.state;
+    const { imageName } = this.state;
     const { plantId } = this.props;
-    const uploadTask = storage.ref(`images/${plantId}`).put(image);
+    const uploadTask = storage
+      .ref("images")
+      .child(user.uid)
+      .child(plantId)
+      .child(imageName)
+      .put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -62,7 +69,9 @@ export class ImageUpload extends Component {
       () => {
         storage
           .ref("images")
+          .child(user.uid)
           .child(plantId)
+          .child(imageName)
           .getDownloadURL()
           .then((url) => {
             const user = firebase.auth().currentUser;
@@ -136,7 +145,6 @@ export class ImageUpload extends Component {
               id="c-image-upload-input"
               type="file"
               onChange={this.handleAddImage}
-              // onDrop={this.handleAddImage}
             />
           </div>
           <div className="upload-file-name">
@@ -157,9 +165,6 @@ export class ImageUpload extends Component {
             cols={30}
           />
         </div>
-        <button onClick={this.handleUpload} className="btn">
-          dodaj
-        </button>
         <br />
         <progress
           value={this.state.progress}
@@ -168,6 +173,10 @@ export class ImageUpload extends Component {
             this.state.progress === 0 ? "progress-bar--hid" : "progress-bar"
           }
         />
+        <br />
+        <button onClick={this.handleUpload} className="btn">
+          dodaj
+        </button>
       </div>
     );
   }

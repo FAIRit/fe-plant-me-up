@@ -13,8 +13,7 @@ export class PlantsList extends Component {
       reverseNumericList: false,
       reverseAlphaList: false,
       search: "",
-      isPlantRemoved: false,
-      idOfPlantIsRemoved: null,
+      idOfPlantToRemove: null,
     };
   }
 
