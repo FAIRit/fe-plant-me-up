@@ -12,9 +12,9 @@ This application helps to take care of your plants. You can put in one place all
 
 ![](src/../../src/assets/plantMeUpA.jpg) ![](src/../../src/assets/plantMeUpB.jpg) ![](src/../../src/assets/plantMeUpC.jpg)
 
-![](src/../../src/assets/plantMeUpD.jpg) ![](src/../../src/assets/plantMeUpE.jpg) ![](src/../../src/assets/plantMeUpF.jpg) 
+![](src/../../src/assets/plantMeUpI.jpg) ![](src/../../src/assets/plantMeUpD.jpg) ![](src/../../src/assets/plantMeUpE.jpg)  
 
-![](src/../../src/assets/plantMeUpG.jpg) 
+![](src/../../src/assets/plantMeUpF.jpg) ![](src/../../src/assets/plantMeUpG.jpg) 
 
 
 ## Visit `https://plant-me-up.web.app/` and grow your personal jungle with PLANT ME UP.
