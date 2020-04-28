@@ -13,7 +13,7 @@ export class NameEditForm extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.checked,
+      text: e.target.value,
     });
   };
 

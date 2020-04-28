@@ -46,7 +46,7 @@ export class Header extends Component {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/help" id="about">
+                    <NavLink to="/about" id="about">
                       <FontAwesomeIcon icon="info-circle" />
                     </NavLink>
                   </li>
@@ -65,7 +65,7 @@ export class Header extends Component {
               <nav className="c-site-nav">
                 <ul>
                   <li>
-                    <NavLink to="/help" id="about2">
+                    <NavLink to="/about" id="about2">
                       <FontAwesomeIcon icon="info-circle" />
                     </NavLink>
                   </li>

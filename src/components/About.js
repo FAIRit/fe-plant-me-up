@@ -6,13 +6,15 @@ import plantMeUpD from "../assets/plantMeUpD.jpg";
 import plantMeUpE from "../assets/plantMeUpE.jpg";
 import plantMeUpF from "../assets/plantMeUpF.jpg";
 import plantMeUpG from "../assets/plantMeUpG.jpg";
+import plantMeUpH from "../assets/plantMeUpH.jpg";
+import plantMeUpI from "../assets/plantMeUpI.jpg";
 
-export class Help extends Component {
+export class About extends Component {
   render() {
     return (
       <div className="c-site-content">
         <h1 style={{ textTransform: "none" }}>plant me up.</h1>
-        <h3>v. 1.0.0 &#169; 2020</h3>
+        <h3>v. 1.1.1 &#169; 2020</h3>
         <div className="c-help-info">
           <p>
             Aplikacja dla posiadaczy domowej dżungli: <br />
@@ -36,6 +38,10 @@ export class Help extends Component {
           </div>
           <div className="c-help-gallery-item">
             <h3>4.</h3>
+            <img src={plantMeUpI} alt="help-gallery" />
+          </div>
+          <div className="c-help-gallery-item">
+            <h3>4.</h3>
             <img src={plantMeUpD} alt="help-gallery" />
           </div>
           <div className="c-help-gallery-item">
@@ -44,10 +50,14 @@ export class Help extends Component {
           </div>
           <div className="c-help-gallery-item">
             <h3>6.</h3>
-            <img src={plantMeUpF} alt="help-gallery" />
+            <img src={plantMeUpH} alt="help-gallery" />
           </div>
           <div className="c-help-gallery-item">
             <h3>7.</h3>
+            <img src={plantMeUpF} alt="help-gallery" />
+          </div>
+          <div className="c-help-gallery-item">
+            <h3>8.</h3>
             <img src={plantMeUpG} alt="help-gallery" />
           </div>
         </div>

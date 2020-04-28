@@ -1,5 +1,5 @@
 # PLANT ME UP 
-**v. 1.0.0 (c) 2020**
+**v. 1.1.1 (c) 2020**
 
 developed in association with FAIRit project.
 
@@ -14,9 +14,9 @@ This application helps to take care of your plants. You can put in one place all
 
 ![](src/assets/plantMeUpA.jpg) ![](src/assets/plantMeUpB.jpg) ![](src/assets/plantMeUpC.jpg)
 
-![](src/assets/plantMeUpD.jpg) ![](src/assets/plantMeUpE.jpg) ![](src/assets/plantMeUpF.jpg) 
+![](src/assets/plantMeUpI.jpg) ![](src/assets/plantMeUpD.jpg) ![](src/assets/plantMeUpE.jpg)  
 
-![](src/assets/plantMeUpG.jpg) 
+![](src/assets/plantMeUpF.jpg) ![](src/assets/plantMeUpG.jpg) 
 
 
 

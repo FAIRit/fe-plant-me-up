@@ -7,7 +7,7 @@ import { Catalog } from "./components/Catalog";
 import { Todolist } from "./components/Todolist";
 import { Wishlist } from "./components/Wishlist";
 import { AddForm } from "./components/AddForm";
-import { Help } from "./components/Help";
+import { About } from "./components/About";
 import { LoginSite } from "./components/LoginSite";
 import { RegistrationSite } from "./components/RegistrationSite";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -52,7 +52,7 @@ export class App extends Component {
                     <Route path="/todolist" component={Todolist} />
                     <Route path="/wishlist" component={Wishlist} />
                     <Route path="/plants/:plantId" component={PlantView} />
-                    <Route path="/help" component={Help} />
+                    <Route path="/about" component={About} />
                   </>
                 ) : (
                   <>
@@ -62,7 +62,7 @@ export class App extends Component {
                       exact
                       component={RegistrationSite}
                     />
-                    <Route path="/help" component={Help} />
+                    <Route path="/about" component={About} />
                   </>
                 )}
               </Switch>
